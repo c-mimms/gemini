@@ -52,6 +52,36 @@ class StorageWrapperTests(unittest.TestCase):
             reloaded = GraphStore(str(tmpdir))
             self.assertEqual(reloaded.get_node(created.id).content, "immutable")
 
+    def test_graph_store_create_node_copies_metadata(self):
+        from stateful_generator_core.core.graph_store import GraphStore
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            store = GraphStore(str(tmpdir))
+            metadata = {"content_mutable": False}
+            node = store.create_node("Idea", "immutable", "agent_a", metadata=metadata)
+            metadata["content_mutable"] = True
+
+            with self.assertRaises(ValueError):
+                store.update_content(node.id, "changed")
+
+    def test_graph_store_get_node_deep_copies_metadata(self):
+        from stateful_generator_core.core.graph_store import GraphStore
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            store = GraphStore(str(tmpdir))
+            node = store.create_node(
+                "Idea",
+                "immutable",
+                "agent_a",
+                metadata={"content_mutable": False, "nested": {"k": "v"}},
+            )
+            fetched = store.get_node(node.id)
+            fetched.metadata["nested"]["k"] = "changed"
+
+            store.update_metadata(node.id, {"tag": "metadata-write"})
+            reloaded = GraphStore(str(tmpdir))
+            self.assertEqual(reloaded.get_node(node.id).metadata["nested"]["k"], "v")
+
     def test_storage_wrapper_enforces_immutability(self):
         from stateful_generator_core.core.storage_wrapper import StorageWrapper
 

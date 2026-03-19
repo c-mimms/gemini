@@ -1,3 +1,4 @@
+import copy
 import json
 import os
 import uuid
@@ -68,11 +69,12 @@ class GraphStore:
             node_id = str(uuid.uuid4())
         if node_id in self.nodes:
             raise ValueError(f"Node id already exists: {node_id}")
+        meta = copy.deepcopy(metadata) if metadata else {}
         node = Node(
             id=node_id,
             type=node_type,
             content=content,
-            metadata=metadata or {},
+            metadata=meta,
             created_at=self._now_iso(),
             created_by=created_by,
         )
@@ -136,7 +138,7 @@ class GraphStore:
             id=node.id,
             type=node.type,
             content=node.content,
-            metadata=dict(node.metadata),
+            metadata=copy.deepcopy(node.metadata),
             created_at=node.created_at,
             created_by=node.created_by,
         )
