@@ -6,3 +6,6 @@
 ## Agent Prompting & Content Generation
 - **Separation of Concerns (Content vs Layout):** When prompting an LLM to generate pages for a static site, don't make the LLM responsible for the macro-layout (like centering, `max-width` wrappers, sidebars). Have the LLM focus on generating the semantic content (`<main>`, `<h2>`, `<p>`), and use the build script (e.g. `build_news.py`) to wrap that content in the structural layout containers.
 - **Component-Driven Prompts:** Providing a highly prescriptive, line-by-line HTML template in a prompt restricts the LLM's creativity and leads to repetitive outputs. Instead, provide a "Tool Inventory" of available CSS classes (e.g., `.stat-callout`, `.verdict`) and let the agent compose the page naturally based on the story it wants to tell.
+
+## Development Workflow
+- **Continuous Integration:** Always commit and push any meaningful code change, refactor, or documentation update immediately upon completion and verification. Ensure the repository stays in sync with the remote at all times.
