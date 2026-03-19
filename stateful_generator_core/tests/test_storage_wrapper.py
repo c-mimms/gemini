@@ -13,6 +13,35 @@ class StorageWrapperTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 storage.update_content(node.id, "changed")
 
+    def test_storage_wrapper_allows_mutable_update(self):
+        from stateful_generator_core.core.storage_wrapper import StorageWrapper
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            storage = StorageWrapper(base_path=str(tmpdir))
+            node = storage.create_node("Idea", "mutable", "agent_a", content_mutable=True)
+            storage.update_content(node.id, "changed")
+
+            reloaded = StorageWrapper(base_path=str(tmpdir))
+            self.assertEqual(reloaded.store.nodes[node.id].content, "changed")
+
+    def test_storage_wrapper_copies_metadata(self):
+        from stateful_generator_core.core.storage_wrapper import StorageWrapper
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            storage = StorageWrapper(base_path=str(tmpdir))
+            metadata = {"content_mutable": True, "tag": "source"}
+            node = storage.create_node(
+                "Idea",
+                "immutable",
+                "agent_a",
+                metadata=metadata,
+                content_mutable=False,
+            )
+            metadata["content_mutable"] = True
+
+            reloaded = StorageWrapper(base_path=str(tmpdir))
+            self.assertFalse(reloaded.store.nodes[node.id].metadata["content_mutable"])
+
 
 if __name__ == "__main__":
     unittest.main()
