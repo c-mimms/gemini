@@ -35,6 +35,23 @@ class StorageWrapperTests(unittest.TestCase):
             reloaded = GraphStore(str(tmpdir))
             self.assertEqual(reloaded.get_node(node.id).content, "immutable")
 
+    def test_graph_store_create_node_returns_copy(self):
+        from stateful_generator_core.core.graph_store import GraphStore
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            store = GraphStore(str(tmpdir))
+            created = store.create_node(
+                "Idea",
+                "immutable",
+                "agent_a",
+                metadata={"content_mutable": False},
+            )
+            created.content = "bypassed"
+
+            store.update_metadata(created.id, {"tag": "metadata-write"})
+            reloaded = GraphStore(str(tmpdir))
+            self.assertEqual(reloaded.get_node(created.id).content, "immutable")
+
     def test_storage_wrapper_enforces_immutability(self):
         from stateful_generator_core.core.storage_wrapper import StorageWrapper
 

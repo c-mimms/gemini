@@ -79,12 +79,10 @@ class GraphStore:
         self.nodes[node.id] = node
         with open(self.nodes_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(node.__dict__) + "\n")
-        return node
+        return self._clone_node(node)
 
     def update_metadata(self, node_id: str, patch: Dict[str, Any]) -> Node:
-        node = self.nodes.get(node_id)
-        if not node:
-            raise ValueError(f"Node not found: {node_id}")
+        node = self._get_node_ref(node_id)
         node.metadata.update(patch)
         self._rewrite_nodes()
         return self._clone_node(node)
