@@ -39,6 +39,17 @@ class MuseumPipelineTests(unittest.TestCase):
             self.assertIn("<main class=\"museum-body\">", html)
             self.assertIn("<div class=\"metadata\"", html)
 
+            from stateful_generator_core.core.run_log import RunLogger
+            logger = RunLogger(os.path.join(base_dir, "state"))
+            runs_dir = os.path.join(base_dir, "state", "runs")
+            run_files = os.listdir(runs_dir)
+            self.assertEqual(len(run_files), 1)
+            
+            run_id = run_files[0].replace(".json", "")
+            record = logger.load_run(run_id)
+            self.assertIn("format_name", record)
+            self.assertEqual(record["format_name"], result.format_name)
+
 
 if __name__ == "__main__":
     unittest.main()
