@@ -16,4 +16,6 @@ class StorageWrapper:
             raise ValueError("Node not found")
         if not node.metadata.get("content_mutable"):
             raise ValueError("Content is immutable")
-        return self.store.update_content(node_id, new_content)
+        node.content = new_content
+        self.store._rewrite_nodes()
+        return node
