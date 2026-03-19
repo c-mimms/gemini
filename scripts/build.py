@@ -5,9 +5,9 @@ import json
 from datetime import datetime
 
 # Configuration
-PROJECTS_DIR = 'projects'
-DIST_DIR = 'build_out'
-TEMPLATES_DIR = 'templates'
+PROJECTS_DIR = 'designs/projects'
+DIST_DIR = 'designs/build_out'
+TEMPLATES_DIR = 'designs/templates'
 
 def build():
     print(f"Starting build in {DIST_DIR}...")
