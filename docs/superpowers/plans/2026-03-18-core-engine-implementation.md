@@ -45,7 +45,7 @@
 - Create: `/Users/chris/code/gemini/stateful_generator_core/core/run_log.py`
 - Test: `/Users/chris/code/gemini/stateful_generator_core/tests/test_run_logging.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```python
 def test_run_log_writes_config_snapshot(tmp_path):
@@ -57,12 +57,12 @@ def test_run_log_writes_config_snapshot(tmp_path):
     assert stored["config_snapshot"]["name"] == "test"
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_run_logging.py -v`  
 Expected: FAIL (module not found)
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```python
 # run_log.py
@@ -105,12 +105,12 @@ class RunLogger:
             json.dump(record, f, indent=2)
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_run_logging.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/core/run_log.py \
@@ -127,7 +127,7 @@ git commit -m "feat(core): add run logging with config snapshots"
 - Modify: `/Users/chris/code/gemini/stateful_generator_core/core/graph_store.py`
 - Test: `/Users/chris/code/gemini/stateful_generator_core/tests/test_storage_wrapper.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```python
 def test_storage_wrapper_enforces_immutability(tmp_path):
@@ -138,12 +138,12 @@ def test_storage_wrapper_enforces_immutability(tmp_path):
         storage.update_content(node.id, "changed")
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_storage_wrapper.py -v`  
 Expected: FAIL (module not found)
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```python
 # storage_wrapper.py
@@ -168,12 +168,12 @@ class StorageWrapper:
         self.store._rewrite_nodes()
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_storage_wrapper.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/core/storage_wrapper.py \
@@ -190,7 +190,7 @@ git commit -m "feat(core): add storage wrapper with immutability enforcement"
 - Create: `/Users/chris/code/gemini/stateful_generator_core/core/tool_registry.py`
 - Test: `/Users/chris/code/gemini/stateful_generator_core/tests/test_tool_registry.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```python
 def test_tool_registry_enforces_allowlist():
@@ -202,12 +202,12 @@ def test_tool_registry_enforces_allowlist():
         registry.call("web_search", {"q": "test"}, allowlist=[])
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_tool_registry.py -v`  
 Expected: FAIL
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```python
 class ToolRegistry:
@@ -223,12 +223,12 @@ class ToolRegistry:
         return self.tools[name](**params)
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_tool_registry.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/core/tool_registry.py \
@@ -244,7 +244,7 @@ git commit -m "feat(core): add tool registry with per-agent allowlist"
 - Create: `/Users/chris/code/gemini/stateful_generator_core/core/scheduler.py`
 - Test: `/Users/chris/code/gemini/stateful_generator_core/tests/test_scheduler.py`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```python
 def test_scheduler_selects_weighted_agents():
@@ -254,12 +254,12 @@ def test_scheduler_selects_weighted_agents():
     assert "a" in picks
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_scheduler.py -v`  
 Expected: FAIL
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```python
 import random
@@ -280,12 +280,12 @@ class Scheduler:
         return next(iter(self.weights))
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_scheduler.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/core/scheduler.py \
@@ -302,7 +302,7 @@ git commit -m "feat(core): add weighted scheduler"
 - Modify: `/Users/chris/code/gemini/stateful_generator_core/core/config.py`
 - Modify: `/Users/chris/code/gemini/stateful_generator_core/core/graph_store.py`
 
-- [ ] **Step 1: Write failing tests for run logs and tool calls (add to existing tests)**
+- [x] **Step 1: Write failing tests for run logs and tool calls (add to existing tests)**
 
 ```python
 def test_engine_writes_run_log(tmp_path):
@@ -312,23 +312,23 @@ def test_engine_writes_run_log(tmp_path):
     assert True
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_idea_engine.py -v`  
 Expected: FAIL
 
-- [ ] **Step 3: Update engine**
+- [x] **Step 3: Update engine**
   - Inject `RunLogger`, `StorageWrapper`, and `ToolRegistry`.
   - Use scheduler for agent selection.
   - Log tool calls and outputs in run log.
   - Ensure config snapshot is recorded per run.
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/stateful_generator_core/tests/test_idea_engine.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/core/idea_engine.py \
@@ -348,7 +348,7 @@ git commit -m "feat(core): integrate scheduler, logging, tools"
 - Modify: `/Users/chris/code/gemini/museum_engine/README.md`
 - Test: `/Users/chris/code/gemini/museum_engine/tests/test_museum_pipeline.py`
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```python
 def test_format_stored_in_run_log(tmp_path):
@@ -357,22 +357,22 @@ def test_format_stored_in_run_log(tmp_path):
     assert True
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/museum_engine/tests/test_museum_pipeline.py -v`  
 Expected: FAIL
 
-- [ ] **Step 3: Implement changes**
+- [x] **Step 3: Implement changes**
   - Remove `FormatChoice` node usage.
   - Store format in run log + article metadata.
   - Update config to drop `FormatChoice` node type.
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/museum_engine/tests/test_museum_pipeline.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/museum_engine/core/museum_pipeline.py \
@@ -392,7 +392,7 @@ git commit -m "feat(museum): move format to run metadata"
 - Modify: `/Users/chris/code/gemini/georgia_mining_engine/README.md`
 - Test: `/Users/chris/code/gemini/georgia_mining_engine/tests/test_georgia_mining_pipeline.py`
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```python
 def test_format_stored_in_run_log(tmp_path):
@@ -401,22 +401,22 @@ def test_format_stored_in_run_log(tmp_path):
     assert True
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/georgia_mining_engine/tests/test_georgia_mining_pipeline.py -v`  
 Expected: FAIL
 
-- [ ] **Step 3: Implement changes**
+- [x] **Step 3: Implement changes**
   - Remove `FormatChoice` node usage.
   - Store format in run log + article metadata.
   - Update config to drop `FormatChoice` node type.
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 Run: `python3 -m unittest /Users/chris/code/gemini/georgia_mining_engine/tests/test_georgia_mining_pipeline.py -v`  
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/georgia_mining_engine/core/georgia_mining_pipeline.py \
@@ -433,13 +433,13 @@ git commit -m "feat(mining): move format to run metadata"
 **Files:**
 - Modify: `/Users/chris/code/gemini/stateful_generator_core/README.md`
 
-- [ ] **Step 1: Update README to reflect new core components**
+- [x] **Step 1: Update README to reflect new core components**
   - Storage wrapper
   - Run logging
   - Tool registry
   - Scheduler
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add /Users/chris/code/gemini/stateful_generator_core/README.md
