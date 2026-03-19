@@ -16,6 +16,14 @@ class ToolRegistryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             registry.call("web_search", {"q": "test"}, allowlist=[])
 
+    def test_tool_registry_requires_registration(self):
+        from stateful_generator_core.core.tool_registry import ToolRegistry
+
+        registry = ToolRegistry()
+
+        with self.assertRaises(ValueError):
+            registry.call("web_search", {"q": "test"}, allowlist=["web_search"])
+
 
 if __name__ == "__main__":
     unittest.main()
