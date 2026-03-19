@@ -23,7 +23,7 @@ class EngineConfig:
             if key not in raw:
                 raise ValueError(f"Missing required config key: {key}")
 
-        return EngineConfig(
+        config = EngineConfig(
             name=raw["name"],
             version=raw["version"],
             node_types=raw["node_types"],
@@ -32,6 +32,8 @@ class EngineConfig:
             validators=raw["validators"],
             run_policy=raw["run_policy"],
         )
+        config.raw = raw
+        return config
 
     def agent_by_id(self, agent_id: str) -> Dict[str, Any]:
         for agent in self.agents:
