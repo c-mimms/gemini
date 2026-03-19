@@ -85,7 +85,7 @@ class GraphStore:
 
     def update_metadata(self, node_id: str, patch: Dict[str, Any]) -> Node:
         node = self._get_node_ref(node_id)
-        node.metadata.update(patch)
+        node.metadata.update(copy.deepcopy(patch))
         self._rewrite_nodes()
         return self._clone_node(node)
 
