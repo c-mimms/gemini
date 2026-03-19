@@ -1,0 +1,1 @@
+Create a small simple Python webapp using Flask that shows a random cat fact and the current time. Please deploy it to AWS in a new project subdirectory.
