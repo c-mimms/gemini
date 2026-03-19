@@ -11,6 +11,7 @@ from .config import EngineConfig
 from .graph_store import GraphStore
 from .model import load_model
 from .web_research import maybe_search, maybe_fetch
+from stateful_generator_core.core.run_log import RunLogger
 
 
 FORMATS = ["A", "B", "C"]
@@ -31,9 +32,12 @@ class GeorgiaMiningPipeline:
         self.random = random.Random(seed)
         self.config = EngineConfig.load(config_path)
         self.store = GraphStore(os.path.join(base_dir, "state"))
+        self.run_logger = RunLogger(os.path.join(base_dir, "state"))
         self.model = load_model()
 
     def run(self) -> PipelineResult:
+        run_record = self.run_logger.start_run(agent_id="georgia_mining_pipeline", config_snapshot=getattr(self.config, "raw", {}))
+        
         datasets = self._list_datasets()
         format_name = self._select_format()
         topic = self._select_topic(format_name, datasets)
@@ -43,6 +47,12 @@ class GeorgiaMiningPipeline:
         article_html = self._render_article(topic, format_name, profiles, facts, narrative)
         article_path = self._save_article(article_html, topic)
         self._record_nodes(format_name, topic, datasets, profiles, facts, narrative, article_html, article_path)
+        
+        record = self.run_logger.load_run(run_record.run_id)
+        record["format_name"] = format_name
+        self.run_logger._write(run_record.run_id, record)
+        
+        self.run_logger.finish_run(run_record, status="success", outputs=[])
         return PipelineResult(article_path=article_path, format_name=format_name, topic=topic)
 
     def _list_datasets(self) -> List[str]:
@@ -217,9 +227,7 @@ class GeorgiaMiningPipeline:
         article_html: str,
         article_path: str,
     ) -> None:
-        format_node = self.store.create_node("FormatChoice", format_name, "format_selector")
         topic_node = self.store.create_node("ResearchQuestion", topic, "question_selector")
-        self.store.create_edge(topic_node.id, format_node.id, "derived_from")
 
         dataset_nodes = []
         for name in datasets:
@@ -246,7 +254,7 @@ class GeorgiaMiningPipeline:
         for fact in fact_nodes:
             self.store.create_edge(synthesis_node.id, fact.id, "derived_from")
 
-        article_node = self.store.create_node("Article", article_html, "writer", {"path": article_path})
+        article_node = self.store.create_node("Article", article_html, "writer", {"path": article_path, "format": format_name})
         self.store.create_edge(article_node.id, synthesis_node.id, "derived_from")
         for dataset in dataset_nodes:
             self.store.create_edge(article_node.id, dataset.id, "cites")
