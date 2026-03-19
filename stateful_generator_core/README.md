@@ -8,7 +8,10 @@ This folder contains a minimal, configurable engine for long-running, iterative 
 - Agent definitions with scoped permissions and output specs.
 - Validators for schema and format constraints.
 - Configs for four task domains (museum, trump fact checks, data research, georgia mining).
-
+- Storage wrapper enforcing immutable nodes.
+- Run logging that captures tool calls, outputs, and config snapshots.
+- Tool registry with per-agent allowlists.
+- Weighted agent scheduler for optimistic parallel runs.
 ## Directory Structure
 - `core/`: Engine code (`idea_engine.py`, `graph_store.py`, `config.py`).
 - `configs/`: Example engine configurations.
