@@ -97,7 +97,7 @@ class GraphStore:
 
     def update_content(self, node_id: str, content: str, *, allow_immutable: bool = False) -> Node:
         node = self.get_node(node_id)
-        if not allow_immutable and not node.metadata.get("content_mutable", True):
+        if not allow_immutable and not node.metadata.get("content_mutable", False):
             raise ValueError("Content is immutable")
         node.content = content
         self._rewrite_nodes()

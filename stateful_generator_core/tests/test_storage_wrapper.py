@@ -3,6 +3,20 @@ import unittest
 
 
 class StorageWrapperTests(unittest.TestCase):
+    def test_graph_store_update_content_allows_override(self):
+        from stateful_generator_core.core.graph_store import GraphStore
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            store = GraphStore(str(tmpdir))
+            node = store.create_node("Idea", "immutable", "agent_a")
+
+            with self.assertRaises(ValueError):
+                store.update_content(node.id, "changed")
+
+            store.update_content(node.id, "changed", allow_immutable=True)
+            reloaded = GraphStore(str(tmpdir))
+            self.assertEqual(reloaded.get_node(node.id).content, "changed")
+
     def test_storage_wrapper_enforces_immutability(self):
         from stateful_generator_core.core.storage_wrapper import StorageWrapper
 
