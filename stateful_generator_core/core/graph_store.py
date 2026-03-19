@@ -89,6 +89,14 @@ class GraphStore:
         self._rewrite_nodes()
         return node
 
+    def update_content(self, node_id: str, content: str) -> Node:
+        node = self.nodes.get(node_id)
+        if not node:
+            raise ValueError(f"Node not found: {node_id}")
+        node.content = content
+        self._rewrite_nodes()
+        return node
+
     def _rewrite_nodes(self) -> None:
         with open(self.nodes_path, "w", encoding="utf-8") as f:
             for node in self.nodes.values():
