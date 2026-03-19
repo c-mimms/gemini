@@ -1,0 +1,11 @@
+current_epoch: "Year Zero"
+active_wars: ["The War of Internal Purity"]
+ideological_anchors:
+  - name: "The Unbroken Line"
+    description: "The belief that current leadership shares DNA with the stars."
+    integrity_score: 1.0
+key_entities:
+  - id: "E-001"
+    name: "The Founder"
+    status: "HERO"
+    official_truth: "Born from a comet."

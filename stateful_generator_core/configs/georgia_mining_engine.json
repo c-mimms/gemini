@@ -1,0 +1,142 @@
+{
+  "name": "Georgia Mining Analysis Engine",
+  "version": 1,
+  "node_types": {
+    "Topic": {
+      "description": "Mining data angle or question to analyze.",
+      "immutable_content": true
+    },
+    "Dataset": {
+      "description": "Local dataset references with filenames and summaries.",
+      "immutable_content": true
+    },
+    "Fact": {
+      "description": "Statements derived from datasets or sources.",
+      "immutable_content": true
+    },
+    "Outline": {
+      "description": "Analysis plan or table layout.",
+      "immutable_content": true
+    },
+    "Article": {
+      "description": "Publishable HTML analysis article.",
+      "immutable_content": true
+    }
+  },
+  "edge_types": {
+    "derived_from": { "description": "Node is derived from upstream nodes." },
+    "cites": { "description": "Node cites a dataset or fact." },
+    "summarizes": { "description": "Node summarizes a set of nodes." }
+  },
+  "agents": [
+    {
+      "id": "ga_topic_scout",
+      "role": "Topic Scout",
+      "permissions": {
+        "web_search": false,
+        "read_types": [],
+        "write_types": ["Topic"]
+      },
+      "input_policy": { "max_nodes": 0 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Topic",
+            "content_template": "Mining analysis topic from {agent_id}: identify a new dataset-driven question.",
+            "metadata": { "tags": ["georgia-mining", "topic"] }
+          }
+        ],
+        "link_to_inputs": null,
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "ga_data_compiler",
+      "role": "Data Compiler",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Topic", "Dataset"],
+        "write_types": ["Dataset", "Fact"]
+      },
+      "input_policy": { "max_nodes": 6 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Dataset",
+            "content_template": "Dataset list assembled by {agent_id} for inputs [{input_ids}].",
+            "metadata": { "tags": ["georgia-mining", "dataset"] }
+          },
+          {
+            "type": "Fact",
+            "content_template": "Facts extracted by {agent_id} from datasets [{input_ids}].",
+            "metadata": { "tags": ["georgia-mining", "fact"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "ga_analyst",
+      "role": "Analyst",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Fact"],
+        "write_types": ["Outline"]
+      },
+      "input_policy": { "max_nodes": 10 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Outline",
+            "content_template": "Analysis outline by {agent_id} from facts [{input_ids}].",
+            "metadata": { "tags": ["georgia-mining", "outline"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "ga_writer",
+      "role": "Writer",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Outline", "Fact"],
+        "write_types": ["Article"]
+      },
+      "input_policy": { "max_nodes": 12 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Article",
+            "content_template": "<main class=\"geo-body\"><div class=\"metadata\" style=\"display:none;\"><meta name=\"title\" content=\"Draft Analysis\"><meta name=\"description\" content=\"Draft mining analysis.\"><meta name=\"tag\" content=\"Draft | Georgia Mining\"><meta name=\"datasets\" content=\"\"></div><h1>Draft Mining Analysis</h1><p>Draft article by {agent_id} using inputs [{input_ids}].</p></main>",
+            "metadata": { "tags": ["georgia-mining", "article", "draft"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": true
+      }
+    }
+  ],
+  "validators": {
+    "schema": true,
+    "format": {
+      "Article": {
+        "must_include": ["<main class=\"geo-body\">", "<div class=\"metadata\""]
+      }
+    },
+    "citation_requirements": {
+      "Article": { "edge_type": "cites", "min": 1 }
+    }
+  },
+  "run_policy": {
+    "agent_weights": {
+      "ga_topic_scout": 2,
+      "ga_data_compiler": 3,
+      "ga_analyst": 2,
+      "ga_writer": 1
+    },
+    "max_outputs_per_run": 2
+  }
+}

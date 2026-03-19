@@ -1,0 +1,79 @@
+{
+    "projects": {
+        "timezone-map": {
+            "name": "Timezone Map",
+            "path": "timezone-map",
+            "status": "active",
+            "type": "Static Site",
+            "url": "http://chris-timezone-map-2026-v1.s3-website-us-east-1.amazonaws.com",
+            "github_url": "https://github.com/c-mimms/timezone-map",
+            "last_deploy": "2026-02-24"
+        },
+        "clicker-siege": {
+            "name": "Clicker Siege",
+            "path": "clicker-siege",
+            "status": "inactive",
+            "type": "Multiplayer Game",
+            "last_active_ip": "100.31.116.149",
+            "notes": "Instance replaced on 2026-02-25 to ensure user_data execution.",
+            "url": "http://100.31.116.149:3000",
+            "github_url": "https://github.com/c-mimms/clicker-siege"
+        },
+        "discord-bot": {
+            "name": "Discord Bot Brain",
+            "path": "discord_bot",
+            "status": "active",
+            "type": "Core Infrastructure",
+            "version": "v1.4.0",
+            "github_url": "https://github.com/c-mimms/discord_bot"
+        },
+        "dashboard": {
+            "name": "Admin Dashboard",
+            "path": "dashboard",
+            "status": "active",
+            "type": "Monitoring Tool",
+            "url": "http://localhost:8000",
+            "github_url": "https://github.com/c-mimms/dashboard"
+        },
+        "designs": {
+            "name": "Designs",
+            "path": "designs",
+            "status": "active",
+            "type": "Static Site",
+            "url": "http://gemini-designs-portfolio-2026-v2.s3-website-us-east-1.amazonaws.com",
+            "github_url": ""
+        },
+        "jacob-resume": {
+            "name": "Jacob's Resume",
+            "path": "jacob-resume",
+            "status": "active",
+            "type": "Static Site",
+            "url": "http://jacob-mimms-resume-2026.s3-website-us-east-1.amazonaws.com",
+            "github_url": "https://github.com/c-mimms/jacob-resume",
+            "version": "v1.0.0"
+        },
+        "personality-quiz": {
+            "name": "Personality Quiz Platform",
+            "path": "personality-quiz",
+            "status": "active",
+            "type": "Full-stack Social App",
+            "url": "http://personality-quiz-enabling-robin-frontend.s3-website-us-east-1.amazonaws.com",
+            "github_url": "https://github.com/c-mimms/personality-quiz",
+            "version": "v0.1.0"
+        },
+        "love-for-maria": {
+            "name": "Love for Maria",
+            "path": "love-for-maria",
+            "status": "active",
+            "type": "Static Site",
+            "url": "http://love-for-maria-website-2026.s3-website-us-east-1.amazonaws.com",
+            "github_url": "",
+            "version": "v1.0.0",
+            "last_deploy": "2026-03-07"
+        }
+    },
+    "metadata": {
+        "owner": "chris",
+        "last_updated": "2026-03-07"
+    }
+}

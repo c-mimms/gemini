@@ -1,0 +1,32 @@
+{
+  "name": "Georgia Mining Research Engine",
+  "version": 1,
+  "node_types": {
+    "FormatChoice": { "description": "Selected article format (A/B/C).", "immutable_content": true },
+    "ResearchQuestion": { "description": "Data-driven question for analysis.", "immutable_content": true },
+    "Dataset": { "description": "Dataset metadata and provenance.", "immutable_content": true },
+    "Profile": { "description": "Computed statistics from datasets.", "immutable_content": true },
+    "Fact": { "description": "Atomic statements derived from data or sources.", "immutable_content": true },
+    "Synthesis": { "description": "Narrative synthesis for the article.", "immutable_content": true },
+    "Article": { "description": "Final HTML analysis article.", "immutable_content": true }
+  },
+  "edge_types": {
+    "derived_from": { "description": "Node derived from upstream nodes." },
+    "cites": { "description": "Node cites a dataset or source." },
+    "summarizes": { "description": "Node summarizes a set of nodes." }
+  },
+  "agents": [],
+  "validators": {
+    "schema": true,
+    "format": {
+      "Article": { "must_include": ["<main class=\"geo-body\">", "<div class=\"metadata\""] }
+    },
+    "citation_requirements": {
+      "Article": { "edge_type": "cites", "min": 1 }
+    }
+  },
+  "run_policy": {
+    "agent_weights": {},
+    "max_outputs_per_run": 2
+  }
+}

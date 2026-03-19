@@ -1,0 +1,10 @@
+{
+  "current_constants": {
+    "c_speed_of_light": "Standard",
+    "thermodynamics": "Standard",
+    "local_gravity_flavor": "Neutral"
+  },
+  "active_anomalies": [],
+  "structural_integrity": 1.0,
+  "containment_field_frequency": "440Hz"
+}

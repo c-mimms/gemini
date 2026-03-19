@@ -1,0 +1,143 @@
+{
+  "name": "Dispatch Fact Check Engine",
+  "version": 1,
+  "node_types": {
+    "TalkingPoint": {
+      "description": "A specific claim to analyze.",
+      "immutable_content": true
+    },
+    "Source": {
+      "description": "Authoritative sources with URLs and summaries.",
+      "immutable_content": true
+    },
+    "Fact": {
+      "description": "Data-backed statements extracted from sources.",
+      "immutable_content": true
+    },
+    "Outline": {
+      "description": "Section plan for a news article.",
+      "immutable_content": true
+    },
+    "Article": {
+      "description": "Publishable HTML news article.",
+      "immutable_content": true
+    }
+  },
+  "edge_types": {
+    "derived_from": { "description": "Node is derived from upstream nodes." },
+    "cites": { "description": "Node cites a source or fact." },
+    "summarizes": { "description": "Node summarizes a set of nodes." },
+    "refines": { "description": "Node refines a previous node." }
+  },
+  "agents": [
+    {
+      "id": "dispatch_topic_scout",
+      "role": "Topic Scout",
+      "permissions": {
+        "web_search": false,
+        "read_types": [],
+        "write_types": ["TalkingPoint"]
+      },
+      "input_policy": { "max_nodes": 0 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "TalkingPoint",
+            "content_template": "Candidate talking point from {agent_id}: Evaluate a specific economic or immigration claim.",
+            "metadata": { "tags": ["dispatch", "topic"] }
+          }
+        ],
+        "link_to_inputs": null,
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "dispatch_researcher",
+      "role": "Researcher",
+      "permissions": {
+        "web_search": true,
+        "read_types": ["TalkingPoint", "Source"],
+        "write_types": ["Source", "Fact"]
+      },
+      "input_policy": { "max_nodes": 8 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Source",
+            "content_template": "Source pack compiled by {agent_id} for inputs [{input_ids}].",
+            "metadata": { "tags": ["dispatch", "source"] }
+          },
+          {
+            "type": "Fact",
+            "content_template": "Fact list compiled by {agent_id}, derived from inputs [{input_ids}].",
+            "metadata": { "tags": ["dispatch", "fact"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "dispatch_editor",
+      "role": "Editor",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Fact"],
+        "write_types": ["Outline"]
+      },
+      "input_policy": { "max_nodes": 10 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Outline",
+            "content_template": "Outline drafted by {agent_id} from facts [{input_ids}].",
+            "metadata": { "tags": ["dispatch", "outline"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "dispatch_writer",
+      "role": "Writer",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Outline", "Fact"],
+        "write_types": ["Article"]
+      },
+      "input_policy": { "max_nodes": 12 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Article",
+            "content_template": "<body class=\"article-page\"><header class=\"site-header\"><a href=\"index.html\" class=\"site-header-name\">The Dispatch</a><a href=\"index.html\" class=\"back-link\">← All Articles</a></header><div class=\"article-body\"><h1>Draft Analysis</h1><p>Draft article by {agent_id} using inputs [{input_ids}].</p></div><footer class=\"site-footer\"><p>The Dispatch · Independent, non-partisan analysis</p></footer></body>",
+            "metadata": { "tags": ["dispatch", "article", "draft"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": true
+      }
+    }
+  ],
+  "validators": {
+    "schema": true,
+    "format": {
+      "Article": {
+        "must_include": ["class=\"article-page\"", "class=\"site-header\"", "class=\"site-footer\""]
+      }
+    },
+    "citation_requirements": {
+      "Article": { "edge_type": "cites", "min": 2 }
+    }
+  },
+  "run_policy": {
+    "agent_weights": {
+      "dispatch_topic_scout": 2,
+      "dispatch_researcher": 3,
+      "dispatch_editor": 2,
+      "dispatch_writer": 1
+    },
+    "max_outputs_per_run": 2
+  }
+}

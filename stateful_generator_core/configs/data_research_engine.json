@@ -1,0 +1,116 @@
+{
+  "name": "Knowledge Graph Data Research Engine",
+  "version": 1,
+  "node_types": {
+    "DatasetIdea": {
+      "description": "Candidate dataset or data source to evaluate.",
+      "immutable_content": true
+    },
+    "Source": {
+      "description": "URLs, APIs, and licensing notes for data sources.",
+      "immutable_content": true
+    },
+    "Fact": {
+      "description": "Factual statements extracted from sources.",
+      "immutable_content": true
+    },
+    "ResearchReport": {
+      "description": "Structured research summary for a dataset.",
+      "immutable_content": true
+    }
+  },
+  "edge_types": {
+    "derived_from": { "description": "Node is derived from upstream nodes." },
+    "cites": { "description": "Node cites a source or fact." },
+    "summarizes": { "description": "Node summarizes a set of nodes." }
+  },
+  "agents": [
+    {
+      "id": "data_brainstormer",
+      "role": "Brainstormer",
+      "permissions": {
+        "web_search": false,
+        "read_types": [],
+        "write_types": ["DatasetIdea"]
+      },
+      "input_policy": { "max_nodes": 0 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "DatasetIdea",
+            "content_template": "Dataset idea from {agent_id}: identify a structured public dataset worth local capture.",
+            "metadata": { "tags": ["research", "idea"] }
+          }
+        ],
+        "link_to_inputs": null,
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "data_researcher",
+      "role": "Researcher",
+      "permissions": {
+        "web_search": true,
+        "read_types": ["DatasetIdea", "Source"],
+        "write_types": ["Source", "Fact"]
+      },
+      "input_policy": { "max_nodes": 8 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Source",
+            "content_template": "Source list compiled by {agent_id} for inputs [{input_ids}].",
+            "metadata": { "tags": ["research", "source"] }
+          },
+          {
+            "type": "Fact",
+            "content_template": "Fact ledger compiled by {agent_id} from inputs [{input_ids}].",
+            "metadata": { "tags": ["research", "fact"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "data_reporter",
+      "role": "Reporter",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Fact"],
+        "write_types": ["ResearchReport"]
+      },
+      "input_policy": { "max_nodes": 10 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "ResearchReport",
+            "content_template": "# Research Report\n\nDraft report by {agent_id} using inputs [{input_ids}].",
+            "metadata": { "tags": ["research", "report", "draft"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": true
+      }
+    }
+  ],
+  "validators": {
+    "schema": true,
+    "format": {
+      "ResearchReport": {
+        "must_include": ["# Research Report"]
+      }
+    },
+    "citation_requirements": {
+      "ResearchReport": { "edge_type": "cites", "min": 1 }
+    }
+  },
+  "run_policy": {
+    "agent_weights": {
+      "data_brainstormer": 2,
+      "data_researcher": 3,
+      "data_reporter": 1
+    },
+    "max_outputs_per_run": 2
+  }
+}

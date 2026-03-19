@@ -1,0 +1,143 @@
+{
+  "name": "Mimms Museum Engine",
+  "version": 1,
+  "node_types": {
+    "Idea": {
+      "description": "Candidate artifact or theme for a future museum piece.",
+      "immutable_content": true
+    },
+    "Source": {
+      "description": "A web source or catalog entry with retrieval metadata.",
+      "immutable_content": true
+    },
+    "Fact": {
+      "description": "Atomic, cited statements derived from sources.",
+      "immutable_content": true
+    },
+    "Outline": {
+      "description": "Structured plan for a museum output format.",
+      "immutable_content": true
+    },
+    "Article": {
+      "description": "Final HTML output for the museum site.",
+      "immutable_content": true
+    }
+  },
+  "edge_types": {
+    "derived_from": { "description": "Node is derived from upstream nodes." },
+    "refines": { "description": "Node refines a previous node." },
+    "cites": { "description": "Node cites a source or fact." },
+    "summarizes": { "description": "Node summarizes a set of nodes." }
+  },
+  "agents": [
+    {
+      "id": "museum_idea_generator",
+      "role": "Idea Generator",
+      "permissions": {
+        "web_search": false,
+        "read_types": [],
+        "write_types": ["Idea"]
+      },
+      "input_policy": { "max_nodes": 0 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Idea",
+            "content_template": "Idea seed from {agent_id}: Explore an overlooked computing artifact family with strong narrative potential.",
+            "metadata": { "tags": ["museum", "seed"] }
+          }
+        ],
+        "link_to_inputs": null,
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "museum_researcher",
+      "role": "Researcher",
+      "permissions": {
+        "web_search": true,
+        "read_types": ["Idea", "Source"],
+        "write_types": ["Source", "Fact"]
+      },
+      "input_policy": { "max_nodes": 6 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Source",
+            "content_template": "Source packet compiled by {agent_id} for inputs [{input_ids}].",
+            "metadata": { "tags": ["museum", "source"] }
+          },
+          {
+            "type": "Fact",
+            "content_template": "Fact ledger draft by {agent_id}, derived from inputs [{input_ids}].",
+            "metadata": { "tags": ["museum", "fact"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "museum_curator",
+      "role": "Curator",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Fact"],
+        "write_types": ["Outline"]
+      },
+      "input_policy": { "max_nodes": 10 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Outline",
+            "content_template": "Outline assembled by {agent_id} using fact inputs [{input_ids}].",
+            "metadata": { "tags": ["museum", "outline"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": false
+      }
+    },
+    {
+      "id": "museum_writer",
+      "role": "Writer",
+      "permissions": {
+        "web_search": false,
+        "read_types": ["Outline", "Fact"],
+        "write_types": ["Article"]
+      },
+      "input_policy": { "max_nodes": 12 },
+      "output_policy": {
+        "outputs": [
+          {
+            "type": "Article",
+            "content_template": "<main class=\"museum-body\"><div class=\"metadata\" style=\"display:none;\"><meta name=\"title\" content=\"Draft Museum Article\"><meta name=\"description\" content=\"Draft content.\"><meta name=\"tag\" content=\"Draft | Museum\"></div><p>Draft article by {agent_id} using inputs [{input_ids}].</p></main>",
+            "metadata": { "tags": ["museum", "article", "draft"] }
+          }
+        ],
+        "link_to_inputs": "derived_from",
+        "cite_inputs": true
+      }
+    }
+  ],
+  "validators": {
+    "schema": true,
+    "format": {
+      "Article": {
+        "must_include": ["<main class=\"museum-body\">", "<div class=\"metadata\""]
+      }
+    },
+    "citation_requirements": {
+      "Article": { "edge_type": "cites", "min": 1 }
+    }
+  },
+  "run_policy": {
+    "agent_weights": {
+      "museum_idea_generator": 2,
+      "museum_researcher": 3,
+      "museum_curator": 2,
+      "museum_writer": 1
+    },
+    "max_outputs_per_run": 2
+  }
+}
