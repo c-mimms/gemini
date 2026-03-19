@@ -10,12 +10,8 @@ class StorageWrapper:
         meta["content_mutable"] = bool(content_mutable)
         return self._store.create_node(node_type, content, created_by, meta)
 
+    def get_node(self, node_id):
+        return self._store.get_node(node_id)
+
     def update_content(self, node_id, new_content):
-        node = self._store.nodes.get(node_id)
-        if not node:
-            raise ValueError("Node not found")
-        if not node.metadata.get("content_mutable"):
-            raise ValueError("Content is immutable")
-        node.content = new_content
-        self._store._rewrite_nodes()
-        return node
+        return self._store.update_content(node_id, new_content)
