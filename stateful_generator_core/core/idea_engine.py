@@ -4,6 +4,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .config import EngineConfig
 from .graph_store import GraphStore, Node
+from .run_log import RunLogger
+from .storage_wrapper import StorageWrapper
+from .tool_registry import ToolRegistry
+from .scheduler import Scheduler
 
 
 @dataclass
@@ -18,13 +22,29 @@ class ValidationError(Exception):
 
 
 class IdeaEngine:
-    def __init__(self, config: EngineConfig, store: GraphStore, seed: Optional[int] = None):
+    def __init__(
+        self,
+        config: EngineConfig,
+        storage: StorageWrapper,
+        run_logger: Optional[RunLogger] = None,
+        tool_registry: Optional[ToolRegistry] = None,
+        seed: Optional[int] = None,
+    ):
         self.config = config
-        self.store = store
+        self.storage = storage
+        self.store = storage._store
+        self.run_logger = run_logger
+        self.tool_registry = tool_registry
+        self.scheduler = Scheduler(config.run_policy.get("agent_weights", {}), seed=seed)
         self.random = random.Random(seed)
 
     def run(self, agent_id: Optional[str] = None) -> RunResult:
         agent = self._select_agent(agent_id)
+        run_record = None
+        if self.run_logger:
+            snapshot = getattr(self.config, "raw", {})
+            run_record = self.run_logger.start_run(agent_id=agent["id"], config_snapshot=snapshot)
+
         inputs = self._select_inputs(agent)
         outputs, edges = self._generate_outputs(agent, inputs)
         max_outputs = self.config.run_policy.get("max_outputs_per_run")
@@ -37,7 +57,7 @@ class IdeaEngine:
         created_edges = []
         output_id_map: Dict[int, str] = {}
         for node in outputs:
-            created = self.store.create_node(
+            created = self.storage.create_node(
                 node_type=node["type"],
                 content=node["content"],
                 created_by=agent["id"],
@@ -57,6 +77,9 @@ class IdeaEngine:
                     metadata=edge.get("metadata", {}),
                 )
             )
+        if run_record:
+            # We don't have native tool calls yet, but we will pass empty list
+            self.run_logger.finish_run(run_record, status="success", outputs=[n.id for n in created_nodes])
         return RunResult(agent_id=agent["id"], created_nodes=created_nodes, created_edges=created_edges)
 
     def _select_agent(self, agent_id: Optional[str]) -> Dict[str, Any]:
@@ -65,21 +88,8 @@ class IdeaEngine:
         weights = self.config.run_policy.get("agent_weights", {})
         if not weights:
             return self.random.choice(self.config.agents)
-        population = []
-        for agent in self.config.agents:
-            weight = weights.get(agent["id"], 1)
-            population.append((agent, weight))
-        return self._weighted_choice(population)
-
-    def _weighted_choice(self, population: List[Tuple[Dict[str, Any], int]]) -> Dict[str, Any]:
-        total = sum(weight for _, weight in population)
-        pick = self.random.uniform(0, total)
-        current = 0
-        for agent, weight in population:
-            current += weight
-            if current >= pick:
-                return agent
-        return population[-1][0]
+        picked = self.scheduler.pick()
+        return self.config.agent_by_id(picked)
 
     def _select_inputs(self, agent: Dict[str, Any]) -> List[Node]:
         perms = agent.get("permissions", {})

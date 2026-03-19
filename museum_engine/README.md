@@ -1,6 +1,6 @@
 # Mimms Museum Engine (Standalone Replacement)
 
-This is a standalone, end-to-end replacement for the original museum pipeline. It generates a new museum article per run, stores research facts and sources as graph nodes, and can publish the site using the same static build script.
+This is a standalone, end-to-end replacement for the original museum pipeline. It generates a new museum article per run, stores selected format inside run metadata, stores research facts and sources as graph nodes, and can publish the site using the same static build script.
 
 ## What This Replaces
 It mirrors the behavior of `/Users/chris/code/gemini/discord_bot/scripts/museum_task.md` but writes to a **new, self-contained** directory:

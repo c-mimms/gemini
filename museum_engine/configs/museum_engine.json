@@ -2,10 +2,6 @@
   "name": "Mimms Museum Engine",
   "version": 1,
   "node_types": {
-    "FormatChoice": {
-      "description": "Selected content format for the run.",
-      "immutable_content": true
-    },
     "Topic": {
       "description": "Chosen artifact/person/theme to cover.",
       "immutable_content": true
@@ -35,26 +31,9 @@
   },
   "agents": [
     {
-      "id": "museum_format_selector",
-      "role": "Format Selector",
-      "permissions": { "web_search": false, "read_types": [], "write_types": ["FormatChoice"] },
-      "input_policy": { "max_nodes": 0 },
-      "output_policy": {
-        "outputs": [
-          {
-            "type": "FormatChoice",
-            "content_template": "FORMAT=auto_selected",
-            "metadata": { "tags": ["museum", "format"] }
-          }
-        ],
-        "link_to_inputs": null,
-        "cite_inputs": false
-      }
-    },
-    {
       "id": "museum_topic_selector",
       "role": "Topic Selector",
-      "permissions": { "web_search": false, "read_types": ["FormatChoice"], "write_types": ["Topic"] },
+      "permissions": { "web_search": false, "read_types": [], "write_types": ["Topic"] },
       "input_policy": { "max_nodes": 4 },
       "output_policy": {
         "outputs": [
@@ -93,7 +72,7 @@
     {
       "id": "museum_outliner",
       "role": "Outliner",
-      "permissions": { "web_search": false, "read_types": ["Fact", "FormatChoice"], "write_types": ["Outline"] },
+      "permissions": { "web_search": false, "read_types": ["Fact"], "write_types": ["Outline"] },
       "input_policy": { "max_nodes": 10 },
       "output_policy": {
         "outputs": [
@@ -110,7 +89,7 @@
     {
       "id": "museum_writer",
       "role": "Writer",
-      "permissions": { "web_search": false, "read_types": ["Outline", "Fact", "FormatChoice"], "write_types": ["Article"] },
+      "permissions": { "web_search": false, "read_types": ["Outline", "Fact"], "write_types": ["Article"] },
       "input_policy": { "max_nodes": 14 },
       "output_policy": {
         "outputs": [
@@ -138,7 +117,6 @@
   },
   "run_policy": {
     "agent_weights": {
-      "museum_format_selector": 1,
       "museum_topic_selector": 2,
       "museum_researcher": 3,
       "museum_outliner": 2,

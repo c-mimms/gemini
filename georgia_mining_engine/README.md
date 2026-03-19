@@ -1,6 +1,6 @@
 # Georgia Mining Research Engine (Standalone Replacement)
 
-This is a standalone, research‑focused replacement for the original Georgia mining pipeline. It prioritizes data profiling and explicit dataset‑backed findings.
+This is a standalone, research‑focused replacement for the original Georgia mining pipeline. It prioritizes data profiling and explicit dataset‑backed findings, and uses run logs for format selection.
 
 ## What This Replaces
 It mirrors the behavior of `/Users/chris/code/gemini/discord_bot/scripts/georgia_mining_task.md` but writes to a **new, self‑contained** directory:

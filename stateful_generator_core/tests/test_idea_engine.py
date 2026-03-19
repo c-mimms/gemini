@@ -6,6 +6,9 @@ import unittest
 from stateful_generator_core.core.config import EngineConfig
 from stateful_generator_core.core.graph_store import GraphStore
 from stateful_generator_core.core.idea_engine import IdeaEngine, ValidationError
+from stateful_generator_core.core.run_log import RunLogger
+from stateful_generator_core.core.storage_wrapper import StorageWrapper
+from stateful_generator_core.core.tool_registry import ToolRegistry
 
 
 BASE_DIR = "/Users/chris/code/gemini/stateful_generator_core"
@@ -16,12 +19,13 @@ class IdeaEngineTests(unittest.TestCase):
         config_path = os.path.join(BASE_DIR, "configs", "museum_engine.json")
         config = EngineConfig.load(config_path)
         with tempfile.TemporaryDirectory() as tmpdir:
-            store = GraphStore(tmpdir)
+            storage = StorageWrapper(tmpdir)
+            store = storage._store
             # Seed required inputs for the writer
             fact = store.create_node("Fact", "Seed fact", "seed_agent")
             outline = store.create_node("Outline", "Seed outline", "seed_agent")
 
-            engine = IdeaEngine(config, store, seed=123)
+            engine = IdeaEngine(config, storage, seed=123)
             result = engine.run(agent_id="museum_writer")
 
             self.assertEqual(result.agent_id, "museum_writer")
@@ -66,10 +70,36 @@ class IdeaEngineTests(unittest.TestCase):
             with open(config_path, "w", encoding="utf-8") as f:
                 json.dump(custom_config, f)
             config = EngineConfig.load(config_path)
-            store = GraphStore(tmpdir)
-            engine = IdeaEngine(config, store)
+            storage = StorageWrapper(tmpdir)
+            engine = IdeaEngine(config, storage)
             with self.assertRaises(ValidationError):
                 engine.run(agent_id="writer")
+
+    def test_engine_writes_run_log(self):
+        config_path = os.path.join(BASE_DIR, "configs", "museum_engine.json")
+        config = EngineConfig.load(config_path)
+        with tempfile.TemporaryDirectory() as tmpdir:
+            storage = StorageWrapper(tmpdir)
+            run_logger = RunLogger(tmpdir)
+            tool_registry = ToolRegistry()
+            engine = IdeaEngine(config, storage, run_logger=run_logger, tool_registry=tool_registry, seed=123)
+            
+            store = storage._store
+            store.create_node("Fact", "Seed fact", "seed_agent")
+            store.create_node("Outline", "Seed outline", "seed_agent")
+            
+            result = engine.run(agent_id="museum_writer")
+            
+            runs_dir = os.path.join(tmpdir, "runs")
+            run_files = os.listdir(runs_dir)
+            self.assertEqual(len(run_files), 1)
+            
+            run_id = run_files[0].replace(".json", "")
+            record = run_logger.load_run(run_id)
+            self.assertEqual(record["status"], "success")
+            self.assertEqual(record["agent_id"], "museum_writer")
+            self.assertEqual(record["config_snapshot"]["name"], config.name)
+            self.assertIn(result.created_nodes[0].id, record["outputs"])
 
     def test_metadata_update_preserves_content(self):
         with tempfile.TemporaryDirectory() as tmpdir:
