@@ -22,7 +22,7 @@ class StorageWrapperTests(unittest.TestCase):
             storage.update_content(node.id, "changed")
 
             reloaded = StorageWrapper(base_path=str(tmpdir))
-            self.assertEqual(reloaded.store.nodes[node.id].content, "changed")
+            self.assertEqual(reloaded._store.nodes[node.id].content, "changed")
 
     def test_storage_wrapper_copies_metadata(self):
         from stateful_generator_core.core.storage_wrapper import StorageWrapper
@@ -40,7 +40,8 @@ class StorageWrapperTests(unittest.TestCase):
             metadata["content_mutable"] = True
 
             reloaded = StorageWrapper(base_path=str(tmpdir))
-            self.assertFalse(reloaded.store.nodes[node.id].metadata["content_mutable"])
+            self.assertFalse(reloaded._store.nodes[node.id].metadata["content_mutable"])
+            self.assertEqual(reloaded._store.nodes[node.id].metadata["tag"], "source")
 
 
 if __name__ == "__main__":
