@@ -54,26 +54,8 @@ class OpenAIModel(ModelClient):
         return ModelResponse(text=text)
 
 
-class GeminiCLIModel(ModelClient):
-    def generate(self, system_prompt: str, user_prompt: str) -> ModelResponse:
-        import subprocess
-        import sys
-        full_prompt = f"System Instruction: {system_prompt}\n\nUser Task: {user_prompt}"
-        try:
-            output = subprocess.check_output(
-                ["gemini", "-p", full_prompt, "-y"],
-                text=True,
-                stderr=sys.stderr
-            )
-            return ModelResponse(text=output.strip())
-        except subprocess.CalledProcessError as e:
-            return ModelResponse(text=f"Error from Gemini CLI: {e.output}")
-
-
 def load_model() -> ModelClient:
-    mode = os.getenv("MUSEUM_ENGINE_MODEL", "gemini").lower()
+    mode = os.getenv("MUSEUM_ENGINE_MODEL", "stub").lower()
     if mode == "openai":
         return OpenAIModel()
-    elif mode == "gemini":
-        return GeminiCLIModel()
     return StubModel()
