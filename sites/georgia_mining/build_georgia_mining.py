@@ -1493,6 +1493,8 @@ ANALYSIS_PAGE_TEMPLATE = """\
   .dataset-info {{ background: var(--gray-900); border-radius: 6px; padding: 0.8rem 1rem; margin-bottom: 1rem; display: none; }}
   .dataset-info .cols {{ display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }}
   .dataset-info .col-tag {{ padding: 0.2rem 0.5rem; background: var(--gray-800); color: var(--geo-copper); border-radius: 3px; font-size: 0.75rem; font-family: monospace; }}
+  .spinner {{ width: 24px; height: 24px; border: 3px solid rgba(212,160,23,0.2); border-top-color: var(--geo-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto; }}
+  @keyframes spin {{ to {{ transform: rotate(360deg); }} }}
 </style>
 </head>
 <body class="site-wrapper">
@@ -1545,7 +1547,7 @@ ANALYSIS_PAGE_TEMPLATE = """\
 
 <script src="https://cdn.jsdelivr.net/npm/alasql@4/dist/alasql.min.js"></script>
 <script>
-const csvData = {csv_data_json};
+const csvMeta = {csv_data_json};
 let currentData = null;
 let lastResults = null;
 
@@ -1557,47 +1559,60 @@ window.onload = function() {{
     }}
 }};
 
-function loadDataset() {{
+async function loadDataset() {{
     const sel = document.getElementById('file-select');
     const fname = sel.value;
     const info = document.getElementById('dataset-info');
     const colTags = document.getElementById('col-tags');
     const quickQ = document.getElementById('quick-queries');
+    const resultsWrap = document.getElementById('results-wrap');
+    const resultsCount = document.getElementById('results-count');
 
-    if (!fname || !csvData[fname]) {{
+    if (!fname || !csvMeta[fname]) {{
         info.style.display = 'none';
         currentData = null;
         return;
     }}
 
-    const ds = csvData[fname];
-    currentData = ds.rows;
+    const meta = csvMeta[fname];
+    resultsWrap.innerHTML = '<div style="text-align:center; padding:3rem; color:var(--gray-500);"><div class="spinner" style="margin-bottom:1rem;"></div>Loading dataset <b>' + fname + '</b>...</div>';
+    resultsCount.textContent = 'Fetching file...';
 
-    // Load into AlaSQL
-    alasql('DROP TABLE IF EXISTS data');
-    alasql('CREATE TABLE data');
-    alasql.tables.data.data = currentData;
+    try {{
+        // Use AlaSQL to load CSV directly from the URL
+        // Escape the JS template literal $ and the AlaSQL options object
+        const data = await alasql.promise(`SELECT * FROM CSV("data/${{fname}}", {{headers:true}})`);
+        currentData = data;
 
-    // Show column tags
-    info.style.display = 'block';
-    colTags.innerHTML = ds.columns.map(c => `<span class="col-tag">${{c}}</span>`).join('');
+        // Load into AlaSQL for querying
+        alasql('DROP TABLE IF EXISTS data');
+        alasql('CREATE TABLE data');
+        alasql.tables.data.data = currentData;
 
-    // Quick queries
-    const queries = [
-        `SELECT * FROM data LIMIT 50`,
-        `SELECT COUNT(*) AS total FROM data`,
-    ];
-    if (ds.columns.length > 1) {{
-        const col = ds.columns[1];
-        queries.push(`SELECT ${{col}}, COUNT(*) AS n FROM data GROUP BY ${{col}} ORDER BY n DESC LIMIT 20`);
+        // Show column tags
+        info.style.display = 'block';
+        colTags.innerHTML = meta.columns.map(c => `<span class="col-tag">${{c}}</span>`).join('');
+
+        // Quick queries
+        const queries = [
+            `SELECT * FROM data LIMIT 50`,
+            `SELECT COUNT(*) AS total FROM data`,
+        ];
+        if (meta.columns.length > 1) {{
+            const col = meta.columns[1];
+            queries.push(`SELECT ${{col}}, COUNT(*) AS n FROM data GROUP BY ${{col}} ORDER BY n DESC LIMIT 20`);
+        }}
+        quickQ.innerHTML = queries.map(q =>
+            `<span class="quick-q" onclick="document.getElementById('sql-input').value=this.textContent;runQuery();">${{q}}</span>`
+        ).join('');
+
+        document.getElementById('sql-input').value = `SELECT * FROM data LIMIT 50`;
+        resultsCount.textContent = `Loaded ${{currentData.length.toLocaleString()}} rows · ${{meta.columns.length}} columns`;
+        runQuery();
+    }} catch (e) {{
+        resultsWrap.innerHTML = `<div class="error-msg">Error loading dataset: ${{e.message}}</div>`;
+        resultsCount.textContent = 'Error';
     }}
-    quickQ.innerHTML = queries.map(q =>
-        `<span class="quick-q" onclick="document.getElementById('sql-input').value=this.textContent;runQuery();">${{q}}</span>`
-    ).join('');
-
-    document.getElementById('sql-input').value = `SELECT * FROM data LIMIT 50`;
-    document.getElementById('results-count').textContent = `Loaded ${{currentData.length}} rows · ${{ds.columns.length}} columns`;
-    runQuery();
 }}
 
 function runQuery() {{
@@ -1773,16 +1788,26 @@ def build_analysis_page(data_dir, site_name):
                     continue
                 fpath = os.path.join(root, fname)
                 try:
-                    with open(fpath, 'r', encoding='utf-8', errors='replace') as f:
-                        reader = csv_mod.DictReader(f)
-                        columns = reader.fieldnames or []
-                        rows = list(reader)
-                    if columns and rows:
-                        csv_data[fname] = {
-                            'columns': columns,
-                            'rows': [{col: row.get(col, '') for col in columns} for row in rows],
-                        }
-                        csv_options += f'<option value="{fname}">{fname} ({len(rows):,} rows, {len(columns)} cols)</option>\n'
+                        with open(fpath, 'r', encoding='utf-8', errors='replace') as f:
+                            # Only read first line to get headers
+                            header_line = f.readline()
+                            if not header_line:
+                                continue
+                            reader = csv_mod.reader([header_line])
+                            columns = next(reader, [])
+                        
+                        if columns:
+                            # Get a quick row count without loading all rows into memory
+                            row_count = 0
+                            with open(fpath, 'r', encoding='utf-8', errors='replace') as f:
+                                for _ in f:
+                                    row_count += 1
+                            row_count = max(0, row_count - 1) # Subtract header
+
+                            csv_data[fname] = {
+                                'columns': columns,
+                            }
+                            csv_options += f'<option value="{fname}">{fname} ({row_count:,} rows, {len(columns)} columns)</option>\n'
                 except Exception:
                     pass
 
