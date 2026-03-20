@@ -1,0 +1,13 @@
+# Build and Infrastructure
+build_out/
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+.DS_Store
