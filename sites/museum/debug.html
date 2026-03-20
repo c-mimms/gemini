@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimms Museum CSS Debug</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,700;1,400&family=Space+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="museum.css">
+</head>
+
+<body class="site-wrapper">
+    <header class="site-header">
+        <a href="#" class="site-title">Mimms Museum</a>
+        <a href="#" class="back-link" style="color:white;text-decoration:none;font-size:0.9rem;">Return to Archives
+            &rarr;</a>
+    </header>
+
+    <div class="museum-container">
+        <main class="museum-body">
+            <h1>Mimms Museum Style Guide & Debug Page</h1>
+            <p>This page serves as a visual testbed for all CSS classes supported by the archive.</p>
+
+            <h2>1. Typography & Global Elements</h2>
+            <h3>Standard Paragraphs & Links</h3>
+            <p>This is a standard paragraph. The museum holds every significant piece of hardware and software from the
+                history of computing. You can find <a href="#">inline links</a> here. </p>
+
+            <blockquote>
+                "The computer is incredibly fast, accurate, and stupid. Man is unbelievably slow, inaccurate, and
+                brilliant." <br>— Leo Cherne
+            </blockquote>
+
+            <h2>2. Nine Content Types</h2>
+
+            <h3>1. Narrative Body (.narrative-body)</h3>
+            <div class="narrative-body">
+                <p>The first paragraph gets a special drop cap styling to introduce long-form features effectively. This
+                    gives it a classic magazine look.</p>
+                <p>Subsequent paragraphs remain normal.</p>
+            </div>
+
+            <h3>2. Placard (.placard)</h3>
+            <div class="placard">
+                <p><strong>ENIAC Processing Unit (1945)</strong><br>A punchy, 50-75 word paragraph designed for the
+                    physical placard next to the exhibit, focusing on the immediate object, with SEO tags and structured
+                    metadata.</p>
+            </div>
+
+            <h3>3. Biography Timeline (.biography-timeline)</h3>
+            <div class="biography-timeline">
+                <div class="timeline-event">
+                    <span class="timeline-year">1991</span>
+                    <div class="timeline-content">Linus Torvalds releases the first Linux kernel.</div>
+                </div>
+                <div class="timeline-event">
+                    <span class="timeline-year">1994</span>
+                    <div class="timeline-content">Version 1.0 of the Linux Kernel is released.</div>
+                </div>
+            </div>
+
+            <h3>4. Spotlight Card (.spotlight-card)</h3>
+            <div class="spotlight-card">
+                <h2>Modern Connection</h2>
+                <p>A short, timely highlight that draws a direct line between what the internet is discussing today and
+                    a physical artifact in the collection.</p>
+            </div>
+
+            <h3>5. Thematic Path (.thematic-path)</h3>
+            <div class="thematic-path">
+                <div class="path-stop">
+                    <h3 class="stop-name">Stop 1: The Abacus</h3>
+                    <p class="stop-directions">Turn left at the entrance of the main hall.</p>
+                    <p>The dawn of automated counting begins here.</p>
+                </div>
+            </div>
+
+            <h3>6. Audio Script (.audio-script)</h3>
+            <div class="audio-script">
+                <span class="audio-cue">[Footsteps approaching on hardwood floor]</span>
+                <p class="spoken-word">Welcome to the dawn of the internet. Before you stands a rather nondescript gray
+                    box. But this is the IMP.</p>
+            </div>
+
+            <h3>7. Lesson Plan (.lesson-plan)</h3>
+            <div class="lesson-plan">
+                <div class="georgia-standard">GSE: SS5H6</div>
+                <div class="learning-objective">
+                    <strong>Objective:</strong> Students will analyze the impact of personal computers on society.
+                </div>
+                <div class="lesson-activity">
+                    <p>Have students compare the capabilities of the original Macintosh with their smartphones.</p>
+                </div>
+            </div>
+
+            <h3>8. Scavenger Hunt (.scavenger-hunt)</h3>
+            <div class="scavenger-hunt">
+                <div class="hunt-item">
+                    <div class="hunt-clue">Find a computer with a wooden case. What company made it?</div>
+                    <div class="hunt-task">
+                        <div class="hunt-checkbox"><input type="checkbox" id="debug-task"></div>
+                        <label for="debug-task">Answer: Apple Computer (Apple I)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>9. Discussion Guide (.discussion-guide)</h3>
+            <div class="discussion-guide">
+                <div class="pre-visit">
+                    <h3>Pre-Visit</h3>
+                    <p>What do you think is the most important invention in computing?</p>
+                </div>
+                <div class="post-visit">
+                    <h3>Post-Visit</h3>
+                    <p>Did your answer change after seeing the exhibits?</p>
+                </div>
+            </div>
+
+            <h2>3. Shared Components</h2>
+
+            <h3>Artifact Meta Data (.artifact-meta)</h3>
+            <div class="artifact-meta">
+                <p><span class="meta-label">Manufacturer</span> <span class="meta-value">Apple Computer, Inc.</span></p>
+                <p><span class="meta-label">Year</span> <span class="meta-value">1984</span></p>
+                <p><span class="meta-label">Specs</span> <span class="meta-value">8 MHz Motorola 68000, 128 KB
+                        RAM</span></p>
+            </div>
+
+            <h3>Defensive Tables (.table-wrapper)</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Generation</th>
+                            <th>Years</th>
+                            <th>Core Technology</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First</td>
+                            <td>1940-1956</td>
+                            <td>Vacuum Tubes</td>
+                        </tr>
+                        <tr>
+                            <td>Second</td>
+                            <td>1956-1963</td>
+                            <td>Transistors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <footer
+        style="border-top: 3px solid var(--museum-blue); padding: 2rem 1.5rem; text-align: center; margin-top: auto;">
+        <span
+            style="font-family: var(--serif); font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 0.5rem; color: var(--museum-blue);">Mimms
+            Museum</span>
+        <p style="font-size: 0.8rem; color: var(--gray-500); letter-spacing: 0.08em;">Preserving the artifacts of
+            computing history</p>
+    </footer>
+</body>
+
+</html>

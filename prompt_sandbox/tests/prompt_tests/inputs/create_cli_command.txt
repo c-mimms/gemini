@@ -1,1 +1,0 @@
-I need a new CLI command `discord_bot/bin/check_latency.sh` that pings google.com 5 times and outputs the average latency. Make sure it is executable.

@@ -37,7 +37,7 @@
         },
         "designs": {
             "name": "Designs",
-            "path": "designs",
+            "path": "sites/designs",
             "status": "active",
             "type": "Static Site",
             "url": "http://gemini-designs-portfolio-2026-v2.s3-website-us-east-1.amazonaws.com",
@@ -46,7 +46,7 @@
         "jacob-resume": {
             "name": "Jacob's Resume",
             "path": "jacob-resume",
-            "status": "active",
+            "status": "deleted",
             "type": "Static Site",
             "url": "http://jacob-mimms-resume-2026.s3-website-us-east-1.amazonaws.com",
             "github_url": "https://github.com/c-mimms/jacob-resume",
@@ -64,16 +64,58 @@
         "love-for-maria": {
             "name": "Love for Maria",
             "path": "love-for-maria",
-            "status": "active",
+            "status": "deleted",
             "type": "Static Site",
             "url": "http://love-for-maria-website-2026.s3-website-us-east-1.amazonaws.com",
             "github_url": "",
             "version": "v1.0.0",
             "last_deploy": "2026-03-07"
+        },
+        "museum": {
+            "name": "Mimms Museum",
+            "path": "sites/museum",
+            "status": "active",
+            "type": "Static Site"
+        },
+        "georgia-mining": {
+            "name": "Georgia Mining Archive",
+            "path": "sites/georgia_mining",
+            "status": "active",
+            "type": "Static Site"
+        },
+        "news": {
+            "name": "The Dispatch (News)",
+            "path": "sites/news",
+            "status": "active",
+            "type": "Static Site"
+        },
+        "job-agent": {
+            "name": "Job Task Agent",
+            "path": "job_agent",
+            "status": "active",
+            "type": "Automation"
+        },
+        "prompt-sandbox": {
+            "name": "Prompt & Research Sandbox",
+            "path": "research/prompt_sandbox",
+            "status": "active",
+            "type": "Research"
+        },
+        "background-task-scheduler": {
+            "name": "Background Task Scheduler",
+            "path": "background-task-scheduler",
+            "status": "active",
+            "type": "Infrastructure"
+        },
+        "research-archive": {
+            "name": "Research Archive",
+            "path": "sites/research_archive",
+            "status": "active",
+            "type": "Static Site"
         }
     },
     "metadata": {
         "owner": "chris",
-        "last_updated": "2026-03-07"
+        "last_updated": "2026-03-20"
     }
 }

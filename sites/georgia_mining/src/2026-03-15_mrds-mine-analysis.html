@@ -1,0 +1,251 @@
+<main class="geo-body">
+<div class="metadata" style="display:none;">
+    <meta name="title" content="USGS MRDS Analysis: 2,000 Mine Locations Across Georgia">
+    <meta name="description" content="A data-driven analysis of 2,000 mineral deposit records from the USGS Mineral Resources Data System (MRDS), mapping Georgia's mining geography by commodity, development status, and county distribution.">
+    <meta name="tag" content="Data Analysis | MRDS Mining Data">
+    <meta name="datasets" content="ga_mrds_mines.csv">
+</div>
+
+<h1>USGS MRDS Analysis: 2,000 Mine Locations Across Georgia</h1>
+
+<div class="commodity-report">
+
+<div class="key-findings">
+    <h3>Dataset Overview</h3>
+    <p>This analysis is based on <a href="data/ga_mrds_mines.csv">ga_mrds_mines.csv</a> — 2,000 mineral deposit records extracted from the USGS Mineral Resources Data System (MRDS) via the WFS service endpoint. The data includes deposit IDs, site names, development status, FIPS county codes, and commodity codes for every cataloged mine, prospect, and mineral occurrence in the state of Georgia.</p>
+</div>
+
+<div class="stat-grid">
+    <div class="stat-callout">
+        <span class="stat-number">2,000</span>
+        <span class="stat-label">Total mine/deposit records in dataset</span>
+    </div>
+    <div class="stat-callout">
+        <span class="stat-number">908</span>
+        <span class="stat-label">Gold (AU) deposit records — 45.4% of all records</span>
+    </div>
+    <div class="stat-callout">
+        <span class="stat-number">874</span>
+        <span class="stat-label">Past Producers — mines with historical output</span>
+    </div>
+    <div class="stat-callout">
+        <span class="stat-number">205</span>
+        <span class="stat-label">Active Producers — currently operating mines</span>
+    </div>
+</div>
+
+<h2>Commodity Distribution</h2>
+
+<p>Georgia's mineral deposit records reveal a mining heritage dominated by gold, but with significant diversity across base metals, industrial minerals, and dimension stone. The following table summarizes the commodity codes found in the MRDS dataset (a single deposit may list multiple commodities):</p>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <caption>Commodity Distribution in Georgia MRDS Records</caption>
+        <thead>
+            <tr>
+                <th>Commodity Code</th>
+                <th>Mineral</th>
+                <th>Records</th>
+                <th>% of Total</th>
+                <th>Primary Region</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>AU</strong></td>
+                <td>Gold</td>
+                <td>908</td>
+                <td>45.4%</td>
+                <td>Blue Ridge / Dahlonega Belt</td>
+            </tr>
+            <tr>
+                <td><strong>CU</strong></td>
+                <td>Copper</td>
+                <td>462</td>
+                <td>23.1%</td>
+                <td>Blue Ridge (often with gold)</td>
+            </tr>
+            <tr>
+                <td><strong>AG</strong></td>
+                <td>Silver</td>
+                <td>244</td>
+                <td>12.2%</td>
+                <td>Blue Ridge (byproduct of gold/copper)</td>
+            </tr>
+            <tr>
+                <td><strong>MN</strong></td>
+                <td>Manganese</td>
+                <td>198</td>
+                <td>9.9%</td>
+                <td>Cartersville district</td>
+            </tr>
+            <tr>
+                <td><strong>SDG</strong></td>
+                <td>Sand &amp; Gravel</td>
+                <td>186</td>
+                <td>9.3%</td>
+                <td>Statewide (Coastal Plain, river valleys)</td>
+            </tr>
+            <tr>
+                <td><strong>CR</strong></td>
+                <td>Chromium</td>
+                <td>146</td>
+                <td>7.3%</td>
+                <td>Piedmont ultramafic bodies</td>
+            </tr>
+            <tr>
+                <td><strong>PB</strong></td>
+                <td>Lead</td>
+                <td>121</td>
+                <td>6.1%</td>
+                <td>Blue Ridge polymetallic deposits</td>
+            </tr>
+            <tr>
+                <td><strong>HG</strong></td>
+                <td>Mercury</td>
+                <td>92</td>
+                <td>4.6%</td>
+                <td>Blue Ridge (minor occurrences)</td>
+            </tr>
+            <tr>
+                <td><strong>ZN</strong></td>
+                <td>Zinc</td>
+                <td>89</td>
+                <td>4.5%</td>
+                <td>Northwest Georgia / Valley &amp; Ridge</td>
+            </tr>
+            <tr>
+                <td><strong>FE</strong></td>
+                <td>Iron</td>
+                <td>78</td>
+                <td>3.9%</td>
+                <td>Piedmont / Cartersville</td>
+            </tr>
+            <tr>
+                <td><strong>STN</strong></td>
+                <td>Stone (Dimension)</td>
+                <td>68</td>
+                <td>3.4%</td>
+                <td>Elberton / Pickens County</td>
+            </tr>
+            <tr>
+                <td><strong>STN_C</strong></td>
+                <td>Stone (Crushed)</td>
+                <td>52</td>
+                <td>2.6%</td>
+                <td>Statewide</td>
+            </tr>
+            <tr>
+                <td><strong>MO</strong></td>
+                <td>Molybdenum</td>
+                <td>28</td>
+                <td>1.4%</td>
+                <td>Blue Ridge (trace amounts)</td>
+            </tr>
+            <tr>
+                <td><strong>PGE_PT</strong></td>
+                <td>Platinum Group</td>
+                <td>24</td>
+                <td>1.2%</td>
+                <td>Piedmont ultramafics</td>
+            </tr>
+            <tr>
+                <td><strong>W</strong></td>
+                <td>Tungsten</td>
+                <td>16</td>
+                <td>0.8%</td>
+                <td>Blue Ridge (minor occurrences)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Development Status Breakdown</h2>
+
+<p>The development status of Georgia's mineral deposits provides insight into the maturity of the state's mining industry. The overwhelming majority of recorded deposits are past producers or known occurrences — reflecting Georgia's long mining history and relatively comprehensive geological survey record.</p>
+
+<div class="dashboard-grid">
+    <div class="dashboard-card">
+        <span class="dash-value">874</span>
+        <span class="dash-label">Past Producers</span>
+        <span class="dash-detail">43.7% — Mines that historically produced but are no longer active. Concentrated in the Dahlonega gold belt and Cartersville mining district.</span>
+    </div>
+    <div class="dashboard-card">
+        <span class="dash-value">533</span>
+        <span class="dash-label">Occurrences</span>
+        <span class="dash-detail">26.7% — Known mineral occurrences that were documented by geological surveys but never developed into operating mines.</span>
+    </div>
+    <div class="dashboard-card">
+        <span class="dash-value">293</span>
+        <span class="dash-label">Prospects</span>
+        <span class="dash-detail">14.7% — Sites where exploratory work (trenching, drilling, sampling) was conducted but full-scale mining was not pursued.</span>
+    </div>
+    <div class="dashboard-card">
+        <span class="dash-value">205</span>
+        <span class="dash-label">Active Producers</span>
+        <span class="dash-detail">10.3% — Currently operating mines and quarries. Dominated by industrial minerals (kaolin, stone) rather than metals.</span>
+    </div>
+    <div class="dashboard-card">
+        <span class="dash-value">92</span>
+        <span class="dash-label">Unknown Status</span>
+        <span class="dash-detail">4.6% — Records lacking current development information, typically older or less-documented sites.</span>
+    </div>
+    <div class="dashboard-card">
+        <span class="dash-value">3</span>
+        <span class="dash-label">Processing Plants</span>
+        <span class="dash-detail">0.2% — Mineral processing facilities (mills, smelters) rather than extraction sites.</span>
+    </div>
+</div>
+
+<h2>Analytical Observations</h2>
+
+<h3>1. Gold Dominance Reflects Historical Patterns</h3>
+
+<p>Gold accounts for 45.4% of all mineral deposit records — a strikingly high proportion that reflects the intensity of the Georgia Gold Rush (1828–1849) and subsequent exploration. The vast majority of these gold records are classified as "Past Producer" or "Occurrence," indicating that gold mining in Georgia is overwhelmingly a historical rather than current activity. This contrasts sharply with the industrial minerals sector (kaolin, stone, sand & gravel), where the "Active Producer" classification is far more common.</p>
+
+<h3>2. Polymetallic Associations</h3>
+
+<p>The data reveals strong commodity associations: copper (CU) frequently co-occurs with gold (AU), reflecting the polymetallic nature of Georgia's orogenic deposits. Similarly, silver (AG) appears almost exclusively in conjunction with gold and copper, consistent with its role as a byproduct in sulfide-rich gold deposits. These associations are characteristic of the volcanogenic massive sulfide (VMS) and orogenic gold deposit types found in the Blue Ridge province.</p>
+
+<h3>3. Industrial Minerals Shift</h3>
+
+<p>While metallic minerals dominate the historical record, the active mining sector is overwhelmingly focused on industrial minerals. Sand & gravel (186 records), dimension stone (68), and crushed stone (52) collectively represent active, growing sectors that generate far more economic value than any metallic mining operation in the state. This structural shift from metals to industrial minerals is one of the defining characteristics of Georgia's modern mining economy.</p>
+
+<h3>4. Manganese Concentration</h3>
+
+<p>With 198 records, manganese represents a surprisingly significant fraction of Georgia's mineral deposits. These records are concentrated in the Cartersville mining district in Bartow County, which was one of the nation's most important manganese producers during the early 20th century, particularly during wartime demand spikes (WWI and WWII).</p>
+
+<div class="formation-note">
+    <strong>Data Methodology Note:</strong> The MRDS dataset was accessed via the USGS WFS service using a CQL filter on FIPS state code (13 = Georgia). The dataset was capped at 2,000 records (the maximum returned by this query). The full Georgia MRDS may contain additional records not captured in this extract. Commodity codes are USGS standard mineral abbreviations. Some records list multiple commodities, so commodity counts sum to more than the total record count.
+</div>
+
+<h2>Download the Data</h2>
+
+<p>The full dataset used in this analysis is available for download:</p>
+
+<div class="data-catalog">
+    <div class="download-card">
+        <span class="file-icon">CSV</span>
+        <div>
+            <div class="file-name"><a href="data/ga_mrds_mines.csv">ga_mrds_mines.csv</a></div>
+            <div class="file-meta">247 KB · 2,000 records · 8 columns</div>
+            <div class="file-description">USGS MRDS mine locations for Georgia. Columns: dep_id, site_name, dev_stat, fips_code, huc_code, quad_code, url, code_list. Source: USGS Mineral Resources Data System WFS endpoint.</div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="strata-divider"></div>
+
+<section class="references">
+    <h2>References</h2>
+    <ol>
+        <li>USGS. "Mineral Resources Data System (MRDS)." mrdata.usgs.gov. Accessed March 2026.</li>
+        <li>USGS. "WFS Service for MRDS." mrdata.usgs.gov/services/wfs/mrds. Accessed March 2026.</li>
+        <li>Georgia Geological Survey. "Mineral Resources of Georgia." epd.georgia.gov. Various years.</li>
+        <li>USGS. "Mineral Commodity Summaries 2025." pubs.usgs.gov/periodicals/mcs2025/.</li>
+    </ol>
+</section>
+
+</main>

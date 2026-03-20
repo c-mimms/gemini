@@ -1,1 +1,0 @@
-What is the status of the terraform deployment? Can you check the state file and let me know if there are any pending changes?

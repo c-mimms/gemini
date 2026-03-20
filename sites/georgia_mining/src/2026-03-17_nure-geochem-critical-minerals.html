@@ -1,0 +1,178 @@
+<div class="metadata" style="display:none;">
+    <meta name="title" content="Critical Mineral Indicators: Analysis of NURE Stream Sediment Geochemistry">
+    <meta name="description" content="A data-driven analysis of Titanium, Rare Earth Elements, and Gold anomalies in Georgia's stream sediments using the USGS NURE dataset.">
+    <meta name="tag" content="Data Analysis | Geochemistry">
+    <meta name="datasets" content="ga_nure_sediment.csv">
+</div>
+
+<main class="geo-body">
+    <h1>Critical Mineral Indicators in Georgia's Stream Sediments</h1>
+    
+    <p class="intro-text">
+        The National Uranium Resource Evaluation (NURE) program, conducted primarily in the late 1970s, produced one of the most comprehensive geochemical snapshots of Georgia's geological landscape. While originally intended for uranium exploration, the multi-element analysis of stream sediments provides a treasure trove of data for identifying critical mineral potential, including Titanium (Ti) and Rare Earth Elements (REE).
+    </p>
+
+    <div class="key-findings">
+        <h3>Key Geochemical Findings</h3>
+        <ul>
+            <li>Extreme Titanium anomalies identified in the Piedmont region, with concentrations reaching 40.04% (400,400 ppm).</li>
+            <li>Significant Rare Earth Element (REE) proxies (Cerium and Lanthanum) show elevated values in the Athens and Atlanta quadrangles.</li>
+            <li>Stream sediment gold anomalies up to 18.1 ppm suggest undiscovered or under-explored primary deposits in the crystalline rocks.</li>
+        </ul>
+    </div>
+
+    <section>
+        <h2>Geochemical Statistics Overview</h2>
+        <p>Analysis of 6,855 sediment samples across Georgia reveals distinct regional enrichments. The following table summarizes the distribution of key economic and critical elements.</p>
+        
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Element</th>
+                        <th>Symbol</th>
+                        <th>Sample Count</th>
+                        <th>Mean (ppm)</th>
+                        <th>Median (ppm)</th>
+                        <th>Max Value (ppm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Titanium</td>
+                        <td>Ti</td>
+                        <td>6,134</td>
+                        <td>11,009.21</td>
+                        <td>7,100.00</td>
+                        <td>400,400.00</td>
+                    </tr>
+                    <tr>
+                        <td>Cerium (REE)</td>
+                        <td>Ce</td>
+                        <td>5,955</td>
+                        <td>335.01</td>
+                        <td>127.00</td>
+                        <td>9,700.00</td>
+                    </tr>
+                    <tr>
+                        <td>Lanthanum (REE)</td>
+                        <td>La</td>
+                        <td>6,291</td>
+                        <td>169.07</td>
+                        <td>59.00</td>
+                        <td>5,306.00</td>
+                    </tr>
+                    <tr>
+                        <td>Gold</td>
+                        <td>Au</td>
+                        <td>266</td>
+                        <td>0.73</td>
+                        <td>0.08</td>
+                        <td>18.14</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="caption">Table 1: Summary statistics extracted from <a href="data/ga_nure_sediment.csv">ga_nure_sediment.csv</a>. Values in parts per million (ppm).</p>
+    </section>
+
+    <div class="stat-grid">
+        <div class="stat-callout">
+            <div class="stat-number">40.0%</div>
+            <div class="stat-label">Max Titanium Concentration</div>
+        </div>
+        <div class="stat-callout">
+            <div class="stat-number">9,700</div>
+            <div class="stat-label">Max Cerium (ppm)</div>
+        </div>
+        <div class="stat-callout">
+            <div class="stat-number">18.1</div>
+            <div class="stat-label">Max Gold (ppm)</div>
+        </div>
+    </div>
+
+    <section>
+        <h2>Regional Anomalies & Analysis</h2>
+        
+        <h3>Titanium: The Piedmont Heavy Mineral Potential</h3>
+        <p>
+            The maximum Titanium value of 400,400 ppm (40%) located at 34.0006°N, 82.6904°W (Greenville Quad) represents an extraordinary concentration, likely indicating a high-grade accumulation of ilmenite or rutile in the stream bed. These heavy minerals are often associated with high-grade metamorphic rocks of the Piedmont.
+        </p>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="dash-label">Top Titanium Anomaly</div>
+                <div class="dash-value">400,400 ppm</div>
+                <div class="dash-detail">Greenville Quadrangle</div>
+            </div>
+            <div class="dashboard-card">
+                <div class="dash-label">Mean Ti Background</div>
+                <div class="dash-value">11,009 ppm</div>
+                <div class="dash-detail">All Georgia Samples</div>
+            </div>
+        </div>
+
+        <h3>Rare Earth Elements (REE)</h3>
+        <p>
+            Cerium (Ce) and Lanthanum (La) are used as proxies for the presence of monazite, a common REE-bearing mineral in Georgia. The Athens and Atlanta quadrangles show the highest enrichment, with Cerium reaching nearly 1% in some samples.
+        </p>
+        
+        <div class="data-table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Ce (ppm)</th>
+                        <th>Quadrangle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>33.4223</td><td>-83.8682</td><td>9,700.0</td><td>ATHENS</td></tr>
+                    <tr><td>33.2115</td><td>-84.3886</td><td>8,576.0</td><td>ATLANTA</td></tr>
+                    <tr><td>33.7160</td><td>-83.4982</td><td>7,658.0</td><td>ATHENS</td></tr>
+                    <tr><td>34.4974</td><td>-84.2694</td><td>7,596.0</td><td>ROME</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="caption">Table 2: Top Cerium anomalies indicating potential REE-rich monazite deposits.</p>
+    </section>
+
+    <blockquote>
+        "The presence of heavy minerals in the crystalline rocks of Georgia has long been noted, but the systematic quantification provided by the NURE data highlights previously unrecognized economic potential for titanium and rare earths."
+    </blockquote>
+
+    <section>
+        <h2>Comparison with Modern Commodity Data</h2>
+        <p>
+            While the NURE data represents historical sampling, its findings align with the continued importance of Georgia in the domestic mineral supply chain. According to the 2026 USGS Mineral Commodity Summaries, titanium minerals and rare earths remain critical to national security and high-tech manufacturing.
+        </p>
+        <div class="comparison-grid">
+            <div class="comparison-panel">
+                <h4>NURE Historical Data (1970s)</h4>
+                <ul>
+                    <li>Primary Focus: Uranium exploration</li>
+                    <li>Detection Limits: Often high for trace elements</li>
+                    <li>Methodology: Neutron Activation Analysis (NAA)</li>
+                </ul>
+            </div>
+            <div class="comparison-panel">
+                <h4>Modern Economic Context (2026)</h4>
+                <ul>
+                    <li>Primary Focus: Critical and Strategic Minerals</li>
+                    <li>Economic Drivers: EV batteries, magnets, aerospace</li>
+                    <li>Leading Products: Kaolin, Clays, Crushed Stone</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="references">
+        <h2>References</h2>
+        <ol>
+            <li>U.S. Geological Survey (2026). <a href="data/ga_nure_sediment.csv">National Uranium Resource Evaluation (NURE) Geochemical Database for Georgia</a>.</li>
+            <li>U.S. Geological Survey (2026). <a href="data/usgs_mcs2026.pdf">Mineral Commodity Summaries 2026</a>.</li>
+            <li>Georgia Geologic Survey (1907). <a href="data/ggs_bulletin_23.pdf">Bulletin 23: Mineral Resources of Georgia</a>.</li>
+        </ol>
+    </section>
+</main>

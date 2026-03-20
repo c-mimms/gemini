@@ -8,3 +8,17 @@ personality-quiz/
 timezone-map/
 traitlines/
 __pycache__/
+
+# Datasets and Large Files
+*.csv
+*.geojson
+*.pdf
+*.zip
+*.tar.gz
+*.webp
+sites/**/output/
+research/**/output/
+**/data/*.csv
+**/data/*.geojson
+**/data/*.pdf
+analyze.html

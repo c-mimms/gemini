@@ -1,0 +1,443 @@
+/*
+ * museum.css — Global stylesheet for the Mimms Museum Digital Archive
+ *
+ * Implements defensive layout constraints and semantic components
+ * for 9 distinct AI-generated content types.
+ */
+
+:root {
+    --serif: "Lora", "Playfair Display", Georgia, serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --mono: "Space Mono", Monaco, monospace;
+
+    /* Academic/Gallery aesthetic */
+    --bg-color: #FAFAFA;
+    --text-color: #2F2F2F;
+    --black: #1A1A1A;
+    --white: #FFFFFF;
+
+    --museum-gold: #F5B14B;
+    --museum-red: #0089BD;
+    --museum-blue: #315B7C;
+
+    --gray-100: #F3F4F6;
+    --gray-200: #E5E7EB;
+    --gray-300: #D1D5DB;
+    --gray-500: #6B7280;
+    --gray-800: #1F2937;
+
+    --max-width: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout Shell ─── */
+.site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header {
+    background: var(--museum-blue);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--museum-gold);
+}
+
+.site-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+}
+
+/* ─── Content Container (Defensive CSS) ─── */
+.museum-container {
+    flex: 1;
+    max-width: var(--max-width);
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    background: var(--white);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gray-200);
+}
+
+/* The element the LLM actually generates */
+.museum-body {
+    padding: 3rem 0;
+}
+
+.museum-body h1 {
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.museum-body h2 {
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--museum-blue);
+    margin: 2rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.museum-body h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.museum-body p {
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+}
+
+.museum-body a {
+    color: var(--museum-red);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--museum-red);
+}
+
+.museum-body blockquote {
+    border-left: 4px solid var(--museum-gold);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gray-800);
+}
+
+/* ─── 9 Content Type Components ─── */
+
+/* 1. Narrative */
+.narrative-body p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    float: left;
+    line-height: 1;
+    margin-right: 0.5rem;
+    color: var(--museum-red);
+}
+
+/* 2. Placard */
+.placard {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    padding: 2rem;
+    margin: 2rem 0;
+    font-family: var(--sans);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+.placard p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 3. Biography Timeline */
+.biography-timeline {
+    border-left: 3px solid var(--museum-blue);
+    margin: 2rem 0 2rem 1rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.timeline-event {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-event::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--museum-gold);
+    border: 2px solid var(--white);
+}
+
+.timeline-year {
+    font-weight: 700;
+    color: var(--museum-blue);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* 4. Spotlight Card */
+.spotlight-card {
+    background: var(--black);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 4px;
+    margin: 2rem 0;
+}
+
+.spotlight-card h2,
+.spotlight-card p {
+    color: var(--white);
+}
+
+/* 5. Thematic Path */
+.thematic-path {
+    margin: 2rem 0;
+}
+
+.path-stop {
+    border: 1px solid var(--gray-200);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-top: 4px solid var(--museum-blue);
+    background: var(--gray-50);
+}
+
+.stop-name {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    margin-top: 0;
+}
+
+.stop-directions {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--museum-red);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+/* 6. Audio Script */
+.audio-script {
+    background: #fdfdfd;
+    padding: 2rem;
+    border: 1px dashed var(--gray-300);
+    font-family: var(--sans);
+    font-size: 1rem;
+}
+
+.audio-cue {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    margin: 1rem 0 0.5rem;
+    text-transform: uppercase;
+}
+
+.spoken-word {
+    margin-left: 2rem;
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+/* 7. Lesson Plan */
+.lesson-plan {
+    border: 2px solid var(--black);
+    margin: 2rem 0;
+    background: var(--white);
+}
+
+.georgia-standard {
+    background: var(--black);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.learning-objective,
+.lesson-activity {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+/* 8. Scavenger Hunt */
+.scavenger-hunt {
+    margin: 2rem 0;
+}
+
+.hunt-item {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-top: 4px solid var(--museum-gold);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.hunt-clue {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--black);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.hunt-question {
+    font-size: 1.1rem;
+    color: var(--gray-800);
+}
+
+.hunt-hint {
+    background: var(--gray-50);
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--museum-blue);
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    font-style: italic;
+}
+
+.hunt-task {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+.hunt-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--museum-blue);
+    flex-shrink: 0;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.hunt-checkbox input[type="checkbox"] {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+}
+
+.hunt-checkbox:has(input:checked) {
+    background: var(--museum-blue);
+    position: relative;
+}
+
+.hunt-checkbox:has(input:checked)::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 9. Discussion Guide */
+.discussion-guide {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.pre-visit,
+.post-visit {
+    background: var(--gray-100);
+    padding: 1.5rem;
+    border-top: 4px solid var(--museum-red);
+}
+
+@media(max-width: 768px) {
+    .discussion-guide {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Shared: Artifact Meta Data */
+.artifact-meta {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-left: 4px solid var(--museum-blue);
+    border-radius: 4px;
+    margin: 2rem 0;
+}
+
+.artifact-meta p {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    align-items: baseline;
+}
+
+.meta-label {
+    font-weight: 700;
+    font-family: var(--sans);
+    letter-spacing: 0.05em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.meta-value {
+    color: var(--black);
+    font-family: var(--sans);
+}
+
+/* Defensive Tables */
+.table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+    text-align: left;
+}
+
+th {
+    background: var(--gray-100);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
