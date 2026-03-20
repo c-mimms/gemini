@@ -18,6 +18,8 @@ __pycache__/
 *.webp
 sites/**/output/
 research/**/output/
+sites/**/build_out_*/
+research/**/build_out_*/
 **/data/*.csv
 **/data/*.geojson
 **/data/*.pdf
