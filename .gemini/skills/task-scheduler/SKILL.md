@@ -47,6 +47,12 @@ task schedule --executor gemini --context-file /path/to/context.yaml --every "da
 - **View Logs**: `task log <id>` (stdout/stderr from last execution)
 - **Cancel Task**: `task cancel <id>`
 - **Retry Task**: `task retry <id>` (manually trigger a failed task)
+- **Edit Task**: `task edit <id> [options]` (update name, command, schedule, or context file)
+  -  `--name`: New human-friendly task name
+  -  `--command`: New explicitly provided command
+  -  `--context-file`: New context file path
+  -  `--at` / `--every` / `--cron`: Update the task schedule
+  -  `--cwd`: New working directory for task execution
 
 ## Examples
 
