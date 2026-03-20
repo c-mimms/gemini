@@ -25,3 +25,4 @@ research/**/build_out_*/
 **/data/*.pdf
 analyze.html
 sites/georgia_mining/data/
+.env

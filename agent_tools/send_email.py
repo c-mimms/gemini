@@ -27,8 +27,8 @@ def main():
     # Load environment variables
     env_path = args.env_file
     if not env_path:
-        # Try to find .env in discord_bot root if we are in bin/
-        possible_env = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+        # Try to find .env in agent_tools root if we are in agent_tools/
+        possible_env = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
         if os.path.exists(possible_env):
             env_path = possible_env
     

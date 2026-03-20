@@ -8,10 +8,10 @@ import json
 # Add the parent directory to sys.path to import from bin/
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from bin.read_email import main
+from read_email import main
 
 class TestReadEmail(unittest.TestCase):
-    @patch("bin.read_email.imaplib.IMAP4_SSL")
+    @patch("read_email.imaplib.IMAP4_SSL")
     @patch.dict(os.environ, {
         "IMAP_HOST": "imap.test.com",
         "IMAP_PORT": "993",
@@ -54,7 +54,7 @@ Test Body Content
         self.assertEqual(output[0]["subject"], "Test Subject")
         self.assertEqual(output[0]["body"], "Test Body Content")
 
-    @patch("bin.read_email.imaplib.IMAP4_SSL")
+    @patch("read_email.imaplib.IMAP4_SSL")
     @patch.dict(os.environ, {
         "IMAP_HOST": "imap.test.com",
         "IMAP_PORT": "993",

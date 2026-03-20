@@ -1,0 +1,1 @@
+This folder is for random scripts. Currently python scripts to send emails used by the scheduled task service.

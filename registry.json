@@ -95,12 +95,6 @@
             "status": "active",
             "type": "Automation"
         },
-        "prompt-sandbox": {
-            "name": "Prompt & Research Sandbox",
-            "path": "research/prompt_sandbox",
-            "status": "active",
-            "type": "Research"
-        },
         "background-task-scheduler": {
             "name": "Background Task Scheduler",
             "path": "background-task-scheduler",

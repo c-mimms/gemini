@@ -7,11 +7,11 @@ import io
 # Add the parent directory to sys.path to import from bin/
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from bin.send_email import main
+from send_email import main
 
 class TestEmailCLI(unittest.TestCase):
-    @patch("bin.send_email.smtplib.SMTP")
-    @patch("bin.send_email.load_dotenv")
+    @patch("send_email.smtplib.SMTP")
+    @patch("send_email.load_dotenv")
     @patch.dict(os.environ, {
         "SMTP_HOST": "smtp.test.com",
         "SMTP_PORT": "587",
@@ -43,7 +43,7 @@ class TestEmailCLI(unittest.TestCase):
         # Check output
         self.assertIn("Successfully sent email to recipient@test.com", mock_stdout.getvalue())
 
-    @patch("bin.send_email.smtplib.SMTP")
+    @patch("send_email.smtplib.SMTP")
     @patch.dict(os.environ, {
         "SMTP_HOST": "smtp.test.com",
         "SMTP_PORT": "587",
@@ -72,8 +72,8 @@ class TestEmailCLI(unittest.TestCase):
         self.assertIn("To: recipient@test.com", output)
         self.assertIn("Subject: Test Subject", output)
 
-    @patch("bin.send_email.sys.stdin", new=io.StringIO("Piped Body Content"))
-    @patch("bin.send_email.smtplib.SMTP")
+    @patch("send_email.sys.stdin", new=io.StringIO("Piped Body Content"))
+    @patch("send_email.smtplib.SMTP")
     @patch.dict(os.environ, {
         "SMTP_HOST": "smtp.test.com",
         "SMTP_PORT": "587",
@@ -82,7 +82,7 @@ class TestEmailCLI(unittest.TestCase):
     })
     def test_piped_input(self, mock_smtp):
         # We need to mock isatty to return False to trigger stdin reading
-        with patch("bin.send_email.sys.stdin.isatty", return_value=False):
+        with patch("send_email.sys.stdin.isatty", return_value=False):
             test_args = [
                 "send_email.py",
                 "--to", "recipient@test.com",
@@ -96,7 +96,7 @@ class TestEmailCLI(unittest.TestCase):
             
             self.assertIn("Piped Body Content", mock_stdout.getvalue())
 
-    @patch("bin.send_email.smtplib.SMTP")
+    @patch("send_email.smtplib.SMTP")
     @patch.dict(os.environ, {
         "SMTP_HOST": "smtp.test.com",
         "SMTP_PORT": "587",

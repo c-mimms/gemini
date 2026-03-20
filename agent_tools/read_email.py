@@ -37,7 +37,7 @@ def main():
     # Load environment variables
     env_path = args.env_file
     if not env_path:
-        possible_env = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+        possible_env = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
         if os.path.exists(possible_env):
             env_path = possible_env
     
