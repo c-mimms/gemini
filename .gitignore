@@ -24,3 +24,4 @@ research/**/build_out_*/
 **/data/*.geojson
 **/data/*.pdf
 analyze.html
+sites/georgia_mining/data/

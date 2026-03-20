@@ -9,8 +9,10 @@ def main():
     # 1. Run build.py
     print("Running build process...")
     build_script = os.path.join(base_dir, 'scripts', 'build.py')
+    sites_dir = os.path.dirname(base_dir) # parent of designs
     try:
-        subprocess.run([sys.executable, build_script], check=True, cwd=base_dir)
+        # We run from sites_dir so 'designs/projects' paths match
+        subprocess.run([sys.executable, build_script], check=True, cwd=sites_dir)
     except subprocess.CalledProcessError as e:
         print(f"Build failed: {e}")
         sys.exit(1)
