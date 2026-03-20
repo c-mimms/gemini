@@ -1,0 +1,752 @@
+/*
+ * georgia_mining.css — Stylesheet for the Georgia Geological & Mining Research site.
+ *
+ * Design inspired by USGS geological survey publications and topographic maps.
+ * Earthy palette: slate, copper, gold, forest green, warm stone.
+ */
+
+:root {
+    --serif: "Playfair Display", Georgia, serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --mono: "Space Mono", Monaco, monospace;
+
+    /* Geological palette */
+    --bg-color: #FAF8F5;
+    --text-color: #2D3436;
+    --black: #1A1A1A;
+    --white: #FFFFFF;
+
+    --geo-slate: #2D3436;
+    --geo-copper: #C0392B;
+    --geo-gold: #D4A017;
+    --geo-green: #27AE60;
+    --geo-stone: #F5E6CC;
+    --geo-clay: #A0522D;
+    --geo-mica: #8E7CC3;
+
+    --gray-50: #FAFAF8;
+    --gray-100: #F3F1ED;
+    --gray-200: #E5E0D8;
+    --gray-300: #D1CAC0;
+    --gray-400: #9CA097;
+    --gray-500: #6B7068;
+    --gray-600: #4B5048;
+    --gray-800: #1F2420;
+
+    --max-width: 1200px;
+    --prose-width: 740px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--sans);
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout Shell ─── */
+.site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header {
+    background: var(--geo-slate);
+    color: var(--white);
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--geo-gold);
+    position: relative;
+}
+
+/* Topo contour line accent */
+.site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--geo-copper) 0px,
+        var(--geo-copper) 40px,
+        transparent 40px,
+        transparent 50px
+    );
+}
+
+.site-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.site-title .title-accent {
+    color: var(--geo-gold);
+}
+
+/* ─── Content Container ─── */
+.geo-container {
+    flex: 1;
+    max-width: var(--max-width);
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+    background: var(--white);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray-200);
+}
+
+/* The element the LLM actually generates */
+.geo-body {
+    padding: 3rem 2rem;
+    max-width: var(--prose-width);
+}
+
+/* When used on a full-width page (not inside constrained container) */
+main.geo-body {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.geo-body h1 {
+    font-family: var(--serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--geo-slate);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+    border-bottom: 3px solid var(--geo-gold);
+    padding-bottom: 0.75rem;
+}
+
+.geo-body h2 {
+    font-family: var(--sans);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--geo-copper);
+    margin: 2.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-left: 4px solid var(--geo-copper);
+    padding-left: 0.75rem;
+}
+
+.geo-body h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    color: var(--geo-slate);
+}
+
+.geo-body p {
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.geo-body a {
+    color: var(--geo-copper);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: all 0.15s;
+}
+
+.geo-body a:hover {
+    color: var(--geo-slate);
+    text-decoration-thickness: 2px;
+}
+
+.geo-body blockquote {
+    border-left: 4px solid var(--geo-gold);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gray-800);
+    background: var(--geo-stone);
+    background: linear-gradient(135deg, rgba(245,230,204,0.5) 0%, rgba(245,230,204,0.1) 100%);
+}
+
+.geo-body img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--gray-200);
+}
+
+/* ─── 8 Content Type Components ─── */
+
+/* 1. Deep Dive — Geological narrative */
+.deep-dive {
+    margin: 2rem 0;
+}
+
+.deep-dive p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    float: left;
+    line-height: 1;
+    margin-right: 0.5rem;
+    color: var(--geo-copper);
+}
+
+.deep-dive .formation-note {
+    background: var(--geo-stone);
+    border: 1px solid var(--gray-300);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--geo-clay);
+}
+
+/* 2. Mine Profile */
+.mine-profile {
+    margin: 2rem 0;
+}
+
+.mine-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-top: 4px solid var(--geo-slate);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0.5rem 1.5rem;
+}
+
+.mine-card .card-label {
+    font-weight: 700;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--gray-500);
+    text-transform: uppercase;
+}
+
+.mine-card .card-value {
+    font-family: var(--sans);
+    color: var(--black);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+    .mine-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 3. Commodity Report */
+.commodity-report {
+    margin: 2rem 0;
+}
+
+.stat-callout {
+    background: var(--gray-50);
+    border-left: 4px solid var(--geo-copper);
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-number {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--geo-copper);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    font-family: var(--sans);
+    line-height: 1.4;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-grid .stat-callout {
+    margin: 0;
+}
+
+/* 4. Data Catalog */
+.data-catalog {
+    margin: 2rem 0;
+}
+
+.download-card {
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.download-card:hover {
+    border-color: var(--geo-green);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.1);
+}
+
+.download-card .file-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--geo-green);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.download-card .file-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--geo-slate);
+}
+
+.download-card .file-meta {
+    font-size: 0.85rem;
+    color: var(--gray-500);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.download-card .file-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* 5. Geological Timeline */
+.geological-timeline {
+    margin: 2rem 0 2rem 1rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.geological-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(
+        180deg,
+        var(--geo-copper) 0%,
+        var(--geo-gold) 25%,
+        var(--geo-green) 50%,
+        var(--geo-clay) 75%,
+        var(--geo-slate) 100%
+    );
+}
+
+.era-event {
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.era-event::before {
+    content: '';
+    position: absolute;
+    left: -2.55rem;
+    top: 0.4rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--geo-gold);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px var(--geo-gold);
+}
+
+.era-label {
+    font-weight: 700;
+    font-family: var(--mono);
+    color: var(--geo-copper);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.era-content {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Era color coding */
+.era-event[data-era="precambrian"]::before { background: #8B0000; box-shadow: 0 0 0 2px #8B0000; }
+.era-event[data-era="paleozoic"]::before { background: var(--geo-clay); box-shadow: 0 0 0 2px var(--geo-clay); }
+.era-event[data-era="mesozoic"]::before { background: var(--geo-green); box-shadow: 0 0 0 2px var(--geo-green); }
+.era-event[data-era="cenozoic"]::before { background: var(--geo-gold); box-shadow: 0 0 0 2px var(--geo-gold); }
+
+/* 6. Regulatory Analysis */
+.regulatory-analysis {
+    margin: 2rem 0;
+}
+
+.regulation-callout {
+    background: #FFF8F0;
+    border: 1px solid var(--geo-gold);
+    border-left: 4px solid var(--geo-gold);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.92rem;
+}
+
+.regulation-callout .regulation-cite {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* 7. Economic Synthesis */
+.economic-synthesis {
+    margin: 2rem 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0;
+}
+
+.dashboard-card {
+    background: var(--geo-slate);
+    color: var(--white);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.dashboard-card .dash-value {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--geo-gold);
+    line-height: 1.1;
+}
+
+.dashboard-card .dash-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.dashboard-card .dash-detail {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+/* 8. Comparative Study */
+.comparative-study {
+    margin: 2rem 0;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.comparison-panel {
+    background: var(--gray-50);
+    padding: 1.5rem;
+    border-top: 4px solid var(--geo-copper);
+}
+
+.comparison-panel h3 {
+    font-family: var(--serif);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ─── Shared: Data Tables ─── */
+.data-table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+    margin: 2rem 0;
+    border: 1px solid var(--gray-200);
+    -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+}
+
+.data-table caption {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+    text-align: left;
+    padding: 0.75rem;
+    background: var(--geo-stone);
+    border-bottom: 1px solid var(--gray-200);
+    font-weight: 600;
+}
+
+.data-table th {
+    background: var(--geo-slate);
+    color: var(--white);
+    border-bottom: 2px solid var(--geo-gold);
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--text-color);
+    vertical-align: top;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background: var(--gray-50);
+}
+
+/* ─── References Section ─── */
+.references {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 3px solid var(--geo-slate);
+}
+
+.references h2 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
+    color: var(--gray-500);
+}
+
+.references ol {
+    font-family: var(--sans);
+    font-size: 0.825rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    padding-left: 1.25rem;
+}
+
+.references li {
+    margin-bottom: 0.5rem;
+}
+
+.references a {
+    color: var(--geo-copper);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+/* ─── Key Findings Box ─── */
+.key-findings {
+    background: var(--geo-stone);
+    border: 1px solid var(--gray-300);
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.key-findings h3 {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--geo-copper);
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
+}
+
+.key-findings ul {
+    list-style: none;
+    padding: 0;
+}
+
+.key-findings li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+    position: relative;
+}
+
+.key-findings li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--geo-gold);
+    font-size: 0.7rem;
+    top: 0.65rem;
+}
+
+.key-findings li:last-child {
+    border-bottom: none;
+}
+
+/* ─── Map Placeholder / Figure Frame ─── */
+.figure-frame {
+    border: 2px solid var(--gray-300);
+    padding: 0.5rem;
+    margin: 2rem 0;
+    background: var(--white);
+}
+
+.figure-frame img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    border: none;
+}
+
+.figure-frame figcaption,
+.figure-frame .caption {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    padding: 0.75rem 0.5rem 0.25rem;
+    font-style: italic;
+    border-top: 1px solid var(--gray-200);
+    margin-top: 0.5rem;
+}
+
+/* ─── Stratigraphy-style section divider ─── */
+.strata-divider {
+    height: 8px;
+    margin: 3rem 0;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--geo-slate) 0px,
+        var(--geo-slate) 4px,
+        var(--geo-copper) 4px,
+        var(--geo-copper) 8px,
+        var(--geo-gold) 8px,
+        var(--geo-gold) 12px,
+        var(--geo-green) 12px,
+        var(--geo-green) 16px,
+        var(--geo-clay) 16px,
+        var(--geo-clay) 20px
+    );
+}
+
+/* ─── Footer ─── */
+.site-footer {
+    border-top: 4px solid var(--geo-slate);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-top: auto;
+    background: var(--gray-50);
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--geo-gold);
+}
+
+.site-footer .footer-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--geo-slate);
+}
+
+.site-footer p {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    letter-spacing: 0.06em;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+    .geo-body {
+        padding: 2rem 1rem;
+    }
+
+    .stat-number,
+    .dashboard-card .dash-value {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mine-card {
+        grid-template-columns: 1fr;
+    }
+}

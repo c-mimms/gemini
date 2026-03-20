@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Catalog: USGS Mineral Commodity Summaries &amp; Georgia Mine Records | Georgia Mining Research</title>
+    <meta name="description" content="A catalog entry documenting five publicly available datasets downloaded for the Georgia Mining Research project, including the USGS MRDS mine database, MCS 2025 full report, and commodity-specific data for clays, gold, and dimension stone.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="georgia_mining.css">
+</head>
+<body class="site-wrapper">
+    <header class="site-header">
+        <a href="index.html" class="site-title"><span class="title-accent">⛏</span> Georgia Mining Research</a>
+        <nav style="display:flex;gap:1.5rem;align-items:center;">
+            <a href="index.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;">← Research</a>
+            <a href="data.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;">Data</a>
+            <a href="map.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;">Map</a>
+            <a href="analyze.html" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;">Analyze</a>
+        </nav>
+    </header>
+
+    <div class="geo-container">
+<main class="geo-body">
+
+
+<h1>Data Catalog: USGS Mineral Commodity Summaries & Georgia Mine Records</h1>
+
+<div class="data-catalog">
+
+<div class="key-findings">
+    <h3>Collection Summary</h3>
+    <p>This catalog documents five publicly available datasets acquired from the United States Geological Survey (USGS) for the Georgia Mining Research project. The datasets span mine location records, national mineral commodity statistics, and commodity-specific production data for minerals relevant to Georgia's mining economy. Total download size: approximately 13 MB.</p>
+</div>
+
+<h2>Mine Location Data</h2>
+
+<div class="download-card">
+    <span class="file-icon">CSV</span>
+    <div>
+        <div class="file-name"><a href="data/ga_mrds_mines.csv">ga_mrds_mines.csv</a></div>
+        <div class="file-meta">247 KB · 2,000 records · Downloaded 2026-03-15</div>
+        <div class="file-description">
+            <strong>Source:</strong> USGS Mineral Resources Data System (MRDS), accessed via WFS service endpoint at <code>mrdata.usgs.gov/services/wfs/mrds</code> with CQL filter on FIPS state code 13 (Georgia).<br>
+            <strong>Contents:</strong> Each record represents a mine, prospect, mineral occurrence, or processing plant. Columns include deposit ID, site name, development status (Past Producer, Occurrence, Prospect, Producer, Unknown, Plant), FIPS county code, HUC watershed code, USGS quadrangle code, MRDS detail URL, and commodity code list.<br>
+            <strong>Limitations:</strong> Capped at 2,000 records by WFS query. The full Georgia dataset may contain additional records. MRDS updates were discontinued by USGS in 2011; data reflects historical cataloging rather than current mine status.<br>
+            <strong>Uses:</strong> Commodity distribution analysis, geographic mining density mapping, historical mining activity studies, cross-referencing with production data.
+        </div>
+    </div>
+</div>
+
+<h2>National Mineral Commodity Reports</h2>
+
+<div class="download-card">
+    <span class="file-icon">PDF</span>
+    <div>
+        <div class="file-name"><a href="data/usgs_mcs2025.pdf">usgs_mcs2025.pdf</a></div>
+        <div class="file-meta">10 MB · 200+ pages · Downloaded 2026-03-15</div>
+        <div class="file-description">
+            <strong>Source:</strong> USGS Mineral Commodity Summaries 2025, published by the National Minerals Information Center.<br>
+            <strong>Contents:</strong> Comprehensive annual report covering 90+ nonfuel mineral commodities. Each two-page commodity chapter includes domestic production, imports, exports, consumption, prices, world production, and reserves data. Includes both statistical tables and narrative analysis.<br>
+            <strong>Relevance to Georgia:</strong> Contains national-context data for all of Georgia's major mineral products including kaolin (clays), dimension stone (granite, marble), gold, sand & gravel, and fuller's earth.<br>
+            <strong>Uses:</strong> Benchmarking Georgia's production against national totals, price trend analysis, import/export context, reserves estimation.
+        </div>
+    </div>
+</div>
+
+<h2>Commodity-Specific Data Sheets</h2>
+
+<div class="download-card">
+    <span class="file-icon">PDF</span>
+    <div>
+        <div class="file-name"><a href="data/usgs_mcs2025_clays.pdf">usgs_mcs2025_clays.pdf</a></div>
+        <div class="file-meta">732 KB · 1 page · Downloaded 2026-03-15</div>
+        <div class="file-description">
+            <strong>Source:</strong> USGS Mineral Commodity Summaries 2025 — Clays chapter.<br>
+            <strong>Contents:</strong> Production, consumption, imports, exports, and pricing data for all clay types including kaolin, ball clay, bentonite, common clay, fire clay, and fuller's earth. Georgia is the nation's leading kaolin producer (Washington County / Sandersville). Includes 5-year production history and world production by country.<br>
+            <strong>Key Data Points:</strong> U.S. kaolin production value, Georgia's share of national output, export volumes, end-use breakdown (paper, ceramics, paint, rubber).
+        </div>
+    </div>
+</div>
+
+<div class="download-card">
+    <span class="file-icon">PDF</span>
+    <div>
+        <div class="file-name"><a href="data/usgs_mcs2025_gold.pdf">usgs_mcs2025_gold.pdf</a></div>
+        <div class="file-meta">728 KB · 1 page · Downloaded 2026-03-15</div>
+        <div class="file-description">
+            <strong>Source:</strong> USGS Mineral Commodity Summaries 2025 — Gold chapter.<br>
+            <strong>Contents:</strong> U.S. and world gold production, mine output by state, prices (annual average), reserves, recycling volumes, and import/export data. While Georgia is not a significant current gold producer, this dataset provides the national context for evaluating historical Georgia gold production (the Dahlonega Belt produced an estimated 870,000 troy ounces between 1828 and 1906).<br>
+            <strong>Key Data Points:</strong> Current gold price, major producing states (Nevada), world production leaders, recycling as % of supply.
+        </div>
+    </div>
+</div>
+
+<div class="download-card">
+    <span class="file-icon">PDF</span>
+    <div>
+        <div class="file-name"><a href="data/usgs_mcs2025_dimension_stone.pdf">usgs_mcs2025_dimension_stone.pdf</a></div>
+        <div class="file-meta">724 KB · 1 page · Downloaded 2026-03-15</div>
+        <div class="file-description">
+            <strong>Source:</strong> USGS Mineral Commodity Summaries 2025 — Dimension Stone chapter.<br>
+            <strong>Contents:</strong> Production, consumption, imports, exports, and pricing data for granite, limestone, marble, sandstone, and other dimension stone. Elberton, Georgia is the "Granite Capital of the World" and leads U.S. granite production for memorials. Includes production by stone type and end use.<br>
+            <strong>Key Data Points:</strong> U.S. dimension stone production value, granite's share of market, import competition from India/China/Brazil, end-use breakdown (memorials, building stone, curbing).
+        </div>
+    </div>
+</div>
+
+<h2>Dataset Relationships</h2>
+
+<div class="data-table-wrapper">
+    <table class="data-table">
+        <caption>Cross-Reference Matrix: How These Datasets Connect</caption>
+        <thead>
+            <tr>
+                <th>Connection</th>
+                <th>Datasets</th>
+                <th>Analysis Potential</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Gold production context</strong></td>
+                <td>ga_mrds_mines.csv + usgs_mcs2025_gold.pdf</td>
+                <td>Map 908 gold deposit records against current national gold production to contextualize Georgia's historical contribution</td>
+            </tr>
+            <tr>
+                <td><strong>Kaolin industry analysis</strong></td>
+                <td>ga_mrds_mines.csv + usgs_mcs2025_clays.pdf</td>
+                <td>Overlay MRDS kaolin/clay records with MCS production data to understand Georgia's market dominance</td>
+            </tr>
+            <tr>
+                <td><strong>Stone production</strong></td>
+                <td>ga_mrds_mines.csv + usgs_mcs2025_dimension_stone.pdf</td>
+                <td>Compare stone deposit records (STN=68, STN_C=52) with national dimension stone output</td>
+            </tr>
+            <tr>
+                <td><strong>Full commodity landscape</strong></td>
+                <td>usgs_mcs2025.pdf + ga_mrds_mines.csv</td>
+                <td>Comprehensive analysis of Georgia's mineral portfolio against national commodity statistics</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2>Suggested Future Data Acquisitions</h2>
+
+<p>To expand the research base, the following additional datasets would complement the existing collection:</p>
+
+<ul>
+    <li><strong>USGS Minerals Yearbook — Georgia Chapter:</strong> State-specific production tables (when published for recent years)</li>
+    <li><strong>Georgia EPD Mining Permits:</strong> Current mining permit database from the Environmental Protection Division</li>
+    <li><strong>USGS NURE Geochemistry:</strong> National Uranium Resource Evaluation stream sediment geochemistry for Georgia — useful for identifying mineral anomalies</li>
+    <li><strong>USGS Geologic Map Database:</strong> Digitized geologic maps of Georgia for overlaying with mine locations</li>
+    <li><strong>Census of Mineral Industries:</strong> Employment and economic data for mining operations in Georgia</li>
+</ul>
+
+</div>
+
+<div class="strata-divider"></div>
+
+<section class="references">
+    <h2>References</h2>
+    <ol>
+        <li>USGS. "Mineral Resources Data System (MRDS)." mrdata.usgs.gov. Accessed March 2026.</li>
+        <li>USGS. "Mineral Commodity Summaries 2025." pubs.usgs.gov/periodicals/mcs2025/. January 2025.</li>
+        <li>USGS National Minerals Information Center. "The Mineral Industry of Georgia." usgs.gov. Various years.</li>
+    </ol>
+</section>
+
+</main>
+
+    </div>
+
+    <footer class="site-footer">
+        <span class="footer-name">⛏ Georgia Geological & Mining Research</span>
+        <p style="font-size:0.8rem; color:var(--gray-500);">Building a comprehensive open research base on Georgia's geological heritage</p>
+    </footer>
+</body>
+</html>
