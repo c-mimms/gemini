@@ -19,7 +19,7 @@ The site at `s3://gemini-designs-portfolio-2026-v2/trump/` publishes all article
 ## Workflow
 
 ### 1. Deduplicate Topics
-- Check the existing articles directory at `/Users/chris/code/gemini/prompt_sandbox/scripts/trump_articles/` (create it if it does not exist).
+- Check the existing articles directory at `/Users/chris/code/gemini/sites/news/src/` (create it if it does not exist).
 - Read through the file names and titles of already-published articles to **avoid repeating a topic** that has been covered before.
 
 ### 2. Brainstorm Talking Points
@@ -102,14 +102,14 @@ And the body must open and close with:
 **Add a `<style>` block for anything creative that goes beyond the stylesheet:** inline bar charts, SVG diagrams, year-by-year timelines, interactive controls, side-by-side comparisons, annotated quotes, or any layout that serves this particular article's data. These additions are encouraged — they make each piece distinctive.
 
 
-Save the file as `/Users/chris/code/gemini/prompt_sandbox/scripts/trump_articles/YYYY-MM-DD_[slug].html` where `[slug]` is a short kebab-case name for the topic (e.g. `2026-03-09_immigrant-crime-rates.html`).
+Save the file as `/Users/chris/code/gemini/sites/news/src/YYYY-MM-DD_[slug].html` where `[slug]` is a short kebab-case name for the topic (e.g. `2026-03-09_immigrant-crime-rates.html`).
 
 ### 5. Publish the Site
 Run the following command to build and publish the site:
 
 ```bash
 python3 /Users/chris/code/gemini/static_site/build_news.py \
-  --source /Users/chris/code/gemini/prompt_sandbox/scripts/trump_articles/ \
+  --source /Users/chris/code/gemini/sites/news/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/trump/ \
   --site-name "The Dispatch" \
   --site-tagline "Evidence-based analysis of political claims"

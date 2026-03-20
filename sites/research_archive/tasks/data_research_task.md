@@ -16,7 +16,7 @@ Some examples of dataset types to research:
 ## Workflow
 
 1.  **Deduplicate Ideas**:
-    -   Check the existing research logs in `/Users/chris/code/gemini/prompt_sandbox/scripts/research/` (if the directory does not exist, you may create it).
+    -   Check the existing research logs in `/Users/chris/code/gemini/sites/research_archive/data/` (if the directory does not exist, you may create it).
     -   Read through the titles/contents of previously researched ideas to ensure you do not research the same dataset type multiple times.
 
 2.  **Brainstorm**:
@@ -35,10 +35,10 @@ Some examples of dataset types to research:
 4.  **Produce Research Document**:
     -   Write a structured markdown report detailing your findings. 
     -   The report should include the brainstormed list, the selected idea, and all the research findings from Step 3.
-    -   Save this report locally at `/Users/chris/code/gemini/prompt_sandbox/scripts/research/YYY-MM-DD_[topic_name]_research.md` (replace the date and topic appropriately).
+    -   Save this report locally at `/Users/chris/code/gemini/sites/research_archive/data/YYY-MM-DD_[topic_name]_research.md` (replace the date and topic appropriately).
     
 5.  **Publish Site**
-    -   Run `python3 /Users/chris/code/gemini/static_site/build.py --source /Users/chris/code/gemini/prompt_sandbox/scripts/research/ --s3-bucket s3://gemini-designs-portfolio-2026-v2/research/` to build and publish the site.
+    -   Run `python3 /Users/chris/code/gemini/sites/research_archive/build.py --source /Users/chris/code/gemini/sites/research_archive/data/ --s3-bucket s3://gemini-designs-portfolio-2026-v2/research/` to build and publish the site.
 
 6.  **Log Completion**:
     -   Print a message confirming the task has completed and the research document has been saved.
