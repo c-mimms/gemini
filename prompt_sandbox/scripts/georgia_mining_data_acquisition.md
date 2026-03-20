@@ -4,13 +4,13 @@ You are a data acquisition agent tasked with finding and downloading real, publi
 
 ## Data Directory
 
-All data files go in: `/Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/`
+All data files go in: `/Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/`
 
 ## Step 1: Check Existing Data
 
 ```bash
-ls -la /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/
-cat /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/MANIFEST.md
+ls -la /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/
+cat /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/MANIFEST.md
 ```
 
 Read the manifest to see what has already been downloaded. Do NOT re-download existing files.
@@ -43,14 +43,14 @@ Search for and download data from these sources. **Prioritize datasets with geog
 
 ```bash
 # Always use curl with proper headers
-curl -s -L -A "GeorgiaGeoResearch/1.0 (academic)" "URL_HERE" -o /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
+curl -s -L -A "GeorgiaGeoResearch/1.0 (academic)" "URL_HERE" -o /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
 
 # Verify the download is real data, not an error page
-file /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
-head -5 /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
+file /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
+head -5 /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
 
 # If the file is HTML/error instead of data, DELETE IT IMMEDIATELY
-rm /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
+rm /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
 ```
 
 **Acceptable formats:** CSV, TSV, JSON, GeoJSON, XLS/XLSX, XML, Shapefiles (zipped), PDF (geological reports/bulletins only), SQLite, KML/KMZ
@@ -60,7 +60,7 @@ rm /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
 After EVERY successful download, append to the manifest:
 
 ```bash
-echo "| filename.csv | https://source-url... | $(date +%Y-%m-%d) | CSV | $(du -h filename.csv | cut -f1) | Brief description |" >> /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/MANIFEST.md
+echo "| filename.csv | https://source-url... | $(date +%Y-%m-%d) | CSV | $(du -h filename.csv | cut -f1) | Brief description |" >> /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/MANIFEST.md
 ```
 
 ## Step 5: Publish
@@ -69,9 +69,9 @@ After downloading at least one new file, rebuild and publish:
 
 ```bash
 python3 /Users/chris/code/gemini/static_site/build_georgia_mining.py \
-  --source /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_articles/ \
+  --source /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_articles/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/georgia-mining/ \
-  --data-dir /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/
+  --data-dir /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/
 ```
 
 ## Step 6: Log Completion

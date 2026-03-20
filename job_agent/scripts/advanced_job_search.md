@@ -4,8 +4,8 @@
 The goal of this task is to intelligently filter new software engineering job opportunities in Edinburgh based on specific criteria and notify Chris about any good fits.
 
 ## Data & Log Files
-- **Job Database**: A local file at `/Users/chris/code/gemini/discord_bot/scripts/job_database.json` will be used to store structured data for every job that is processed. This prevents re-processing and allows for future analysis.
-- **Log File**: A simple log at `/Users/chris/code/gemini/discord_bot/scripts/seen_emails.log` will store the message IDs of emails that have already been processed, to avoid re-reading old emails.
+- **Job Database**: A local file at `/Users/chris/code/gemini/job_agent/scripts/job_database.json` will be used to store structured data for every job that is processed. This prevents re-processing and allows for future analysis.
+- **Log File**: A simple log at `/Users/chris/code/gemini/job_agent/scripts/seen_emails.log` will store the message IDs of emails that have already been processed, to avoid re-reading old emails.
 
 ## Filtering Criteria
 A job is considered a "good fit" if it meets ALL of the following conditions:
@@ -19,7 +19,7 @@ A job is considered a "good fit" if it meets ALL of the following conditions:
 1.  **Log Start**: Print a message indicating the task has started.
 2.  **Read New Emails**:
     -   Print a message: "Reading new emails..."
-    -   Use `python /Users/chris/code/gemini/discord_bot/scripts/read_email.py` to check for recent, unread emails with subjects related to "New jobs for you in Edinburgh".
+    -   Use `python /Users/chris/code/gemini/job_agent/scripts/read_email.py` to check for recent, unread emails with subjects related to "New jobs for you in Edinburgh".
     -   For each email found, check its ID against `seen_emails.log`. If already processed, print "Skipping already processed email" and skip it.
     -   Print how many new emails were found. **CRITICAL: If 0 new, unprocessed emails are found, IMMEDIATELY skip to Step 9 (Log Completion). Do not proceed to Step 3.**
 
@@ -50,7 +50,7 @@ A job is considered a "good fit" if it meets ALL of the following conditions:
 8.  **Take Action**:
     -   **For ALL new jobs**: Save the scraped details to `job_database.json`.
     -   **If a job IS a good fit**:
-        -   Format and send the summary email using `python /Users/chris/code/gemini/discord_bot/scripts/send_email.py`.
+        -   Format and send the summary email using `python /Users/chris/code/gemini/job_agent/scripts/send_email.py`.
         -   Print "Sent notification email for [Job Title]".
     -   **Finally**: Append the message ID of the email to `seen_emails.log`.
 9.  **Log Completion**: Print a message indicating the task has finished successfully.

@@ -4,17 +4,17 @@ You are a research geologist writing analysis articles for a comprehensive knowl
 
 ## Data Directory
 
-Data files are in: `/Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/`
+Data files are in: `/Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/`
 
 ## Step 1: Check Existing Resources
 
 ```bash
 # See what data is available
-ls -la /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/
-cat /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/MANIFEST.md
+ls -la /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/
+cat /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/MANIFEST.md
 
 # See what articles already exist
-ls /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_articles/
+ls /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_articles/
 ```
 
 Don't repeat topics already covered. Find a new angle or dataset to analyze.
@@ -24,8 +24,8 @@ Don't repeat topics already covered. Find a new angle or dataset to analyze.
 If your article needs data that isn't already downloaded, you may download it:
 
 ```bash
-curl -s -L -A "GeorgiaGeoResearch/1.0 (academic)" "URL_HERE" -o /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
-file /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/FILENAME
+curl -s -L -A "GeorgiaGeoResearch/1.0 (academic)" "URL_HERE" -o /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
+file /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/FILENAME
 # Delete if HTML/error
 ```
 
@@ -59,7 +59,7 @@ A synthesis article that cross-references 2+ existing datasets:
 
 ## Output Requirements
 
-Save your article to a `.html` file in `/Users/chris/code/gemini/discord_bot/scripts/georgia_mining_articles/`
+Save your article to a `.html` file in `/Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_articles/`
 Filename: `YYYY-MM-DD_short-slug-name.html`
 
 Your output must be **valid HTML** within a `<main class="geo-body">` wrapper. Do NOT wrap in a full html/head/body document.
@@ -124,9 +124,9 @@ file [OUTPUT_PATH]  # Delete if HTML/text instead of image
 
 ```bash
 python3 /Users/chris/code/gemini/static_site/build_georgia_mining.py \
-  --source /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_articles/ \
+  --source /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_articles/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/georgia-mining/ \
-  --data-dir /Users/chris/code/gemini/discord_bot/scripts/georgia_mining_data/
+  --data-dir /Users/chris/code/gemini/prompt_sandbox/scripts/georgia_mining_data/
 ```
 
 ### Log Completion

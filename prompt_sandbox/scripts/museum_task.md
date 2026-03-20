@@ -34,7 +34,7 @@ You must **randomly select ONE** of the following 9 content formats to generate 
 
 ## Output Requirements
 
-You must save your output to a `.html` file in `/Users/chris/code/gemini/discord_bot/scripts/museum_articles/`.
+You must save your output to a `.html` file in `/Users/chris/code/gemini/prompt_sandbox/scripts/museum_articles/`.
 The filename MUST follow the exact format: `YYYY-MM-DD_short-slug-name.html` (e.g., `2026-03-10_macintosh-design-philosophy.html`).
 
 Your output must be **valid HTML** within a `<main class="museum-body">` wrapper. Do NOT wrap your output in a full html/head/body document. Do NOT output markdown code blocks formatting. Start immediately with `<main>`.
@@ -76,7 +76,7 @@ The museum site uses a component-driven design system. You must construct your o
 
 ### Execution Strategy
 
-1. **Check for Duplicates:** List the contents of `/Users/chris/code/gemini/discord_bot/scripts/museum_articles/` and identify existing topics and content types. Do NOT research or generate content for a topic that already has an article.
+1. **Check for Duplicates:** List the contents of `/Users/chris/code/gemini/prompt_sandbox/scripts/museum_articles/` and identify existing topics and content types. Do NOT research or generate content for a topic that already has an article.
 2. **Pick the Format:** Semi-randomly decide which of the 9 formats you will generate today. Pick a format not used in recent runs and try to keep a balance of formats.
 3. **Brainstorm a NEW Topic:** Based on the chosen format, pick an appropriate artifact or theme that is not already in the collection.
 4. **Research:** Use your knowledge base and web research to ensure technical and historical accuracy.
@@ -94,7 +94,7 @@ Run the following command to build and publish the site using the python build m
 
 ```bash
 python3 /Users/chris/code/gemini/static_site/build_museum.py \
-  --source /Users/chris/code/gemini/discord_bot/scripts/museum_articles/ \
+  --source /Users/chris/code/gemini/prompt_sandbox/scripts/museum_articles/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/museum/ \
   --site-name "Mimms Museum" \
   --site-tagline "Preserving the artifacts of computing history"
