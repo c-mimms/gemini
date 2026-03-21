@@ -6,7 +6,7 @@ Your task is to create a serene, thoughtful daily meditation that weaves togethe
 ## INSTRUCTIONS
 1. Select a comforting or challenging Bible verse.
 2. Research a recent world event. Look for stories about human struggle, resilience, or community. Avoid highly partisan political events.
-3. Write an empathetic meditation connecting the event to the scripture.
+3. Write an empathetic daily mini-sermon connecting the event to the scripture.
 
 ## OUTPUT FORMAT
 Your output must be a single `.html` file saved to `/Users/chris/code/gemini/sites/prayer/src/`.
@@ -21,10 +21,11 @@ It MUST start with a metadata block like this:
 ```
 
 The rest of your content MUST use these specific CSS classes:
-- `<div class="verse-block">` for the scripture text.
-- `<span class="verse-ref">` for the Bible reference inside the block.
+- `<div class="verse-block">` to containerize the scripture.
+- `<p class="verse-text">` for the FULL scripture text recitation inside the block.
+- `<span class="verse-ref">` for the Bible reference inside the block. The reference MUST be a hyperlink pointing to BibleGateway. (e.g. `<a href="https://www.biblegateway.com/passage/?search=Psalm+34%3A18&version=NIV" target="_blank">Psalm 34:18</a>`)
 - `<div class="world-context">` for the summary of the current event.
-- `<div class="meditation-core">` for your empathetic synthesis and reflection.
+- `<div class="meditation-core">` for your "mini-sermon" synthesis and reflection.
 - `<div class="prayer-close">` for a short closing prayer.
 
 ### Example Structure:
@@ -34,8 +35,8 @@ The rest of your content MUST use these specific CSS classes:
 </div>
 
 <div class="verse-block">
-    "The Lord is close to the brokenhearted and saves those who are crushed in spirit."
-    <span class="verse-ref">— Psalm 34:18</span>
+    <p class="verse-text">"The Lord is close to the brokenhearted and saves those who are crushed in spirit."</p>
+    <span class="verse-ref">— <a href="https://www.biblegateway.com/passage/?search=Psalm+34%3A18&version=NIV" target="_blank">Psalm 34:18</a></span>
 </div>
 
 <div class="world-context">

@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 """
 build_prayer.py — Static site generator for Daily Christian Meditations.
-
-Usage:
-    python3 build_prayer.py
 """
 
 import os
 import glob
 import subprocess
 import re
-from datetime import datetime
+import shutil
 
 SRC_DIR = "/Users/chris/code/gemini/sites/prayer/src"
 OUTPUT_DIR = "/Users/chris/code/gemini/sites/prayer/output"
@@ -26,147 +23,22 @@ TEMPLATE = """\
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Christian Meditation | CBMO Network</title>
+    <title>{page_title} | CBMO Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {{
-            --bg-color: #faf9f6;
-            --text-main: #2b2c28;
-            --text-muted: #6b705c;
-            --accent: #546a7b;
-            --container-bg: #ffffff;
-            --border-light: rgba(0,0,0,0.06);
-        }}
-
-        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-
-        body {{
-            font-family: 'Lora', serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.8;
-            padding: 2rem 1rem;
-            -webkit-font-smoothing: antialiased;
-        }}
-
-        .wrapper {{
-            max-width: 720px;
-            margin: 0 auto;
-        }}
-
-        header {{
-            text-align: center;
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-light);
-        }}
-
-        h1 {{
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-            letter-spacing: -0.02em;
-        }}
-
-        .subtitle {{
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-style: italic;
-            letter-spacing: 0.05em;
-        }}
-
-        article {{
-            background: var(--container-bg);
-            padding: 3rem;
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            margin-bottom: 3rem;
-        }}
-
-        .date-badge {{
-            display: inline-block;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 0.25rem;
-        }}
-
-        .article-title {{
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }}
-
-        .verse-block {{
-            background: rgba(84, 106, 123, 0.04);
-            border-left: 3px solid var(--accent);
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-            font-size: 1.15rem;
-            color: var(--text-main);
-        }}
-
-        .verse-ref {{
-            display: block;
-            margin-top: 0.75rem;
-            font-size: 0.9rem;
-            font-style: normal;
-            font-weight: 600;
-            text-align: right;
-            color: var(--accent);
-        }}
-
-        .world-context {{
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }}
-
-        .world-context p {{ margin-bottom: 1rem; }}
-
-        .meditation-core {{
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }}
-
-        .meditation-core p {{ margin-bottom: 1.5rem; }}
-
-        .prayer-close {{
-            font-style: italic;
-            color: var(--accent);
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-        }}
-
-        footer {{
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 4rem;
-            padding-top: 2rem;
-        }}
-
-        @media (max-width: 600px) {{
-            article {{ padding: 2rem 1.5rem; }}
-        }}
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prayer.css">
 </head>
 <body>
     <div class="wrapper">
         <header>
+            <nav class="nav-links">
+                <a href="index.html">Daily Meditations</a>
+                <a href="about.html">About</a>
+                <a href="donate.html">Support</a>
+            </nav>
             <h1>Daily Christian Meditation</h1>
-            <div class="subtitle">Scripture, World Context, and Empathetic Reflection</div>
+            <div class="subtitle">Scripture, Context, and Empathetic Reflection</div>
         </header>
         
         <main>
@@ -181,43 +53,88 @@ TEMPLATE = """\
 </html>
 """
 
+ABOUT_HTML = """
+<article class="static-page">
+    <h2 class="article-title">About Our Mission</h2>
+    <div class="static-page-content">
+        <p>In a world increasingly driven by outrage, rapid news cycles, and partisan division, this daily meditation is offered as a quiet sanctuary. We seek to spread good news daily, and help heal the world through empathetic reflection.</p>
+        <p>Every morning, these readings draw upon the ancient, enduring wisdom of Scripture and place it in dialogue with the very real, often painful events unfolding around the globe today.</p>
+        <p>We do not take political sides. We simply sit with the text, sit with the news, and invite God's peace and restorative justice into our shared human experience. Our daily reflections act as "mini-sermons" guiding you towards peace before a busy day.</p>
+    </div>
+</article>
+"""
+
+DONATE_HTML = """
+<article class="static-page">
+    <h2 class="article-title">Support This Ministry</h2>
+    <div class="static-page-content">
+        <p>If these daily meditations have brought you a sense of grounding, peace, or clarity, please consider supporting the infrastructure that keeps this site running.</p>
+        <p>Your contributions go directly toward covering global server distributions, domain upkeep, and the scheduled generation engines that ensure a new prayer is waiting for you every sunrise.</p>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="#" class="donate-btn">Donate via PayPal</a>
+        </div>
+    </div>
+</article>
+"""
+
 def main():
     print("Building Prayer Site...")
-    # Find all articles
+    # Copy CSS
+    shutil.copy2(os.path.join(SRC_DIR, "prayer.css"), os.path.join(OUTPUT_DIR, "prayer.css"))
+    
+    # Process dynamic meditations
     files = glob.glob(os.path.join(SRC_DIR, "*.html"))
-    files.sort(reverse=True) # newest first
+    files.sort(reverse=True)
 
     content_html = ""
-    if not files:
-        content_html = "<article><p>No meditations yet. Check back soon.</p></article>"
-    else:
-        for filepath in files:
-            filename = os.path.basename(filepath)
-            # Try to grab date YYYY-MM-DD
-            date_match = re.search(r"(\d{4}-\d{2}-\d{2})", filename)
-            date_str = date_match.group(1) if date_match else "Unknown Date"
+    meditation_count = 0
+    for filepath in files:
+        filename = os.path.basename(filepath)
+        # Skip static ones if they sneak in
+        if not re.match(r"\d{4}-\d{2}-\d{2}", filename):
+            continue
             
-            with open(filepath, "r") as f:
-                html_body = f.read()
+        meditation_count += 1
+        date_match = re.search(r"(\d{4}-\d{2}-\d{2})", filename)
+        date_str = date_match.group(1)
+        
+        with open(filepath, "r") as f:
+            html_body = f.read()
 
-            title_match = re.search(r'<meta name="title" content="(.*?)">', html_body)
-            title = title_match.group(1) if title_match else "Daily Meditation"
+        title_match = re.search(r'<meta name="title" content="(.*?)">', html_body)
+        title = title_match.group(1) if title_match else "Daily Meditation"
+        
+        # Remove metadata tag block to clean the output
+        html_body = re.sub(r'<div class="metadata".*?</div>', '', html_body, flags=re.DOTALL)
 
-            article_block = f"""
-            <article>
-                <div class="date-badge">{date_str}</div>
-                <h2 class="article-title">{title}</h2>
-                {html_body}
-            </article>
-            """
-            content_html += article_block
+        article_block = f"""
+        <article>
+            <div class="date-badge">{date_str}</div>
+            <h2 class="article-title">{title}</h2>
+            {html_body}
+        </article>
+        """
+        content_html += article_block
 
-    final_html = TEMPLATE.replace("{content}", content_html)
-    
+    if meditation_count == 0:
+        content_html = "<article><p>No meditations yet. Check back soon.</p></article>"
+
+    # Write index.html
+    index_page = TEMPLATE.replace("{page_title}", "Home").replace("{content}", content_html)
     with open(os.path.join(OUTPUT_DIR, "index.html"), "w") as f:
-        f.write(final_html)
+        f.write(index_page)
+        
+    # Write about.html
+    about_page = TEMPLATE.replace("{page_title}", "About").replace("{content}", ABOUT_HTML)
+    with open(os.path.join(OUTPUT_DIR, "about.html"), "w") as f:
+        f.write(about_page)
 
-    print(f"Generated index.html with {len(files)} meditations.")
+    # Write donate.html
+    donate_page = TEMPLATE.replace("{page_title}", "Support").replace("{content}", DONATE_HTML)
+    with open(os.path.join(OUTPUT_DIR, "donate.html"), "w") as f:
+        f.write(donate_page)
+
+    print(f"Generated index.html, about.html, donate.html. Found {meditation_count} meditations.")
     
     # Sync to S3
     print("Syncing to S3...")
