@@ -235,7 +235,7 @@ categoryFilter.addEventListener('change', executeSearch);
 # Helpers
 # ---------------------------------------------------------------------------
 
-DATE_RE = re.compile(r'^(\d{{4}}-\d{{2}}-\d{{2}})_(.+)\.(html?|md)$')
+DATE_RE = re.compile(r'^(\d{4}-\d{2}-\d{2})_(.+)\.(html?|md)$')
 
 def parse_filename(filename):
     """Extract date and slug from filename like 2026-03-09_immigrant-crime.html"""
@@ -490,7 +490,7 @@ def main():
         print(f"Error: source directory '{source_dir}' does not exist.")
         sys.exit(1)
 
-    build_dir = os.path.join(os.path.dirname(__file__), "build_out_museum")
+    build_dir = os.path.join(os.path.dirname(__file__), "output")
     if os.path.exists(build_dir):
         shutil.rmtree(build_dir)
     os.makedirs(build_dir)

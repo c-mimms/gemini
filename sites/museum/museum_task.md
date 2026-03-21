@@ -93,7 +93,7 @@ The museum site uses a component-driven design system. You must construct your o
 Run the following command to build and publish the site using the python build mechanism. Ensure you run this using a terminal command capability:
 
 ```bash
-python3 /Users/chris/code/gemini/static_site/build_museum.py \
+python3 /Users/chris/code/gemini/sites/museum/build_museum.py \
   --source /Users/chris/code/gemini/sites/museum/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/museum/ \
   --site-name "Mimms Museum" \

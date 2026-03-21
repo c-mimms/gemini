@@ -108,7 +108,7 @@ Save the file as `/Users/chris/code/gemini/sites/news/src/YYYY-MM-DD_[slug].html
 Run the following command to build and publish the site:
 
 ```bash
-python3 /Users/chris/code/gemini/static_site/build_news.py \
+python3 /Users/chris/code/gemini/sites/news/build_news.py \
   --source /Users/chris/code/gemini/sites/news/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/trump/ \
   --site-name "The Dispatch" \
