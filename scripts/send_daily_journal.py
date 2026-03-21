@@ -39,7 +39,7 @@ def main():
     <p><small>Just reply directly to this email to save your journal entry.</small></p>
     """
     
-    recipients = ["christek13@gmail.com", "nickmimms@gmail.com"]
+    recipients = ["christek13@gmail.com", "nickpmimms@gmail.com"]
     
     for recipient in recipients:
         cmd = [

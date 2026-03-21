@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBMO Sites Directory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --container-bg: rgba(30, 41, 59, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-hover: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        main {
+            width: 100%;
+            max-width: 900px;
+            background: var(--container-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 4rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: var(--card-hover);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-link svg {
+            width: 16px;
+            height: 16px;
+            margin-left: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .card:hover .card-link svg {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            main { padding: 2.5rem 1.5rem; }
+            h1 { font-size: 2.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>CBMO Network</h1>
+            <p>Directory of highly specialized research & portfolio sites</p>
+        </header>
+
+        <div class="grid" id="cards-container">
+            <a href="https://news.cbmo.net" class="card">
+                <h2>🗞️ News & Comm.</h2>
+                <p>Strategic communication, news, and political analysis repository.</p>
+                <div class="card-link">Visit Site <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
+
+            <a href="https://mining.cbmo.net" class="card">
+                <h2>⛏️ Georgia Mining</h2>
+                <p>Data visualization and analysis of mineral processing and emissions.</p>
+                <div class="card-link">Visit Site <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
+
+            <a href="https://museum.cbmo.net" class="card">
+                <h2>🏛️ Digital Museum</h2>
+                <p>Exploration of stateful generation and interactive archival documents.</p>
+                <div class="card-link">Visit Site <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
+
+            <a href="https://research.cbmo.net" class="card">
+                <h2>🔬 Research Archive</h2>
+                <p>Deep-dive research archives, architecture paradigms, and experimental notes.</p>
+                <div class="card-link">Visit Site <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        // Subtle glow follow effect on cards
+        document.getElementById('cards-container').onmousemove = e => {
+            for(const card of document.getElementsByClassName('card')) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        };
+    </script>
+</body>
+</html>
