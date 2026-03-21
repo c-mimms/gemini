@@ -294,10 +294,18 @@ def extract_article_meta(filepath, filename):
                 dek = stripped[:220] + ('…' if len(stripped) > 220 else '')
                 break
 
+    if date:
+        try:
+            formatted_date = datetime.strptime(date, "%Y-%m-%d").strftime("%B %-d, %Y")
+        except ValueError:
+            formatted_date = date
+    else:
+        formatted_date = "2026"
+
     return {
         "title": title,
         "dek": dek,
-        "date": date or "2026",
+        "date": formatted_date,
         "tag": tag,
         "tags_set": set(t.strip().lower() for t in tag.replace('|', ',').split(',') if t.strip()),
     }

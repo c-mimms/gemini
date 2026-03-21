@@ -71,7 +71,7 @@ Every article must start with this required boilerplate in `<head>` — everythi
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="article.css">
 <meta name="description" content="<!-- one-sentence dek -->">
-<meta name="tag" content="<!-- e.g. Fact Check | Analysis | Economy | Immigration -->">
+<meta name="category" content="<!-- ONE single word category, e.g. economy, immigration, health, crime -->">
 ```
 
 And the body must open and close with:
@@ -99,7 +99,7 @@ And the body must open and close with:
 - `.data-table-wrapper` + `.data-table` — responsive data table
 - `.references` — numbered citations section at the bottom
 
-**Add a `<style>` block for anything creative that goes beyond the stylesheet:** inline bar charts, SVG diagrams, year-by-year timelines, interactive controls, side-by-side comparisons, annotated quotes, or any layout that serves this particular article's data. These additions are encouraged — they make each piece distinctive.
+**DO NOT ADD ANY INLINE `<style>` BLOCKS.** You must strictly use the pre-defined utility classes globally available for all formatting to ensure universal design consistency. Creating custom CSS rules inside the HTML file is strictly prohibited.
 
 
 Save the file as `/Users/chris/code/gemini/sites/news/src/YYYY-MM-DD_[slug].html` where `[slug]` is a short kebab-case name for the topic (e.g. `2026-03-09_immigrant-crime-rates.html`).

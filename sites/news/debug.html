@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News Debug / Style Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="article.css">
+</head>
+<body class="article-page" style="padding: 2rem;">
+
+<div class="article-container" style="border: 1px dotted #ccc;">
+    <div class="article-main">
+        <header class="article-header">
+            <span class="article-tag">Fact Check | Typography</span>
+            <h1 class="article-headline">This is an Article Headline</h1>
+            <p class="article-dek">This is the article dek (subtitle or summary). It uses italics and gray tones to stand out below the headline.</p>
+            <div class="article-meta">By The Dispatch | March 20, 2026</div>
+        </header>
+
+        <div class="article-body">
+            <p>This is a standard paragraph in the body. The text should be highly legible, using the Playfair Display serif.</p>
+            
+            <h2>Section Header (H2)</h2>
+            <p>Here is an example containing a <a href="#">hyperlink</a>.</p>
+            
+            <h3>Subsection Header (H3)</h3>
+            <blockquote>This is a blockquote. It should have a left border and italicized text. <cite>— Author Name</cite></blockquote>
+
+            <h4>Verdicts</h4>
+            <div class="verdict verdict--true">
+                <span class="verdict-label">Verdict: True</span>
+                <p>This claim is fully supported by the data.</p>
+            </div>
+            
+            <div class="verdict verdict--false">
+                <span class="verdict-label">Verdict: False</span>
+                <p>This claim is objectively incorrect based on current tracking.</p>
+            </div>
+
+            <div class="verdict verdict--mixed">
+                <span class="verdict-label">Verdict: Mixed</span>
+                <p>Parts of this claim are true, but others mischaracterize reality.</p>
+            </div>
+            
+            <div class="verdict verdict--context">
+                <span class="verdict-label">Needs Context</span>
+                <p>The numbers are accurate but leave out historical precedent.</p>
+            </div>
+
+            <h4>Stat Callout</h4>
+            <div class="stat-callout">
+                <span class="stat-number">12.5%</span>
+                <span class="stat-label">Increase in employment since 2022</span>
+            </div>
+
+            <h4>Data Table</h4>
+            <div class="data-table-wrapper">
+                <table class="data-table">
+                    <caption>Example Dataset Table</caption>
+                    <thead>
+                        <tr><th>Year</th><th>Metric A</th><th>Metric B</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2024</td><td>$4.2B</td><td>Up</td></tr>
+                        <tr><td>2025</td><td>$5.1B</td><td>Up</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="references">
+                <h2>References</h2>
+                <ol>
+                    <li>Example citation link one.</li>
+                    <li>Example citation link two.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -460,10 +460,20 @@ def extract_article_meta(filepath, filename):
                 dek = stripped[:220] + ('…' if len(stripped) > 220 else '')
                 break
 
+    # Safe format date
+    if date:
+        try:
+            formatted_date = datetime.strptime(date, "%Y-%m-%d").strftime("%B %-d, %Y")
+        except ValueError:
+            formatted_date = date
+    else:
+        formatted_date = "2026"
+
     return {
         "title": title,
         "dek": dek,
-        "date": date or "2026",
+        "raw_date": date or "2026-01-01",
+        "date": formatted_date,
         "tag": tag,
         "tags_set": set(t.strip().lower() for t in tag.replace('|', ',').split(',') if t.strip()),
     }
@@ -488,7 +498,15 @@ def build_sidebar_html(related):
         return ''
     items = ''
     for art in related:
-        url = art['filename'].replace('.md', '.html')
+        # Resolve the nested path
+        parts = art['raw_date'].split("-")
+        cat_slug = art['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
+        slug = art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename']
+        if len(parts) == 3:
+            url = f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+        else:
+            url = f"/{slug}"
+            
         tag_display = art['tag'].split('|')[0].strip()
         items += f'''
         <div class="sidebar-article">
@@ -605,7 +623,12 @@ def build_featured_html(articles):
     rest = sorted_arts[4:]
 
     def article_url(art):
-        return art['filename'].replace('.md', '.html')
+        parts = art['raw_date'].split("-")
+        cat_slug = art['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
+        slug = art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename']
+        if len(parts) == 3:
+            return f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+        return f"/{slug}"
 
     # Featured block
     featured_html = f"""
@@ -723,15 +746,37 @@ def main():
                 html = f.read()
             out_name = fname
 
+        # Compute relative nested path structure: YYYY/MM/DD/category_slug/slug.html
+        parts = meta['raw_date'].split("-")
+        cat_slug = meta['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
+        # Remove the leading date_ block from output filename
+        slug = out_name.split("_", 1)[-1] if "_" in out_name else out_name
+        
+        if len(parts) == 3:
+            out_rel_dir = os.path.join(parts[0], parts[1], parts[2], cat_slug)
+            meta['nested_path'] = f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+        else:
+            out_rel_dir = ""
+            meta['nested_path'] = f"/{slug}"
+            
+        full_out_dir = os.path.join(build_dir, out_rel_dir)
+        os.makedirs(full_out_dir, exist_ok=True)
+
         # Compute related articles and inject sidebar
         related = related_articles(meta, articles)
         sidebar_html = build_sidebar_html(related)
         html = post_process_article(html, sidebar_html)
+        
+        # Convert relative asset links into absolute root links inside the HTML
+        html = re.sub(r'href="index\.html"', 'href="/"', html)
+        html = re.sub(r'href="article\.css"', 'href="/article.css"', html)
+        # Fix backlink with ← All Articles
+        html = re.sub(r'href="\.\./[^"]*index\.html"', 'href="/"', html)
 
-        with open(os.path.join(build_dir, out_name), 'w', encoding='utf-8') as f:
+        with open(os.path.join(full_out_dir, slug), 'w', encoding='utf-8') as f:
             f.write(html)
 
-        print(f"  + {fname}  →  \"{meta['title']}\"  (related: {len(related)})")
+        print(f"  + {fname}  →  \"{meta['title']}\"")
 
     # Build search index
     search_index = [
@@ -740,7 +785,7 @@ def main():
             "dek": a["dek"],
             "tag": a["tag"],
             "date": a["date"],
-            "path": a["filename"].replace('.md', '.html'),
+            "path": a.get("nested_path", "/" + a["filename"].replace('.md', '.html')),
         }
         for a in articles
     ]
