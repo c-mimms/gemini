@@ -233,6 +233,83 @@ footer {
     border-top: 1px solid var(--border-light);
 }
 
+/* Forms */
+.prayer-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--verse-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.prayer-form label {
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    background: white;
+}
+
+/* Charity Cards */
+.charity-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+}
+
+.charity-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--verse-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.charity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.charity-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+    padding: 5px;
+    border: 1px solid var(--border-light);
+    flex-shrink: 0;
+}
+
+.charity-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+}
+
+.charity-info p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
 @media (max-width: 768px) {
     .content-layout {
         flex-direction: column;

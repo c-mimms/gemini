@@ -25,6 +25,7 @@ def main():
     parser.add_argument("--limit", type=int, default=5, help="Number of emails to fetch (default: 5)")
     parser.add_argument("--json", action="store_true", help="Output in JSON format")
     parser.add_argument("--id", type=str, help="Fetch a specific email by its ID")
+    parser.add_argument("--subject", type=str, help="Filter emails by subject")
     parser.add_argument("--save-attachments", type=str, help="Save attachments from a specific email to the given directory")
     parser.add_argument("--env-file", help="Path to .env file")
 
@@ -37,9 +38,15 @@ def main():
     # Load environment variables
     env_path = args.env_file
     if not env_path:
-        possible_env = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
-        if os.path.exists(possible_env):
-            env_path = possible_env
+        # Check in current dir and agent_tools dir
+        possible_envs = [
+            os.path.join(os.getcwd(), ".env"),
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+        ]
+        for p in possible_envs:
+            if os.path.exists(p):
+                env_path = p
+                break
     
     load_dotenv(env_path)
 
@@ -60,6 +67,7 @@ def main():
 
         # If ID is provided, handle that specific email
         if args.id:
+            # (rest of the code ...)
             e_id = args.id.encode()
             res, msg_data = mail.fetch(e_id, "(RFC822)")
             if res != "OK":
@@ -140,6 +148,9 @@ def main():
 
         # Original logic to list multiple emails
         search_crit = "ALL"
+        if args.subject:
+            search_crit = f'(SUBJECT "{args.subject}")'
+        
         status, messages = mail.search(None, search_crit)
         
         if status != "OK":
