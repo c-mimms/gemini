@@ -8,6 +8,8 @@ import glob
 import subprocess
 import re
 import shutil
+import argparse
+from datetime import datetime
 
 SRC_DIR = "/Users/chris/code/gemini/sites/prayer/src"
 OUTPUT_DIR = "/Users/chris/code/gemini/sites/prayer/output"
@@ -61,6 +63,10 @@ TEMPLATE = """\
 """
 
 def main():
+    parser = argparse.ArgumentParser(description="Prayer Site Builder")
+    parser.add_argument("--cloudfront-id", help="CloudFront Distribution ID for cache invalidation")
+    args = parser.parse_args()
+
     print("Building Prayer Site...")
     # Copy CSS
     shutil.copy2(os.path.join(SRC_DIR, "prayer.css"), os.path.join(OUTPUT_DIR, "prayer.css"))
@@ -136,6 +142,27 @@ def main():
     cmd = ["aws", "s3", "sync", OUTPUT_DIR, S3_BUCKET, "--profile", PROFILE, "--delete"]
     subprocess.run(cmd, check=True)
     print("Site Published Successfully!")
+
+    if args.cloudfront_id:
+        print(f"Invalidating CloudFront cache for {args.cloudfront_id} ...")
+        cf_cmd = ["aws", "cloudfront", "create-invalidation", "--distribution-id", args.cloudfront_id, "--paths", "/*"]
+        subprocess.run(cf_cmd, check=True)
+        print("CloudFront invalidation requested.")
+        
+    # Git auto-commit
+    print("Committing and pushing changes to git...")
+    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    site_dir = "sites/prayer/"
+    
+    subprocess.run(["git", "add", site_dir], cwd=repo_root, check=True)
+    status = subprocess.run(["git", "status", "--porcelain", site_dir], cwd=repo_root, capture_output=True, text=True)
+    if status.stdout.strip():
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        subprocess.run(["git", "commit", "-m", f"Auto-publish prayer updates {today_str}"], cwd=repo_root, check=True)
+        subprocess.run(["git", "push"], cwd=repo_root, check=True)
+        print("Git commit and push successful.")
+    else:
+        print("No new changes to commit.")
 
 if __name__ == "__main__":
     main()

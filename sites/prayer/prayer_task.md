@@ -56,7 +56,8 @@ The rest of your content MUST use these specific CSS classes:
 ```
 
 ## FINAL STEP
-After saving the file, you must run the build script to publish the site to S3:
+After saving the files, you must run the build script to publish the site to S3 and CloudFront:
 ```bash
-python3 /Users/chris/code/gemini/sites/prayer/build_prayer.py
+python3 /Users/chris/code/gemini/sites/prayer/build_prayer.py \
+  --cloudfront-id E246K237C1STB4
 ```
