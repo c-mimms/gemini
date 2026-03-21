@@ -418,64 +418,61 @@ def parse_filename(filename):
 
 def extract_article_meta(filepath, filename):
     """Pull title, description, date from HTML or markdown."""
-    date, slug_title = parse_filename(filename)
-    title = slug_title
-    dek = ""
-    tag = "Analysis"
-
     with open(filepath, 'r', encoding='utf-8') as f:
         raw = f.read()
 
-    if filepath.endswith('.html') or filepath.endswith('.htm'):
-        # Try <title>
-        m = re.search(r'<title>([^<]+)</title>', raw, re.IGNORECASE)
+    title = ""
+    dek = ""
+    tag = "Analysis"
+    date_str = ""
+    slug_str = ""
+
+    # Try extracting from meta tags
+    m_date = re.search(r'<meta[^>]+name=["\']date["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
+    if m_date: date_str = m_date.group(1).strip()
+
+    m_slug = re.search(r'<meta[^>]+name=["\']slug["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
+    if m_slug: slug_str = m_slug.group(1).strip()
+
+    m_title = re.search(r'<meta[^>]+name=["\']title["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
+    if m_title: title = m_title.group(1).strip()
+
+    m_tag = re.search(r'<meta[^>]+name=["\'](?:tag|category)["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
+    if m_tag: tag = m_tag.group(1).strip()
+
+    m_dek = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
+    if m_dek: dek = m_dek.group(1).strip()
+
+    parsed_date, parsed_slug = parse_filename(filename)
+    if not date_str: date_str = parsed_date
+    if not slug_str: slug_str = parsed_slug
+    if not title:
+        m_t = re.search(r'<title>([^<]+)</title>', raw, re.IGNORECASE)
+        title = m_t.group(1).strip() if m_t else parsed_slug
+
+    if not dek:
+        m = re.search(r'<h1[^>]*>.*?</h1>\s*(?:<[^>]+>\s*)*<p[^>]*>(.*?)</p>', raw, re.IGNORECASE | re.DOTALL)
         if m:
-            title = m.group(1).strip()
-        # Try <meta name="description">
-        m = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-        if not m:
-            m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']description["\']', raw, re.IGNORECASE)
-        if m:
-            dek = m.group(1).strip()
-        # Try <meta name="tag"> or <meta name="category">
-        m = re.search(r'<meta[^>]+name=["\'](?:tag|category)["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-        if m:
-            tag = m.group(1).strip()
-        # Fallback dek: first <p> text after <h1>
-        if not dek:
-            m = re.search(r'<h1[^>]*>.*?</h1>\s*(?:<[^>]+>\s*)*<p[^>]*>(.*?)</p>', raw, re.IGNORECASE | re.DOTALL)
-            if m:
-                inner = re.sub(r'<[^>]+>', '', m.group(1)).strip()
-                dek = inner[:220] + ('…' if len(inner) > 220 else '')
-    else:
-        # Markdown fallback
-        lines = raw.splitlines()
-        for line in lines:
-            if line.startswith('# '):
-                title = line[2:].strip()
-                break
-        for line in lines:
-            stripped = line.strip()
-            if stripped and not stripped.startswith('#'):
-                dek = stripped[:220] + ('…' if len(stripped) > 220 else '')
-                break
+            inner = re.sub(r'<[^>]+>', '', m.group(1)).strip()
+            dek = inner[:220] + ('…' if len(inner) > 220 else '')
 
     # Safe format date
-    if date:
+    if date_str:
         try:
-            formatted_date = datetime.strptime(date, "%Y-%m-%d").strftime("%B %-d, %Y")
+            formatted_date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%B %-d, %Y")
         except ValueError:
-            formatted_date = date
+            formatted_date = date_str
     else:
         formatted_date = "2026"
 
     return {
         "title": title,
         "dek": dek,
-        "raw_date": date or "2026-01-01",
+        "raw_date": date_str or "2026-01-01",
         "date": formatted_date,
         "tag": tag,
         "tags_set": set(t.strip().lower() for t in tag.replace('|', ',').split(',') if t.strip()),
+        "slug": slug_str
     }
 
 
@@ -492,7 +489,7 @@ def related_articles(current, all_articles, n=4):
     return sorted(others, key=score, reverse=True)[:n]
 
 
-def build_sidebar_html(related):
+def build_sidebar_html(related, depth_prefix=""):
     """Build the aside sidebar HTML for a list of related article metas."""
     if not related:
         return ''
@@ -501,11 +498,13 @@ def build_sidebar_html(related):
         # Resolve the nested path
         parts = art['raw_date'].split("-")
         cat_slug = art['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
-        slug = art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename']
+        slug = art.get('slug', art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename'])
+        if not slug.endswith('.html'): slug += '.html'
+        
         if len(parts) == 3:
-            url = f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+            url = f"{depth_prefix}{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
         else:
-            url = f"/{slug}"
+            url = f"{depth_prefix}{slug}"
             
         tag_display = art['tag'].split('|')[0].strip()
         items += f'''
@@ -625,10 +624,11 @@ def build_featured_html(articles):
     def article_url(art):
         parts = art['raw_date'].split("-")
         cat_slug = art['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
-        slug = art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename']
+        slug = art.get('slug', art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename'])
+        if not slug.endswith('.html'): slug += '.html'
         if len(parts) == 3:
-            return f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
-        return f"/{slug}"
+            return f"{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+        return f"{slug}"
 
     # Featured block
     featured_html = f"""
@@ -749,29 +749,32 @@ def main():
         # Compute relative nested path structure: YYYY/MM/DD/category_slug/slug.html
         parts = meta['raw_date'].split("-")
         cat_slug = meta['tag'].split('|')[0].strip().lower().replace(" ", "-").replace(":", "")
-        # Remove the leading date_ block from output filename
-        slug = out_name.split("_", 1)[-1] if "_" in out_name else out_name
+        slug = meta.get('slug', out_name.split("_", 1)[-1] if "_" in out_name else out_name)
+        if not slug.endswith('.html'): slug += '.html'
         
         if len(parts) == 3:
             out_rel_dir = os.path.join(parts[0], parts[1], parts[2], cat_slug)
-            meta['nested_path'] = f"/{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+            meta['nested_path'] = f"{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
         else:
             out_rel_dir = ""
-            meta['nested_path'] = f"/{slug}"
+            meta['nested_path'] = f"{slug}"
             
         full_out_dir = os.path.join(build_dir, out_rel_dir)
         os.makedirs(full_out_dir, exist_ok=True)
 
+        depth_prefix = "../" * 4 if len(parts) == 3 else ""
+
         # Compute related articles and inject sidebar
         related = related_articles(meta, articles)
-        sidebar_html = build_sidebar_html(related)
+        sidebar_html = build_sidebar_html(related, depth_prefix)
         html = post_process_article(html, sidebar_html)
         
         # Convert relative asset links into absolute root links inside the HTML
-        html = re.sub(r'href="index\.html"', 'href="/"', html)
-        html = re.sub(r'href="article\.css"', 'href="/article.css"', html)
+        html = re.sub(r'href="index\.html"', f'href="{depth_prefix}index.html"', html)
+        html = re.sub(r'href="article\.css"', f'href="{depth_prefix}article.css"', html)
         # Fix backlink with ← All Articles
-        html = re.sub(r'href="\.\./[^"]*index\.html"', 'href="/"', html)
+        html = re.sub(r'href="\.\./[^"]*index\.html"', f'href="{depth_prefix}index.html"', html)
+        html = re.sub(r'href="/"', f'href="{depth_prefix}index.html"', html)
 
         with open(os.path.join(full_out_dir, slug), 'w', encoding='utf-8') as f:
             f.write(html)

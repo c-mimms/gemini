@@ -70,6 +70,9 @@ Every article must start with this required boilerplate in `<head>` — everythi
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="article.css">
+<meta name="title" content="<!-- Same as the <title> value -->">
+<meta name="date" content="<!-- YYYY-MM-DD -->">
+<meta name="slug" content="<!-- short lowercase slug, e.g. tariff-impact-analysis -->">
 <meta name="description" content="<!-- one-sentence dek -->">
 <meta name="category" content="<!-- ONE single word category, e.g. economy, immigration, health, crime -->">
 ```
