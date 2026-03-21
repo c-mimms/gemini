@@ -428,20 +428,19 @@ def extract_article_meta(filepath, filename):
     slug_str = ""
 
     # Try extracting from meta tags
-    m_date = re.search(r'<meta[^>]+name=["\']date["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-    if m_date: date_str = m_date.group(1).strip()
+    def get_meta_content(name_attr):
+        match = re.search(rf'<meta\b[^>]*name=["\'](?:{name_attr})["\'][^>]*>', raw, re.IGNORECASE)
+        if match:
+            # Match greedily up to the last quote
+            c_match = re.search(r'content=["\'](.*)["\']', match.group(0), re.IGNORECASE)
+            if c_match: return c_match.group(1).strip()
+        return ""
 
-    m_slug = re.search(r'<meta[^>]+name=["\']slug["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-    if m_slug: slug_str = m_slug.group(1).strip()
-
-    m_title = re.search(r'<meta[^>]+name=["\']title["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-    if m_title: title = m_title.group(1).strip()
-
-    m_tag = re.search(r'<meta[^>]+name=["\'](?:tag|category)["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-    if m_tag: tag = m_tag.group(1).strip()
-
-    m_dek = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)["\']', raw, re.IGNORECASE)
-    if m_dek: dek = m_dek.group(1).strip()
+    date_str = get_meta_content("date")
+    slug_str = get_meta_content("slug")
+    title = get_meta_content("title")
+    tag = get_meta_content("tag") or get_meta_content("category") or "Analysis"
+    dek = get_meta_content("description")
 
     parsed_date, parsed_slug = parse_filename(filename)
     if not date_str: date_str = parsed_date
@@ -502,7 +501,7 @@ def build_sidebar_html(related, depth_prefix=""):
         if not slug.endswith('.html'): slug += '.html'
         
         if len(parts) == 3:
-            url = f"{depth_prefix}{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+            url = f"{depth_prefix}{cat_slug}/{parts[0]}/{parts[1]}/{parts[2]}/{slug}"
         else:
             url = f"{depth_prefix}{slug}"
             
@@ -627,7 +626,7 @@ def build_featured_html(articles):
         slug = art.get('slug', art['filename'].split("_", 1)[-1].replace(".md", ".html") if "_" in art['filename'] else art['filename'])
         if not slug.endswith('.html'): slug += '.html'
         if len(parts) == 3:
-            return f"{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+            return f"{cat_slug}/{parts[0]}/{parts[1]}/{parts[2]}/{slug}"
         return f"{slug}"
 
     # Featured block
@@ -692,6 +691,7 @@ def main():
     parser = argparse.ArgumentParser(description="News-style static site generator")
     parser.add_argument("--source", required=True, help="Directory of HTML/MD article files")
     parser.add_argument("--s3-bucket", required=False, help="S3 path, e.g. s3://bucket/path/")
+    parser.add_argument("--cloudfront-id", required=False, help="CloudFront Distribution ID for cache invalidation")
     parser.add_argument("--site-name", default="The Dispatch", help="Publication name")
     parser.add_argument("--site-tagline", default="Evidence-based political analysis", help="Tagline")
     args = parser.parse_args()
@@ -753,8 +753,8 @@ def main():
         if not slug.endswith('.html'): slug += '.html'
         
         if len(parts) == 3:
-            out_rel_dir = os.path.join(parts[0], parts[1], parts[2], cat_slug)
-            meta['nested_path'] = f"{parts[0]}/{parts[1]}/{parts[2]}/{cat_slug}/{slug}"
+            out_rel_dir = os.path.join(cat_slug, parts[0], parts[1], parts[2])
+            meta['nested_path'] = f"{cat_slug}/{parts[0]}/{parts[1]}/{parts[2]}/{slug}"
         else:
             out_rel_dir = ""
             meta['nested_path'] = f"{slug}"
@@ -820,8 +820,29 @@ def main():
         try:
             subprocess.run(cmd, check=True)
             print("Successfully published to S3.")
+
+            if args.cloudfront_id:
+                print(f"Invalidating CloudFront cache for {args.cloudfront_id} ...")
+                cf_cmd = ["aws", "cloudfront", "create-invalidation", "--distribution-id", args.cloudfront_id, "--paths", "/*"]
+                subprocess.run(cf_cmd, check=True)
+                print("CloudFront invalidation requested.")
+
+            # Git auto-commit
+            print("Committing and pushing changes to git...")
+            repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            site_dir = "sites/news/"
+            
+            subprocess.run(["git", "add", site_dir], cwd=repo_root, check=True)
+            status = subprocess.run(["git", "status", "--porcelain", site_dir], cwd=repo_root, capture_output=True, text=True)
+            if status.stdout.strip():
+                subprocess.run(["git", "commit", "-m", f"Auto-publish news updates {today}"], cwd=repo_root, check=True)
+                subprocess.run(["git", "push"], cwd=repo_root, check=True)
+                print("Git commit and push successful.")
+            else:
+                print("No new changes to commit.")
+
         except subprocess.CalledProcessError as e:
-            print(f"Error deploying to S3: {e}")
+            print(f"Error deploying: {e}")
             sys.exit(1)
 
 

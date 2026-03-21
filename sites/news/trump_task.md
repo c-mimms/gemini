@@ -114,6 +114,7 @@ Run the following command to build and publish the site:
 python3 /Users/chris/code/gemini/sites/news/build_news.py \
   --source /Users/chris/code/gemini/sites/news/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/trump/ \
+  --cloudfront-id E2H2EXVH7PYX5J \
   --site-name "The Dispatch" \
   --site-tagline "Evidence-based analysis of political claims"
 ```
