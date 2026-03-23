@@ -1,3 +1,10 @@
+---
+title: "Global Biological Taxonomy (Catalogue of Life)"
+date: 2026-03-20
+category: "Life Sciences"
+tags: ["taxonomy", "biodiversity", "species", "catalogue-of-life", "biology"]
+---
+
 # Research Report: Global Biological Taxonomy (NCBI & Catalogue of Life)
 
 **Date**: 2026-03-20

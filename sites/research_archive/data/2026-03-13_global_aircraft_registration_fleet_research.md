@@ -1,3 +1,10 @@
+---
+title: "Global Aircraft Registration & Fleet Data"
+date: 2026-03-13
+category: "Technology & Infrastructure"
+tags: ["aviation", "aircraft", "fleet", "registration", "transport"]
+---
+
 # Research Report: Global Aircraft Registration and Fleet Data
 
 **Date:** 2026-03-13

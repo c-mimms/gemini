@@ -1,3 +1,10 @@
+---
+title: "Global Animal Tracking (Movebank)"
+date: 2026-03-17
+category: "Life Sciences"
+tags: ["animal-tracking", "ecology", "movebank", "migration", "wildlife"]
+---
+
 # Research Report: Global Animal Tracking and Migration Routes (Movebank)
 
 **Date:** 2026-03-17

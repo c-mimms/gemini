@@ -1,3 +1,10 @@
+---
+title: "Global Historical Sea Level Records"
+date: 2026-03-18
+category: "Earth & Environment"
+tags: ["sea-level", "climate-change", "ocean", "tides", "noaa"]
+---
+
 # Research Report: Global Historical Sea Level and Tide Gauge Data (PSMSL)
 
 **Date:** 2026-03-18

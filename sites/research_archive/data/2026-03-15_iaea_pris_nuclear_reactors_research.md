@@ -1,3 +1,10 @@
+---
+title: "IAEA Nuclear Reactor Database (PRIS)"
+date: 2026-03-15
+category: "Technology & Infrastructure"
+tags: ["nuclear", "reactors", "energy", "iaea", "infrastructure"]
+---
+
 # 2026-03-15 IAEA PRIS (Power Reactor Information System) Research
 
 ## 1. Brainstormed Dataset Ideas

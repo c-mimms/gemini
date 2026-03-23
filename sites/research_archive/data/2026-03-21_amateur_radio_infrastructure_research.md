@@ -1,3 +1,10 @@
+---
+title: "Global Amateur Radio Infrastructure"
+date: 2026-03-21
+category: "Technology & Infrastructure"
+tags: ["ham-radio", "amateur-radio", "fcc", "telecommunications", "infrastructure"]
+---
+
 # Research Report: Global Amateur Radio (Ham Radio) Infrastructure
 
 **Date:** 2026-03-21

@@ -1,3 +1,10 @@
+---
+title: "USPTO Patent Bulk Data"
+date: 2026-03-19
+category: "Law & Governance"
+tags: ["patents", "intellectual-property", "innovation", "uspto", "legal"]
+---
+
 # Knowledge Graph Data Research: USPTO Patent Bulk Data
 
 ## Date: 2026-03-19

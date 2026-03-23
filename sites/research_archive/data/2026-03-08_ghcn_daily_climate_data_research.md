@@ -1,3 +1,10 @@
+---
+title: "GHCN Daily Climate Data (NOAA)"
+date: 2026-03-08
+category: "Earth & Environment"
+tags: ["climate", "weather", "temperature", "noaa", "historical-data"]
+---
+
 # Knowledge Graph Research: Global Historical Climate Data (GHCN-Daily)
 
 ## Date: 2026-03-08

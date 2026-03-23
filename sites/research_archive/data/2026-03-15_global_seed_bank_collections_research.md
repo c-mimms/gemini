@@ -1,3 +1,10 @@
+---
+title: "Global Seed Bank Collections (GRIN / Svalbard)"
+date: 2026-03-15
+category: "Life Sciences"
+tags: ["seeds", "biodiversity", "agriculture", "conservation", "genebank"]
+---
+
 # Knowledge Graph Data Research: Global Seed Bank Collections and Germplasm Resources
 
 **Date:** 2026-03-15  

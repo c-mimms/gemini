@@ -1,3 +1,10 @@
+---
+title: "World Bank & UN Comtrade Trade Data"
+date: 2026-03-13
+category: "Law & Governance"
+tags: ["trade", "economics", "world-bank", "comtrade", "international"]
+---
+
 # Research Report: Global Economic Indicators and Trade Flows (World Bank & UN Comtrade)
 
 **Date**: 2026-03-13  

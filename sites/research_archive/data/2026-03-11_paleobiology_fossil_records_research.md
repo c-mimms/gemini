@@ -1,3 +1,10 @@
+---
+title: "Paleobiology & Fossil Records Database"
+date: 2026-03-11
+category: "Life Sciences"
+tags: ["paleontology", "fossils", "evolution", "deep-time", "biology"]
+---
+
 # Research Report: Paleobiology & Fossil Records (PBDB)
 
 **Date:** 2026-03-11

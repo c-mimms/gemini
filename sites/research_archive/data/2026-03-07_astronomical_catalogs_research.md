@@ -1,3 +1,10 @@
+---
+title: "Astronomical Catalogs (SIMBAD / NED)"
+date: 2026-03-07
+category: "Space & Astronomy"
+tags: ["astronomy", "stars", "galaxies", "simbad", "celestial"]
+---
+
 # Research Report: Astronomical Catalogs (Stars & Messier Objects)
 
 ## Date: 2026-03-07

@@ -1,3 +1,10 @@
+---
+title: "PubChem Chemical Properties"
+date: 2026-03-06
+category: "Physics & Chemistry"
+tags: ["chemistry", "compounds", "molecules", "pubchem", "pharmacology"]
+---
+
 # Research Report: Chemical Property Datasets (PubChem)
 **Date:** 2026-03-06
 **Topic:** Chemical Property Datasets for Local Knowledge Graph

@@ -1,3 +1,10 @@
+---
+title: "Global Subsurface Borehole & Well Data"
+date: 2026-03-13
+category: "Earth & Environment"
+tags: ["geology", "borehole", "groundwater", "subsurface", "drilling"]
+---
+
 # Knowledge Graph Research: Global Subsurface Borehole and Well Data
 **Date:** 2026-03-13
 **Topic:** Subsurface Borehole and Well Data

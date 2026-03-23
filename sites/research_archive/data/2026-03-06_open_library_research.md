@@ -1,3 +1,10 @@
+---
+title: "Open Library (Internet Archive)"
+date: 2026-03-06
+category: "Language & Culture"
+tags: ["books", "open-access", "library", "bibliographic", "internet-archive"]
+---
+
 # Research Report: Open Library Data Dumps
 
 **Date:** 2026-03-06  

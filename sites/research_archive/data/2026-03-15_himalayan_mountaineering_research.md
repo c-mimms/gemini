@@ -1,3 +1,10 @@
+---
+title: "Himalayan Mountaineering Expedition Database"
+date: 2026-03-15
+category: "History & Culture"
+tags: ["mountaineering", "himalayas", "expeditions", "sports", "geography"]
+---
+
 # Research Report: Himalayan Mountaineering Expeditions (The Himalayan Database)
 
 **Date**: 2026-03-15  

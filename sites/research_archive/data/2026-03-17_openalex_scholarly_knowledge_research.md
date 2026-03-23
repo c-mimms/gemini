@@ -1,3 +1,10 @@
+---
+title: "OpenAlex Scholarly Knowledge Graph"
+date: 2026-03-17
+category: "Data & Science Platforms"
+tags: ["scholarly", "research", "openalex", "academic", "citations"]
+---
+
 # Research Report: Global Scientific Research Metadata (OpenAlex)
 
 **Date**: 2026-03-17

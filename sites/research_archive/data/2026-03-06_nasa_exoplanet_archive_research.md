@@ -1,3 +1,10 @@
+---
+title: "NASA Exoplanet Archive"
+date: 2026-03-06
+category: "Space & Astronomy"
+tags: ["exoplanets", "astronomy", "nasa", "space", "stellar"]
+---
+
 # Knowledge Graph Data Research: NASA Exoplanet Archive
 
 ## Date: 2026-03-06

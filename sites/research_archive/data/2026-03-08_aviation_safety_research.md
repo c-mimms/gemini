@@ -1,3 +1,10 @@
+---
+title: "Aviation Safety Database"
+date: 2026-03-08
+category: "Technology & Infrastructure"
+tags: ["aviation", "safety", "accidents", "transport", "faa"]
+---
+
 # Research Report: Aviation Safety & Accident Data (NTSB)
 
 ## Date: 2026-03-08

@@ -1,3 +1,10 @@
+---
+title: "3GPP / ITU Telecom Standards"
+date: 2026-03-19
+category: "Technology & Infrastructure"
+tags: ["telecommunications", "3gpp", "itu", "standards", "5g"]
+---
+
 # Research Report: Global Telecommunication Standards & Protocol Specifications (3GPP/ITU)
 
 ## Brainstormed Ideas

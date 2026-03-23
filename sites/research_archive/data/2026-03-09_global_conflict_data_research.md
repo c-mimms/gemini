@@ -1,3 +1,10 @@
+---
+title: "Global Conflict Data (ACLED)"
+date: 2026-03-09
+category: "Law & Governance"
+tags: ["conflict", "war", "acled", "geopolitics", "political-violence"]
+---
+
 # Research Report: Global Historical Conflict Data (UCDP/PRIO)
 
 ## Date: 2026-03-09

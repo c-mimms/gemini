@@ -1,3 +1,10 @@
+---
+title: "Global Maritime Shipwreck Database"
+date: 2026-03-07
+category: "History & Culture"
+tags: ["maritime", "shipwrecks", "naval-history", "ocean", "archaeology"]
+---
+
 # Knowledge Graph Data Research: Maritime Shipwreck Databases
 
 ## Date: 2026-03-07

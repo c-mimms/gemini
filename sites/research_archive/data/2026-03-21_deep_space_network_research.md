@@ -1,3 +1,10 @@
+---
+title: "NASA Deep Space Network (DSN)"
+date: 2026-03-21
+category: "Space & Astronomy"
+tags: ["deep-space", "nasa", "dsn", "antenna", "space-communication"]
+---
+
 # 2026-03-21 Deep Space Network (DSN) & Space Communications Infrastructure Research
 
 ## Goal

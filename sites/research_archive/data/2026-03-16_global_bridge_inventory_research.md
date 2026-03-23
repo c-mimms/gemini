@@ -1,3 +1,10 @@
+---
+title: "Global Bridge Inventory"
+date: 2026-03-16
+category: "Technology & Infrastructure"
+tags: ["bridges", "infrastructure", "civil-engineering", "transport", "gis"]
+---
+
 # Research Report: Global Bridge Inventory & Infrastructure Data
 
 **Date:** 2026-03-16  

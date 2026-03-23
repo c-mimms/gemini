@@ -1,3 +1,10 @@
+---
+title: "Global Pipeline Infrastructure"
+date: 2026-03-18
+category: "Technology & Infrastructure"
+tags: ["pipelines", "oil-gas", "infrastructure", "energy", "gis"]
+---
+
 # Knowledge Graph Research: Global Pipeline Infrastructure
 
 **Date**: 2026-03-18

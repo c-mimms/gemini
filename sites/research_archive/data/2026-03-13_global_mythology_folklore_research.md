@@ -1,3 +1,10 @@
+---
+title: "Global Mythology & Folklore"
+date: 2026-03-13
+category: "History & Culture"
+tags: ["mythology", "folklore", "culture", "anthropology", "storytelling"]
+---
+
 # Research Report: Global Mythology, Folklore, and Sacred Texts Knowledge Base
 
 **Date:** 2026-03-13

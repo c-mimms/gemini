@@ -1,3 +1,10 @@
+---
+title: "Radioisotope & Nuclear Decay Data (NNDC)"
+date: 2026-03-10
+category: "Physics & Chemistry"
+tags: ["nuclear-physics", "radioisotopes", "decay", "nndc", "radiation"]
+---
+
 # Research Report: Radioisotope and Nuclear Decay Data (NNDC)
 
 ## Date: 2026-03-10

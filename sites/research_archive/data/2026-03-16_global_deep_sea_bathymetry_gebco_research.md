@@ -1,3 +1,10 @@
+---
+title: "Global Deep-Sea Bathymetry (GEBCO)"
+date: 2026-03-16
+category: "Earth & Environment"
+tags: ["ocean", "bathymetry", "gebco", "seafloor", "geospatial"]
+---
+
 # Knowledge Graph Research: Global Deep Sea Bathymetry & Undersea Feature Names (GEBCO)
 
 **Date**: 2026-03-16

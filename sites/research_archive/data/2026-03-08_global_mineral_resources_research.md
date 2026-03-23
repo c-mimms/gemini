@@ -1,3 +1,10 @@
+---
+title: "Global Mineral Resources"
+date: 2026-03-08
+category: "Earth & Environment"
+tags: ["minerals", "mining", "geology", "resources", "gis"]
+---
+
 # Research Report: Global Mineral Resources and Rare Earth Deposits
 
 **Date**: 2026-03-08

@@ -1,3 +1,10 @@
+---
+title: "World Traditional Medicine & Ethnobotany"
+date: 2026-03-18
+category: "Life Sciences"
+tags: ["ethnobotany", "traditional-medicine", "plants", "culture", "pharmacognosy"]
+---
+
 # Research Report: World Traditional Medicine & Ethnobotany Knowledge Graph
 
 **Date:** 2026-03-18

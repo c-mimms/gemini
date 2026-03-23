@@ -1,3 +1,10 @@
+---
+title: "Harmonized Tariff Schedule & Trade Data"
+date: 2026-03-20
+category: "Law & Governance"
+tags: ["tariffs", "trade", "wto", "customs", "economics"]
+---
+
 # Research Report: Harmonized Tariff Schedule (HTS) and Global Trade Classifications
 
 ## Date: 2026-03-20

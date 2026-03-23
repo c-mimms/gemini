@@ -1,3 +1,10 @@
+---
+title: "Global Cryptographic Standards"
+date: 2026-03-16
+category: "Technology & Infrastructure"
+tags: ["cryptography", "security", "standards", "nist", "encryption"]
+---
+
 # Research Report: Global Cryptographic Standards & Protocols (RFCs, NIST, IANA)
 
 **Date**: 2026-03-16

@@ -1,3 +1,10 @@
+---
+title: "Global Technical Standards Database (ISO / IEC)"
+date: 2026-03-17
+category: "Technology & Infrastructure"
+tags: ["standards", "iso", "iec", "technical-specifications", "engineering"]
+---
+
 # Research Report: Global Standards & Technical Specifications Metadata
 
 ## Date: 2026-03-17

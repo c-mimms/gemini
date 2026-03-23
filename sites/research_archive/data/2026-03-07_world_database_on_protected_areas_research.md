@@ -1,3 +1,10 @@
+---
+title: "World Database on Protected Areas (WDPA)"
+date: 2026-03-07
+category: "Earth & Environment"
+tags: ["conservation", "protected-areas", "biodiversity", "gis", "un"]
+---
+
 # Knowledge Graph Data Research: World Database on Protected Areas (WDPA)
 
 ## Date: 2026-03-07

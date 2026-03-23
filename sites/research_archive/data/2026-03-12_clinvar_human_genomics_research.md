@@ -1,3 +1,10 @@
+---
+title: "ClinVar Human Genomics Database"
+date: 2026-03-12
+category: "Life Sciences"
+tags: ["genomics", "genetics", "clinvar", "disease", "medicine"]
+---
+
 # Research Report: Human Genomics & Health (ClinVar)
 
 ## Date

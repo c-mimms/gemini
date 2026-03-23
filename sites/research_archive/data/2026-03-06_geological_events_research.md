@@ -1,3 +1,10 @@
+---
+title: "Geological Events — Earthquakes & Volcanism"
+date: 2026-03-06
+category: "Earth & Environment"
+tags: ["geology", "earthquakes", "volcanoes", "seismology", "usgs"]
+---
+
 # Research Report: Geological Events (Earthquakes & Volcanism)
 
 **Date:** 2026-03-06  

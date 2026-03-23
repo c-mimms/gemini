@@ -1,3 +1,10 @@
+---
+title: "Global Archaeological Sites"
+date: 2026-03-08
+category: "History & Culture"
+tags: ["archaeology", "history", "cultural-heritage", "gis", "antiquity"]
+---
+
 # Research Report: Global Archaeological Sites & Excavations
 
 ## Date: 2026-03-08

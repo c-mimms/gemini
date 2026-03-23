@@ -1,3 +1,10 @@
+---
+title: "Global Antarctic Research Stations"
+date: 2026-03-16
+category: "Earth & Environment"
+tags: ["antarctica", "research-stations", "polar", "science", "geography"]
+---
+
 # Research Report: Global Antarctic Research Stations
 
 ## Date: 2026-03-16

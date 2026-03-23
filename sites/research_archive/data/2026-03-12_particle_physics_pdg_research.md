@@ -1,3 +1,10 @@
+---
+title: "Particle Physics Data (Particle Data Group)"
+date: 2026-03-12
+category: "Physics & Chemistry"
+tags: ["particle-physics", "pdg", "high-energy", "cern", "subatomic"]
+---
+
 # Knowledge Graph Data Research: Particle Physics (Particle Data Group)
 
 **Date:** 2026-03-12

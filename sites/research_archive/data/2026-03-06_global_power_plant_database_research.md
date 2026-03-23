@@ -1,3 +1,10 @@
+---
+title: "Global Power Plant Database (WRI)"
+date: 2026-03-06
+category: "Technology & Infrastructure"
+tags: ["energy", "power-plants", "electricity", "infrastructure", "gis"]
+---
+
 # Research Report: Global Power Plant Database (WRI)
 
 **Date:** 2026-03-06  

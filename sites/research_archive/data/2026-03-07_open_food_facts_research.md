@@ -1,3 +1,10 @@
+---
+title: "Open Food Facts Database"
+date: 2026-03-07
+category: "Life Sciences"
+tags: ["food", "nutrition", "consumer-data", "open-data", "diet"]
+---
+
 # Research Report: Open Food Facts Database
 
 **Date:** 2026-03-07

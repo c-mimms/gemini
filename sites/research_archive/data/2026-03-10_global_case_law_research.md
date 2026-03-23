@@ -1,3 +1,10 @@
+---
+title: "Global Case Law Database"
+date: 2026-03-10
+category: "Law & Governance"
+tags: ["legal", "case-law", "courts", "jurisprudence", "governance"]
+---
+
 # Research Report: Global Case Law Datasets for Knowledge Graph
 
 **Date:** 2026-03-10

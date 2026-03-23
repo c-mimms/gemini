@@ -1,3 +1,10 @@
+---
+title: "Global Historical Storm Tracks (IBTrACS)"
+date: 2026-03-19
+category: "Earth & Environment"
+tags: ["hurricanes", "storms", "climate", "ibtracs", "noaa"]
+---
+
 # Knowledge Graph Research: Global Historical Tropical Cyclone and Tornado Tracks
 
 **Date:** 2026-03-19

@@ -1,3 +1,10 @@
+---
+title: "Global Power Grid Transmission Network"
+date: 2026-03-19
+category: "Technology & Infrastructure"
+tags: ["power-grid", "electricity", "transmission", "energy", "infrastructure"]
+---
+
 # Research Report: Global High-Voltage Power Grid Transmission Lines & Substations
 
 **Date:** 2026-03-19

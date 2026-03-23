@@ -1,3 +1,10 @@
+---
+title: "Historical Patents (USPTO / EPO)"
+date: 2026-03-07
+category: "Law & Governance"
+tags: ["patents", "intellectual-property", "innovation", "legal", "technology"]
+---
+
 # Knowledge Graph Research: Historical Patents Data
 
 ## 1. Brainstorming: Novel Dataset Types

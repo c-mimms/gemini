@@ -1,3 +1,10 @@
+---
+title: "World Register of Marine Species (WoRMS)"
+date: 2026-03-09
+category: "Life Sciences"
+tags: ["marine-biology", "taxonomy", "ocean", "species", "biodiversity"]
+---
+
 # Research Report: World Register of Marine Species (WoRMS)
 
 **Date**: 2026-03-09

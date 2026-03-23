@@ -1,3 +1,10 @@
+---
+title: "Global Art Museum Open-Access Collections"
+date: 2026-03-10
+category: "History & Culture"
+tags: ["art", "museums", "open-access", "culture", "cultural-heritage"]
+---
+
 # Research Report: Global Art and Museum Open Access Data
 
 **Date**: 2026-03-10

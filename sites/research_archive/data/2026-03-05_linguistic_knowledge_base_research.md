@@ -1,3 +1,10 @@
+---
+title: "Linguistic & Etymological Knowledge Base"
+date: 2026-03-05
+category: "Language & Culture"
+tags: ["linguistics", "etymology", "wordnet", "wiktionary", "nlp"]
+---
+
 # Research Report: Linguistic and Etymological Knowledge Base
 
 **Date:** 2026-03-05

@@ -1,3 +1,10 @@
+---
+title: "Global Volcanism Program (Smithsonian)"
+date: 2026-03-07
+category: "Earth & Environment"
+tags: ["volcanoes", "eruptions", "smithsonian", "geology", "hazards"]
+---
+
 # Research Report: Global Volcanism Program (GVP) Dataset
 
 ## Brainstormed Ideas

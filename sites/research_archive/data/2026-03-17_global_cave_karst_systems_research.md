@@ -1,3 +1,10 @@
+---
+title: "Global Cave & Karst Systems Database"
+date: 2026-03-17
+category: "Earth & Environment"
+tags: ["caves", "karst", "geology", "speleology", "geography"]
+---
+
 # Research Report: Global Subterranean Infrastructure (Caves and Karst Systems)
 
 **Date**: 2026-03-17  

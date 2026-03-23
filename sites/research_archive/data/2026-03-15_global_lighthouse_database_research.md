@@ -1,3 +1,10 @@
+---
+title: "Global Lighthouse Database"
+date: 2026-03-15
+category: "History & Culture"
+tags: ["lighthouses", "maritime", "navigation", "coastal", "history"]
+---
+
 # Research Report: Global Lighthouse & Navigational Aids Database
 
 **Date:** 2026-03-15

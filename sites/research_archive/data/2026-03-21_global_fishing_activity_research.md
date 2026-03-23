@@ -1,3 +1,10 @@
+---
+title: "Global Fishing Activity (Global Fishing Watch)"
+date: 2026-03-21
+category: "Earth & Environment"
+tags: ["fishing", "ocean", "ais", "maritime", "global-fishing-watch"]
+---
+
 # Research Report: Global Fishing Activity (Global Fishing Watch)
 
 ## Brainstormed Ideas

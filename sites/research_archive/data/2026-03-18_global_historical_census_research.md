@@ -1,3 +1,10 @@
+---
+title: "Global Historical Census Data"
+date: 2026-03-18
+category: "History & Culture"
+tags: ["census", "demographics", "history", "population", "statistics"]
+---
+
 # Research Report: Global Historical Census & Population Data
 
 ## Date: 2026-03-18

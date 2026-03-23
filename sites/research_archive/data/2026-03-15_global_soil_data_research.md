@@ -1,3 +1,10 @@
+---
+title: "Global Soil Data (SoilGrids / FAO)"
+date: 2026-03-15
+category: "Earth & Environment"
+tags: ["soil", "agriculture", "geospatial", "fao", "land-use"]
+---
+
 # Research Report: Global Soil Data & Properties
 
 **Date:** 2026-03-15

@@ -1,3 +1,10 @@
+---
+title: "Radio Frequency Spectrum Allocations (ITU)"
+date: 2026-03-08
+category: "Technology & Infrastructure"
+tags: ["radio", "spectrum", "telecommunications", "itu", "frequency"]
+---
+
 # Knowledge Graph Research: Radio Frequency Spectrum Allocations
 
 **Date:** 2026-03-08

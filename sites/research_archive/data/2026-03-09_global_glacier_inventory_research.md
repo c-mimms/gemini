@@ -1,3 +1,10 @@
+---
+title: "Global Glacier Inventory (RGI)"
+date: 2026-03-09
+category: "Earth & Environment"
+tags: ["glaciers", "climate-change", "cryosphere", "gis", "hydrology"]
+---
+
 # Research Report: Global Glacier Inventory (RGI 7.0)
 
 **Date**: 2026-03-09

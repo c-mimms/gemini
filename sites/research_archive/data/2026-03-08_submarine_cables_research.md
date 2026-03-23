@@ -1,3 +1,10 @@
+---
+title: "Global Submarine Cable Network"
+date: 2026-03-08
+category: "Technology & Infrastructure"
+tags: ["submarine-cables", "internet", "telecommunications", "infrastructure", "ocean"]
+---
+
 # Research Report: Global Infrastructure & Connectivity (Submarine Cables)
 
 **Date**: 2026-03-08

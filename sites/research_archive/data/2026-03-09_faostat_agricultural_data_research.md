@@ -1,3 +1,10 @@
+---
+title: "FAOSTAT Global Agricultural Data"
+date: 2026-03-09
+category: "Life Sciences"
+tags: ["agriculture", "food-security", "fao", "trade", "crops"]
+---
+
 # Research Report: FAOSTAT (Global Agricultural and Food Statistics)
 **Date:** 2026-03-09
 **Topic:** FAOSTAT - Food and Agriculture Organization Corporate Statistical Database

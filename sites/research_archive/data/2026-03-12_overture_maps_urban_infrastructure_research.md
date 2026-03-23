@@ -1,3 +1,10 @@
+---
+title: "Overture Maps Urban Infrastructure"
+date: 2026-03-12
+category: "Technology & Infrastructure"
+tags: ["maps", "urban", "gis", "infrastructure", "openstreetmap"]
+---
+
 # Research Report: Global Urban Infrastructure (Overture Maps Foundation)
 
 **Date**: 2026-03-12  

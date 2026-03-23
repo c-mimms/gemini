@@ -1,3 +1,10 @@
+---
+title: "Global Hydrological Data (GRDC / HydroSHEDS)"
+date: 2026-03-11
+category: "Earth & Environment"
+tags: ["hydrology", "rivers", "watersheds", "water", "grdc"]
+---
+
 # Research Report: Global Hydrological Data (Rivers, Lakes, Dams, and Runoff)
 
 **Date**: 2026-03-11  

@@ -1,3 +1,10 @@
+---
+title: "WMO OSCAR Observing Systems Database"
+date: 2026-03-15
+category: "Earth & Environment"
+tags: ["meteorology", "wmo", "observing-systems", "climate", "sensors"]
+---
+
 # Research Report: WMO OSCAR (Observing Systems Capability Analysis and Review Tool)
 
 **Date**: 2026-03-15

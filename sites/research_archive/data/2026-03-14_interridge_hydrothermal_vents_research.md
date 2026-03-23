@@ -1,3 +1,10 @@
+---
+title: "InterRidge Hydrothermal Vent Database"
+date: 2026-03-14
+category: "Earth & Environment"
+tags: ["ocean", "hydrothermal-vents", "geology", "deep-sea", "marine"]
+---
+
 # Research Report: InterRidge Global Database of Active Submarine Hydrothermal Vent Fields
 
 ## Date

@@ -1,3 +1,10 @@
+---
+title: "Global Urban Transit (GTFS)"
+date: 2026-03-18
+category: "Technology & Infrastructure"
+tags: ["transit", "public-transport", "gtfs", "urban", "mobility"]
+---
+
 # Knowledge Graph Data Research: Global Urban Transit Schedules (GTFS)
 
 **Date:** 2026-03-18

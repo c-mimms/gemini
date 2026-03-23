@@ -1,3 +1,10 @@
+---
+title: "Global Railway Infrastructure"
+date: 2026-03-09
+category: "Technology & Infrastructure"
+tags: ["railways", "transport", "infrastructure", "openstreetmap", "gis"]
+---
+
 # Research Report: Global Railway Infrastructure
 
 ## Date: 2026-03-09

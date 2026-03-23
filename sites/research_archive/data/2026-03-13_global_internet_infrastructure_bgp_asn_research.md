@@ -1,3 +1,10 @@
+---
+title: "Global Internet Infrastructure (BGP / ASN)"
+date: 2026-03-13
+category: "Technology & Infrastructure"
+tags: ["internet", "bgp", "asn", "networking", "routing"]
+---
+
 # Research Report: Global Internet Infrastructure (BGP, ASN, and Interconnection)
 
 **Date**: 2026-03-13

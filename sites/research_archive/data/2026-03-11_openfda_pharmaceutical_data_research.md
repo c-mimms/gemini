@@ -1,3 +1,10 @@
+---
+title: "OpenFDA Pharmaceutical & Drug Data"
+date: 2026-03-11
+category: "Life Sciences"
+tags: ["pharmaceuticals", "drugs", "fda", "medicine", "clinical-data"]
+---
+
 # Research Report: Global Pharmaceutical & Drug Information (OpenFDA)
 
 ## Date: 2026-03-11

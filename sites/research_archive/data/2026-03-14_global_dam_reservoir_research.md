@@ -1,3 +1,10 @@
+---
+title: "Global Dam & Reservoir Database (GRanD)"
+date: 2026-03-14
+category: "Technology & Infrastructure"
+tags: ["dams", "reservoirs", "hydrology", "infrastructure", "water"]
+---
+
 # Research Report: Global Dam and Reservoir Database (GRanD & GDW)
 
 **Date**: 2026-03-14  

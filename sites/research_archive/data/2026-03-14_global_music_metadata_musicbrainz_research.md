@@ -1,3 +1,10 @@
+---
+title: "Global Music Metadata (MusicBrainz)"
+date: 2026-03-14
+category: "History & Culture"
+tags: ["music", "metadata", "musicbrainz", "open-data", "culture"]
+---
+
 # Research Report: Global Music Metadata (MusicBrainz)
 
 **Date:** 2026-03-14

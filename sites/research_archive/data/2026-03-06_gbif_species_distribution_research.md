@@ -1,3 +1,10 @@
+---
+title: "Global Biodiversity Information Facility (GBIF)"
+date: 2026-03-06
+category: "Life Sciences"
+tags: ["biodiversity", "species", "ecology", "gbif", "open-data"]
+---
+
 # Research Report: Global Biodiversity Information Facility (GBIF)
 
 **Date**: 2026-03-06

@@ -1,3 +1,10 @@
+---
+title: "Ancient Coinage & Numismatics"
+date: 2026-03-09
+category: "History & Culture"
+tags: ["numismatics", "coins", "ancient-history", "archaeology", "economics"]
+---
+
 # Research Report: Ancient Coinage (Numismatics) Knowledge Base
 
 ## Date: 2026-03-09

@@ -1,3 +1,10 @@
+---
+title: "International Treaty History"
+date: 2026-03-07
+category: "Law & Governance"
+tags: ["treaties", "international-law", "diplomacy", "history", "governance"]
+---
+
 # Research Report: International Treaty & Diplomatic History
 
 **Date**: 2026-03-07

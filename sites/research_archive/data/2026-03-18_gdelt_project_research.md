@@ -1,3 +1,10 @@
+---
+title: "GDELT Global Events Database"
+date: 2026-03-18
+category: "Data & Science Platforms"
+tags: ["gdelt", "events", "media", "geopolitics", "text-mining"]
+---
+
 # Research Report: GDELT Project (Global Database of Events, Language, and Tone)
 **Date:** 2026-03-18
 **Topic:** GDELT Project

@@ -1,3 +1,10 @@
+---
+title: "OpenCellID Global Cell Tower Database"
+date: 2026-03-19
+category: "Technology & Infrastructure"
+tags: ["cell-towers", "mobile", "telecommunications", "gis", "network"]
+---
+
 # Research Report: Global Cell Tower Locations (OpenCellID)
 
 **Date**: 2026-03-19  

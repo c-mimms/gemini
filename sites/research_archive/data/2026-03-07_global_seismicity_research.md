@@ -1,3 +1,10 @@
+---
+title: "Global Seismicity Data"
+date: 2026-03-07
+category: "Earth & Environment"
+tags: ["seismology", "earthquakes", "usgs", "geology", "hazards"]
+---
+
 # Research Report: Global Seismicity Data (Earthquakes)
 
 ## Date: 2026-03-07
