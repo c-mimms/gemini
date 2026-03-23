@@ -54,7 +54,7 @@ A job is considered a "good fit" if it meets ALL of the following conditions:
 8.  **Take Action**:
     -   **For ALL new jobs**: Save the scraped details to `../../data/job_database.json`.
     -   **If a job IS a good fit**:
-        -   Format and send the summary email using `python /Users/chris/code/gemini/agent_tools/send_email.py`.
+        -   Format and send the summary email using `python /Users/chris/code/gemini/agent_tools/send_email.py --to christek13@gmail.com`.
         -   Print "Sent notification email for [Job Title]".
     -   **Finally**: Append the message ID of the email to `../../data/seen_emails.log`.
 9.  **Log Completion**: Print a message indicating the task has finished successfully.
