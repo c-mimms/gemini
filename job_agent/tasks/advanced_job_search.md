@@ -10,7 +10,11 @@ The goal of this task is to intelligently filter new software engineering job op
 ## Filtering Criteria
 A job is considered a "good fit" if it meets ALL of the following conditions:
 1.  **Full-Time**: The job description does not contain keywords like "part-time", "contract", "internship", or "temporary".
-2.  **Salary**: The stated salary is greater than £80,000 GBP per year. If no salary is listed, this condition is not met.
+2.  **Salary**: The stated salary is greater than £80,000 GBP per year. If no salary is explicitly listed, the job may still pass this criterion if it **likely** pays more than £80,000 based on reasonable inference — for example:
+    -   The role is at a Senior, Staff, Principal, Lead, or equivalent level at a well-known or large company (e.g., Revolut, HubSpot, GitHub, Stripe, Google, Amazon, etc.).
+    -   The role is highly specialised or technical (e.g., distributed systems, fintech infrastructure, ML/AI) and the seniority suggests £80k+ is standard market rate.
+    -   The job description itself references responsibilities, tech stack, or team scale typical of high-compensation positions.
+    -   When in doubt, err on the side of **including** the job rather than filtering it out — it is better to receive a slightly lower-quality match than to miss a genuinely good opportunity.
 3.  **Visa Sponsorship**: EITHER the job description explicitly mentions "visa sponsorship" OR the company is considered "large".
     -   A **large company** is defined as a company that is publicly traded on a major stock exchange (e.g., FTSE, NASDAQ, NYSE) OR has more than 1,000 employees listed on their LinkedIn page.
 
