@@ -90,7 +90,23 @@ file /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
 
 ## Step 5: Log & Publish
 1.  **Update `journal.md`:** Summarize today's work and the priority for the next agent run.
-2.  **Publish:** Run the `build_birthday.py` script to sync the dashboard to CloudFront.
+2.  **Publish:** Run the build script to sync to S3 and invalidate CloudFront:
+    ```bash
+    python3 /Users/chris/code/gemini/sites/birthday/build_birthday.py \
+      --s3-bucket s3://gemini-designs-portfolio-2026-v2/birthday/ \
+      --cloudfront-id REPLACE_WITH_ID
+    ```
+    > 📝 The CloudFront ID will be filled in once the distribution is active.
+
+> ⚠️ **CRITICAL — Writing HTML Files:** The task scheduler's bash parser cannot handle
+> heredocs (`<<EOF`) containing HTML. **Always write HTML and multi-line files using Python:**
+> ```bash
+> python3 -c "
+> content = '''YOUR HTML HERE'''
+> with open('path/to/file.html', 'w') as f:
+>     f.write(content)
+> "
+> ```
 
 ---
 
