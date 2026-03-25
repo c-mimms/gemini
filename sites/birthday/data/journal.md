@@ -42,3 +42,9 @@
 - **Key Decisions:** Added a new .aviation-tribute CSS class to the site. Created the Phase 2 HTML fragment.
 - **Next Focus:** Refine the selected day-trip based on Chris's feedback or proceed with reservations for the top-choice.
 - **Status:** Waiting for feedback on the 'Aviation Heritage' vs 'Private Serenity' direction.
+## 2026-03-25 (Run 3)
+- **Status:** New high-impact leads generated.
+- **What I did:** Identified Kenmore Air seaplane tours (perfect for her pilot background) and The Lodge at St. Edward Park (luxury, local, baby-friendly). Proposed 3D wood nautical charts and Filson heritage goods as physical gifts.
+- **Key Decisions:** Shifted focus to "Aviation + Heritage" as a unique overlap.
+- **Next Focus:** Await feedback on the seaplane tour vs. grounded luxury. Vetting logistics for the chosen path.
+
