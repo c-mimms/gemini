@@ -9,22 +9,13 @@
 - **Key Constraints:**
   - Baby (1-year-old) will not have a sitter.
 - **Next Focus for Next Run:**
-  - Open ended - first actual run.
+  - Brainstorm highly diverse, entirely new day-trips and gifts! Do not draft comparison grids yet.
+- **Status:** Waiting for first run — no blockers.
 
----
 
-## 2026-03-25 (Deep Dive & Vetting)
-- **Status:** Researching Day-Of & Gifts.
-- **What I did:**
-  - Researched Kenmore Air (baby policies confirmed: lap infants, 25-50lb baggage, ear pro needed).
-  - Skagit Valley Tulip Festival (peak bloom April 12, muddy fields, baby carrier recommended).
-  - Duffy Electric Boats in Kirkland (very baby-friendly, quiet, enclosed).
-  - Sourced high-end Swedish design (MALM, Sjöö Sandström, Palmgrens, Orrefors).
-- **Key Findings:**
-  - April 12 is peak bloom for tulips.
-  - Seaplanes are a viable "Aviation" option for the day-of.
-  - Electric boats in Kirkland are a safe, local "Nautical" bet.
-- **Next Focus:**
-  - Finalize 5-7 gift options for Chris to choose from.
-  - Build out a comparison grid for the 3 main day-trip archetypes (Aviation, Nautical, Bloom).
-- **Status:** Drafting fragments.
+## 2026-03-25 (Run 2)
+- **Status:** State synchronized. Research completed for "Farewell PNW" theme.
+- **What I did:** Identified 3 high-quality day-trips (Whidbey Island, Snoqualmie Falls, Tulip Festival) and 2 unique gift directions (Mt. St. Helens ash glass, Swedish Modern from Woodland Mod).
+- **Key Decisions:** Selected Tulip Town for its logistics and The Inn at Langley for its high-end vibe.
+- **Next Focus:** Refine the selected day-trip based on Chris's feedback in the next run.
+- **Status:** Waiting for feedback on the "Island/Coastal" vs "Mountain/Inland" direction.
