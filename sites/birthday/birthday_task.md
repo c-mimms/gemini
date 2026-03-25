@@ -13,6 +13,7 @@ You are the **Lead Birthday Architect**. Your mission is to research and propose
 * **Root:** `/Users/chris/code/gemini/sites/birthday/data/`
 * **Files:** `preferences.md` (The Facts), `journal.md` (Internal Monologue/Log), `inbox.md` (Email).
 * **Site Source:** `/Users/chris/code/gemini/sites/birthday/src/`
+* **Components:** `src/activities/` (Day-Of ideas), `src/gifts/` (Gift ideas).
 
 ---
 
@@ -46,26 +47,24 @@ Identify 5–7 diverse gift concepts ranging across:
 ---
 
 ## Step 3: Update the Dashboard
-Save a new fragment to `src/YYYY-MM-DD_[slug].html`.
+Save new components to their respective folders:
+- **Activities**: `src/activities/[slug].html`
+- **Gifts**: `src/gifts/[slug].html`
 
-### CSS Classes
-The following classes are already defined in `birthday.css`. Use them freely:
+### Design Guidelines (Editorial Aesthetic)
+The dashboard uses a clean, light, editorial aesthetic inspired by high-end magazines. Use the following classes to maintain the "designed" feel:
 
 | Class | Usage |
 | :--- | :--- |
-| `.baby-compatible` | 🍼 Logistics for the 1-year-old are handled. |
-| `.the-overlap` | 💡 Bridges her background/interests with his skills. |
-| `.last-hurrah` | 🏔️ Specific to the PNW/Seattle experience before the move. |
-| `.gift-idea` | 🎁 Specifically for physical or experience-based gifts. |
-| `.status-action-required` | ⚡ Chris needs to make a decision. |
-| `.open-question` | ❓ Unanswered question flagged for Chris. |
-| `.comparison-grid` + `.venue-card` | Side-by-side option cards. |
+| `.premium-card` | Use this for the main wrapper of an idea. It provides a clean, neutral background. |
+| `.concept-tag` | A small border-box label for the "vibe" (e.g., "Aviation Heritage", "PNW Icon"). |
+| `.text-muted` | Use for secondary details or "Baby Factor" logic. |
+| `.editorial-grid` | (Used by build script) Wraps multiple components in a spacious grid. |
 
-**You may add new classes** when you need to convey a type of information not covered above.
-To do so:
-1. Add the class definition to `birthday.css` (follow the existing callout block pattern — `background`, `border`, `border-radius`, `padding`, and a `::before` label).
-2. Add the new class to the table above in this file (see Self-Modification rules below).
-3. Use the new class in the fragment you are writing.
+**STRICT RULES:**
+1. **No Questions on Page**: DO NOT write questions for Chris into the HTML files. Questions must ONLY be written in `journal.md` and emailed directly.
+2. **Semantic Focus**: Focus on high-quality text and beautiful image placement. The build script handles the macro-layout.
+3. **No Mixed Content**: One file = One idea. Do not mix multiple gifts or activities in a single file.
 
 ### Image Handling
 When sourcing images from Wikimedia Commons, use this proven, tested pattern to avoid 404s and blocks:

@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-build_birthday.py — Static site builder for the April 12 Birthday Planning Dashboard.
+build_birthday.py — Editorial Site Builder for Birthday Planning.
 
-Reads HTML fragments from src/, wraps them in the dashboard shell, builds index.html,
-and optionally syncs to S3 + invalidates CloudFront.
+Categorizes components from src/activities/ and src/gifts/ into a clean layout.
 """
 
 import os
@@ -20,237 +19,144 @@ OUTPUT_DIR = os.path.join(SITE_DIR, "output")
 CSS_FILE   = os.path.join(SITE_DIR, "birthday.css")
 PROFILE    = "default"
 
-os.makedirs(SRC_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# ── Tag → badge colour mapping ────────────────────────────────────────────────
-TAG_CLASSES = {
-    "proposal":  "tag-proposal",
-    "research":  "tag-research",
-    "logistics": "tag-logistics",
-    "question":  "tag-question",
-}
-
-TEMPLATE = """\
-<!DOCTYPE html>
+TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{page_title} | April 12 Planning Dashboard</title>
+    <title>{page_title} | Birthday Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="birthday.css">
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <div class="header-inner">
-                <div class="header-icon">🎂</div>
-                <div>
-                    <h1>April 12 Planning Dashboard</h1>
-                    <div class="subtitle">A Perfect Day · Baby-Friendly · Introvert-Safe</div>
-                </div>
+    <header class="section-wrapped">
+        <div class="header-flex">
+            <div>
+                <span class="uppercase-label">April 12 Planning</span>
+                <h3 style="font-family: var(--font-serif);"><a href="index.html" style="text-decoration: none; color: inherit;">Dashboard</a></h3>
             </div>
-            <nav class="header-nav">
-                <a href="index.html">All Updates</a>
-                <a href="proposals.html">Proposals</a>
-                <a href="questions.html">Open Questions</a>
+            <nav>
+                <a href="index.html">The Collection</a>
+                <a href="#activities">Activities</a>
+                <a href="#gifts">Gifts</a>
             </nav>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            {content}
-        </main>
+    <main>
+        {content}
+    </main>
 
-        <footer>
-            <p>Birthday Architect · Last built {build_date}</p>
-        </footer>
-    </div>
+    <footer class="section-wrapped" style="padding: var(--spacing-lg) 0; border-top: 1px solid var(--color-border); margin-top: var(--spacing-xl);">
+        <p class="text-muted" style="font-size: 0.8rem;">Curated for Chris’s Wife · Last update {build_date}</p>
+    </footer>
 </body>
 </html>
 """
 
-
 def extract_meta(html: str, name: str, fallback: str = "") -> str:
-    """Extract <meta name="..." content="..."> from an HTML fragment."""
-    # name-first: <meta name="title" content="...">
-    pattern_name_first = (
-        r'<meta\s+name=["\']' + re.escape(name) + r'["\'][^>]+content=["\']([^"\']+)["\']'
-    )
-    m = re.search(pattern_name_first, html, re.IGNORECASE)
-    if m:
-        return m.group(1)
-    # content-first: <meta content="..." name="title">
-    pattern_content_first = (
-        r'<meta\s+content=["\']([^"\']+)["\']\s+name=["\']' + re.escape(name) + r'["\']'
-    )
-    m = re.search(pattern_content_first, html, re.IGNORECASE)
+    pattern = r'<meta\s+name=["\']' + re.escape(name) + r'["\'][^>]+content=["\']([^"\']+)["\']'
+    m = re.search(pattern, html, re.IGNORECASE)
+    if m: return m.group(1)
+    pattern_rev = r'<meta\s+content=["\']([^"\']+)["\']\s+name=["\']' + re.escape(name) + r'["\']'
+    m = re.search(pattern_rev, html, re.IGNORECASE)
     return m.group(1) if m else fallback
 
-
-def strip_metadata_block(html: str) -> str:
-    return re.sub(r'<div class="metadata".*?</div>', '', html, flags=re.DOTALL)
-
-
-def build_fragment_card(filename: str, title: str, description: str, tag: str, date_str: str) -> str:
-    tag_lower = tag.lower().split("|")[0].strip()
-    tag_class = TAG_CLASSES.get(tag_lower, "tag-proposal")
-    fragment_url = filename
-    return f"""
-    <article class="fragment-card">
-        <div class="fragment-card-header">
-            <span class="tag {tag_class}">{tag}</span>
-            <span class="fragment-date">{date_str}</span>
-        </div>
-        <h2 class="fragment-title"><a href="{fragment_url}">{title}</a></h2>
-        <p class="fragment-desc">{description}</p>
-    </article>
-    """
-
+def get_component_html(filepath):
+    with open(filepath) as f:
+        html = f.read()
+    # Strip meta tags if any
+    clean_html = re.sub(r'<meta[^>]+>', '', html)
+    title = extract_meta(html, "title", "Untitled")
+    desc = extract_meta(html, "description", "")
+    return {
+        "content": clean_html.strip(),
+        "title": title,
+        "description": desc,
+        "filename": os.path.basename(filepath)
+    }
 
 def main():
-    parser = argparse.ArgumentParser(description="Birthday Planning Dashboard Builder")
-    parser.add_argument("--source",         default=SRC_DIR,  help="Source directory of HTML fragments")
-    parser.add_argument("--output",         default=OUTPUT_DIR, help="Output directory")
-    parser.add_argument("--s3-bucket",      help="S3 bucket URI, e.g. s3://bucket/birthday/")
-    parser.add_argument("--cloudfront-id",  help="CloudFront Distribution ID for cache invalidation")
-    parser.add_argument("--site-name",      default="April 12 Planning Dashboard")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--s3-bucket", help="S3 bucket URI")
+    parser.add_argument("--cloudfront-id", help="CloudFront ID")
     args = parser.parse_args()
 
-    src_dir    = args.source
-    output_dir = args.output
-    os.makedirs(output_dir, exist_ok=True)
-
-    build_date = datetime.now().strftime("%B %d, %Y at %H:%M")
-    print(f"Building {args.site_name}...")
-
-    # Copy CSS
+    build_date = datetime.now().strftime("%B %d, %Y")
+    
+    # 1. Copy Assets
     if os.path.exists(CSS_FILE):
-        shutil.copy2(CSS_FILE, os.path.join(output_dir, "birthday.css"))
+        shutil.copy2(CSS_FILE, os.path.join(OUTPUT_DIR, "birthday.css"))
+    
+    # Copy images if they exist in data/images
+    img_src = os.path.join(SITE_DIR, "data", "images")
+    if os.path.exists(img_src):
+        img_dest = os.path.join(OUTPUT_DIR, "data", "images")
+        os.makedirs(img_dest, exist_ok=True)
+        for img in glob.glob(os.path.join(img_src, "*")):
+            shutil.copy2(img, img_dest)
 
-    # Gather and sort fragments (newest first)
-    files = sorted(
-        glob.glob(os.path.join(src_dir, "*.html")),
-        key=lambda f: os.path.basename(f),
-        reverse=True
-    )
+    # 2. Gather Components
+    activities_dir = os.path.join(SRC_DIR, "activities")
+    gifts_dir = os.path.join(SRC_DIR, "gifts")
+    
+    activities = [get_component_html(f) for f in glob.glob(os.path.join(activities_dir, "*.html"))]
+    gifts = [get_component_html(f) for f in glob.glob(os.path.join(gifts_dir, "*.html"))]
 
-    index_cards       = ""
-    proposal_cards    = ""
-    question_cards    = ""
-    fragment_count    = 0
+    # 3. Assemble Index
+    index_html = f"""
+    <div class="section-wrapped">
+        <section class="editorial-section" style="margin-top: var(--spacing-lg);">
+            <div class="content-wrapped">
+                <span class="uppercase-label">State of Search</span>
+                <h1 style="margin-top: var(--spacing-sm);">A PNW Farewell.</h1>
+                <p class="text-muted" style="font-size: 1.2rem; margin-top: var(--spacing-md);">A curated collection of experiences and tokens to celebrate her final Seattle birthday.</p>
+            </div>
+        </section>
 
-    for filepath in files:
-        filename  = os.path.basename(filepath)
-        date_match = re.match(r'^(\d{4}-\d{2}-\d{2})_(.+)\.html?$', filename)
-        date_str  = date_match.group(1) if date_match else "Unknown date"
+        <section id="activities" class="editorial-section">
+            <div class="content-wrapped">
+                <h2 style="margin-bottom: var(--spacing-lg);">Day-Of Experiences</h2>
+            </div>
+            <div class="editorial-grid">
+                {''.join([f'<div class="grid-item">{item["content"]}</div>' for item in activities])}
+            </div>
+        </section>
 
-        with open(filepath) as f:
-            html = f.read()
+        <section id="gifts" class="editorial-section">
+            <div class="content-wrapped">
+                <h2 style="margin-bottom: var(--spacing-lg);">The Gift Options</h2>
+            </div>
+            <div class="editorial-grid">
+                {''.join([f'<div class="grid-item">{item["content"]}</div>' for item in gifts])}
+            </div>
+        </section>
+    </div>
+    """
 
-        title       = extract_meta(html, "title",       fallback=filename)
-        description = extract_meta(html, "description", fallback="")
-        tag         = extract_meta(html, "tag",         fallback="Research")
+    final_page = TEMPLATE.format(page_title="Dashboard", content=index_html, build_date=build_date)
+    
+    with open(os.path.join(OUTPUT_DIR, "index.html"), "w") as f:
+        f.write(final_page)
 
-        # Build individual article page
-        body         = strip_metadata_block(html)
-        article_html = f"""
-        <div class="fragment-header">
-            <div class="fragment-breadcrumb"><a href="index.html">← All Updates</a></div>
-            <span class="tag {TAG_CLASSES.get(tag.lower().split('|')[0].strip(), 'tag-proposal')}">{tag}</span>
-            <span class="fragment-date">{date_str}</span>
-        </div>
-        <h1 class="article-title">{title}</h1>
-        {body}
-        """
-        page = (TEMPLATE
-                .replace("{page_title}", title)
-                .replace("{content}", article_html)
-                .replace("{build_date}", build_date))
-        with open(os.path.join(output_dir, filename), "w") as f:
-            f.write(page)
+    print("Success: Generated index.html")
 
-        # Build card for indexes
-        card = build_fragment_card(filename, title, description, tag, date_str)
-        index_cards += card
-        fragment_count += 1
-
-        tag_lower = tag.lower()
-        if "proposal" in tag_lower:
-            proposal_cards += card
-        if "question" in tag_lower:
-            question_cards += card
-
-    # Empty-state fallbacks
-    def empty(msg):
-        return f'<p class="empty-state">{msg}</p>'
-
-    if not index_cards:
-        index_cards = empty("No planning updates yet. The Birthday Architect is warming up. ☕")
-    if not proposal_cards:
-        proposal_cards = empty("No proposals yet.")
-    if not question_cards:
-        question_cards = empty("No open questions yet.")
-
-    def write_page(page_title, heading, content, out_filename):
-        body = f"<h1 class='page-heading'>{heading}</h1>\n{content}"
-        page = (TEMPLATE
-                .replace("{page_title}", page_title)
-                .replace("{content}", body)
-                .replace("{build_date}", build_date))
-        with open(os.path.join(output_dir, out_filename), "w") as f:
-            f.write(page)
-
-    write_page("All Updates",    "All Planning Updates",   index_cards,    "index.html")
-    write_page("Proposals",      "Proposals",              proposal_cards, "proposals.html")
-    write_page("Open Questions", "Open Questions",         question_cards, "questions.html")
-
-    print(f"Generated index.html, proposals.html, questions.html. Found {fragment_count} planning fragment(s).")
-
-    # ── Sync to S3 ─────────────────────────────────────────────────────────────
+    # 4. Deployment & Git
     if args.s3_bucket:
-        print(f"Syncing to S3: {args.s3_bucket}")
-        subprocess.run(
-            ["aws", "s3", "sync", output_dir, args.s3_bucket, "--profile", PROFILE, "--delete"],
-            check=True
-        )
-        print("Site published successfully!")
-
+        subprocess.run(["aws", "s3", "sync", OUTPUT_DIR, args.s3_bucket, "--profile", PROFILE, "--delete"], check=True)
         if args.cloudfront_id:
-            print(f"Invalidating CloudFront cache for {args.cloudfront_id} ...")
-            subprocess.run(
-                ["aws", "cloudfront", "create-invalidation",
-                 "--distribution-id", args.cloudfront_id,
-                 "--paths", "/*"],
-                check=True
-            )
-            print("CloudFront invalidation requested.")
+            subprocess.run(["aws", "cloudfront", "create-invalidation", "--distribution-id", args.cloudfront_id, "--paths", "/*"], check=True)
 
-    # ── Git commit ─────────────────────────────────────────────────────────────
-    print("Committing and pushing changes to git...")
-    # Script is at: <repo>/sites/birthday/build_birthday.py
-    # dirname x1 → sites/birthday/  dirname x2 → sites/  dirname x3 → <repo>
     repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    site_dir  = "sites/birthday/"
-
-    subprocess.run(["git", "add", site_dir], cwd=repo_root, check=True)
-    status = subprocess.run(
-        ["git", "status", "--porcelain", site_dir],
-        cwd=repo_root, capture_output=True, text=True
-    )
+    subprocess.run(["git", "add", "sites/birthday/"], cwd=repo_root, check=True)
+    status = subprocess.run(["git", "status", "--porcelain", "sites/birthday/"], cwd=repo_root, capture_output=True, text=True)
     if status.stdout.strip():
-        today = datetime.now().strftime("%Y-%m-%d")
-        subprocess.run(
-            ["git", "commit", "-m", f"birthday: planning update {today}"],
-            cwd=repo_root, check=True
-        )
+        subprocess.run(["git", "commit", "-m", "feat: redesign birthday dashboard to editorial aesthetic"], cwd=repo_root, check=True)
         subprocess.run(["git", "push"], cwd=repo_root, check=True)
-        print("Git commit and push successful.")
-    else:
-        print("No new changes to commit.")
-
 
 if __name__ == "__main__":
     main()
