@@ -22,6 +22,10 @@
     --color-overlap-border:#f5a3c7;
     --color-action:       #fbbf2433;     /* action-required amber tint */
     --color-action-border:#fbbf24;
+    --color-pnw:          #34d39933;     /* last-hurrah teal tint */
+    --color-pnw-border:   #34d399;
+    --color-gift:         #f472b633;     /* gift-idea rose tint */
+    --color-gift-border:  #f472b6;
 
     --font-serif:   'Playfair Display', Georgia, serif;
     --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
@@ -338,6 +342,44 @@ footer {
     font-style: normal;
     font-weight: 600;
     color: #fbbf24;
+}
+
+.last-hurrah {
+    background: var(--color-pnw);
+    border: 1px solid var(--color-pnw-border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.last-hurrah::before {
+    content: "🏔️ PNW Last Hurrah";
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-pnw-border);
+    margin-bottom: 8px;
+}
+
+.gift-idea {
+    background: var(--color-gift);
+    border: 1px solid var(--color-gift-border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin: 16px 0;
+}
+
+.gift-idea::before {
+    content: "🎁 Gift Idea";
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-gift-border);
+    margin-bottom: 8px;
 }
 
 /* ── Comparison Grid ─────────────────────────────────────── */
