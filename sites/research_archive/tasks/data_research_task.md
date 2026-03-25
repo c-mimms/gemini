@@ -35,7 +35,7 @@ Some examples of dataset types to research:
 4.  **Produce Research Document**:
     -   Write a structured markdown report detailing your findings. 
     -   The report should include the brainstormed list, the selected idea, and all the research findings from Step 3.
-    -   Save this report locally at `/Users/chris/code/gemini/sites/research_archive/data/YYY-MM-DD_[topic_name]_research.md` (replace the date and topic appropriately).
+    -   Save this report locally at `/Users/chris/code/gemini/sites/research_archive/data/YYYY-MM-DD_[topic_name]_research.md` (replace the date and topic appropriately).
     
 5.  **Publish Site**
     -   Run `python3 /Users/chris/code/gemini/sites/research_archive/build.py --source /Users/chris/code/gemini/sites/research_archive/data/ --s3-bucket s3://gemini-designs-portfolio-2026-v2/research/` to build and publish the site.

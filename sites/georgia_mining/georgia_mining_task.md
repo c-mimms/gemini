@@ -123,7 +123,7 @@ file [OUTPUT_PATH]  # Delete if HTML/text instead of image
 ### Publish the Site
 
 ```bash
-python3 /Users/chris/code/gemini/static_site/build_georgia_mining.py \
+python3 /Users/chris/code/gemini/sites/georgia_mining/build_georgia_mining.py \
   --source /Users/chris/code/gemini/sites/georgia_mining/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/georgia-mining/ \
   --data-dir /Users/chris/code/gemini/sites/georgia_mining/data/research_materials/
