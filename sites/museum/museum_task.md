@@ -96,6 +96,7 @@ Run the following command to build and publish the site using the python build m
 python3 /Users/chris/code/gemini/sites/museum/build_museum.py \
   --source /Users/chris/code/gemini/sites/museum/src/ \
   --s3-bucket s3://gemini-designs-portfolio-2026-v2/museum/ \
+  --cloudfront-id E1LL4Q1IQLN3FU \
   --site-name "Mimms Museum" \
   --site-tagline "Preserving the artifacts of computing history"
 ```

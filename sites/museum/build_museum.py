@@ -481,6 +481,7 @@ def main():
     parser = argparse.ArgumentParser(description="News-style static site generator")
     parser.add_argument("--source", required=True, help="Directory of HTML/MD article files")
     parser.add_argument("--s3-bucket", required=False, help="S3 path, e.g. s3://bucket/path/")
+    parser.add_argument("--cloudfront-id", required=False, help="CloudFront Distribution ID for cache invalidation")
     parser.add_argument("--site-name", default="The Dispatch", help="Publication name")
     parser.add_argument("--site-tagline", default="Evidence-based political analysis", help="Tagline")
     args = parser.parse_args()
@@ -591,8 +592,14 @@ def main():
         try:
             subprocess.run(cmd, check=True)
             print("Successfully published to S3.")
+            if args.cloudfront_id:
+                print(f"Invalidating CloudFront cache for {args.cloudfront_id} ...")
+                cf_cmd = ["aws", "cloudfront", "create-invalidation",
+                          "--distribution-id", args.cloudfront_id, "--paths", "/*"]
+                subprocess.run(cf_cmd, check=True)
+                print("CloudFront invalidation requested.")
         except subprocess.CalledProcessError as e:
-            print(f"Error deploying to S3: {e}")
+            print(f"Error deploying: {e}")
             sys.exit(1)
 
 
