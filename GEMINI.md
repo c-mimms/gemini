@@ -9,3 +9,5 @@
 
 ## Development Workflow
 - **Continuous Integration:** Always commit and push any meaningful code change, refactor, or documentation update immediately upon completion and verification. Ensure the repository stays in sync with the remote at all times.
+- **Commit Discipline:** Use small, incremental commits — one logical change per commit. Write short, meaningful commit messages in imperative mood (e.g. `fix: museum cloudfront id`, `docs: add site design pattern guide`). Never batch unrelated changes into a single commit. Always push immediately after committing.
+
