@@ -37,3 +37,16 @@
 - **Next Focus:**
   - Sourcing specific SAS posters or Georg Jensen pieces based on Chris choice.
   - Checking availability for Kenmore Air bookings for April 12.
+
+---
+
+## 2026-03-25 (Update 3)
+- **Status:** V3 Blueprint published. Comparison grids for Day-Of and Gift Tracks.
+- **What I did:**
+  - Researched Kenmore Air (Sunday availability, baby policy).
+  - Vetted Electric Boat Company for baby-friendliness (enclosed, heated, silent).
+  - Identified top-tier Swedish design gifts: Georg Jensen (Bernadotte) vs. Vintage SAS posters (Otto Nielsen).
+  - Published V3 dashboard fragment with refined options.
+- **Next Focus:**
+  - Secure booking details once Chris narrows down the choice.
+  - Source specific SAS poster listings or Georg Jensen pieces.
