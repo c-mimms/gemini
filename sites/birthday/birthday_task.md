@@ -94,7 +94,7 @@ file /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
     ```bash
     python3 /Users/chris/code/gemini/sites/birthday/build_birthday.py \
       --s3-bucket s3://gemini-designs-portfolio-2026-v2/birthday/ \
-      --cloudfront-id REPLACE_WITH_ID
+      --cloudfront-id EGUA56SB26IEX
     ```
     > 📝 The CloudFront ID will be filled in once the distribution is active.
 

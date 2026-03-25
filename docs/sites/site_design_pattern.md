@@ -195,3 +195,4 @@ Verify with `task list` and `task show ID`.
 | Prayer / Devotional | `sites/prayer/prayer_task.md` | `build_prayer.py` | E246K237C1STB4 | `/prayer/` |
 | Georgia Mining | `sites/georgia_mining/georgia_mining_task.md` | `build_georgia_mining.py` | ENMOI467Q1I00 | `/georgia-mining/` |
 | Research Archive | `sites/research_archive/tasks/data_research_task.md` | `build.py` | *(none set)* | `/research/` |
+| Birthday Dashboard | `sites/birthday/birthday_task.md` | `build_birthday.py` | EGUA56SB26IEX | `/birthday/` |
