@@ -1,0 +1,28 @@
+{
+  "subject": "Wife's Birthday",
+  "birthday_date": "2026-04-12",
+  "location": "Kirkland/Seattle, WA",
+  "core_constraints": {
+    "baby_status": "Must be present for April 12th (1-year-old).",
+    "social_style": "Introverted/Shy. Dislikes meeting strangers or forced social interaction.",
+    "physical_touch": "No massages or spa treatments involving strangers.",
+    "classes": "Avoid (no cooking classes/workshops due to social friction)."
+  },
+  "interests": {
+    "likes": ["Live music", "Concerts", "Shows/Theater", "High-quality food/drink"],
+    "dislikes": ["Country music", "Small talk with strangers", "Massages"]
+  },
+  "chris_preferences": {
+    "dislikes": ["Large concerts", "Loud venues"]
+  },
+  "gift_strategy": [
+    "The 'Day-Of' Experience: Baby-friendly, low-stress, high-quality. April 12.",
+    "The 'Future' Gift: High-end tickets/experiences for when grandparents visit."
+  ],
+  "open_questions": [
+    "Specific genres of music she likes beyond 'not country'?",
+    "Expected timeframe for grandparent visit?",
+    "Budget preference for the 'Future Gift' tickets?"
+  ],
+  "last_updated": "2026-03-25"
+}
