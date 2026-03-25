@@ -4,41 +4,52 @@
 
 /* ── Design Tokens ───────────────────────────────────────── */
 :root {
-    --color-bg:           #0f0d14;
-    --color-surface:      #1a1625;
-    --color-surface-2:    #251f34;
-    --color-border:       rgba(255, 255, 255, 0.08);
-    --color-text:         #e8e0f0;
-    --color-text-muted:   #8a7fa0;
-    --color-accent:       #d4a3f5;       /* soft lavender-pink */
-    --color-accent-2:     #f5a3c7;       /* blush pink */
-    --color-gold:         #f0c070;
+    --color-bg: #0f0d14;
+    --color-surface: #1a1625;
+    --color-surface-2: #251f34;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text: #e8e0f0;
+    --color-text-muted: #8a7fa0;
+    --color-accent: #d4a3f5;
+    /* soft lavender-pink */
+    --color-accent-2: #f5a3c7;
+    /* blush pink */
+    --color-gold: #f0c070;
 
-    --color-safe:         #4ade8033;     /* introvert-safe green tint */
-    --color-safe-border:  #4ade80;
-    --color-baby:         #60a5fa33;     /* baby-compatible blue tint */
-    --color-baby-border:  #60a5fa;
-    --color-overlap:      #f5a3c733;     /* the-overlap pink tint */
-    --color-overlap-border:#f5a3c7;
-    --color-action:       #fbbf2433;     /* action-required amber tint */
-    --color-action-border:#fbbf24;
-    --color-pnw:          #34d39933;     /* last-hurrah teal tint */
-    --color-pnw-border:   #34d399;
-    --color-gift:         #f472b633;     /* gift-idea rose tint */
-    --color-gift-border:  #f472b6;
+    --color-baby: #60a5fa33;
+    /* baby-compatible blue tint */
+    --color-baby-border: #60a5fa;
+    --color-overlap: #f5a3c733;
+    /* the-overlap pink tint */
+    --color-overlap-border: #f5a3c7;
+    --color-action: #fbbf2433;
+    /* action-required amber tint */
+    --color-action-border: #fbbf24;
+    --color-pnw: #34d39933;
+    /* last-hurrah teal tint */
+    --color-pnw-border: #34d399;
+    --color-gift: #f472b633;
+    /* gift-idea rose tint */
+    --color-gift-border: #f472b6;
 
-    --font-serif:   'Playfair Display', Georgia, serif;
-    --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
-    --radius-sm:   6px;
-    --radius-md:   12px;
-    --radius-lg:   20px;
-    --shadow:      0 4px 24px rgba(0,0,0,0.4);
-    --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ── Reset & Base ────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: var(--font-sans);
@@ -49,10 +60,20 @@ body {
     min-height: 100vh;
 }
 
-a { color: var(--color-accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
 
-img { max-width: 100%; border-radius: var(--radius-md); display: block; }
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    display: block;
+}
 
 /* ── Layout Shell ────────────────────────────────────────── */
 .wrapper {
@@ -244,10 +265,29 @@ footer {
     border: 1px solid;
 }
 
-.tag-proposal  { background: rgba(212,163,245,0.12); border-color: var(--color-accent);   color: var(--color-accent); }
-.tag-research  { background: rgba(96,165,250,0.12);  border-color: #60a5fa;               color: #60a5fa; }
-.tag-logistics { background: rgba(240,192,112,0.12); border-color: var(--color-gold);      color: var(--color-gold); }
-.tag-question  { background: rgba(251,191,36,0.12);  border-color: #fbbf24;               color: #fbbf24; }
+.tag-proposal {
+    background: rgba(212, 163, 245, 0.12);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.tag-research {
+    background: rgba(96, 165, 250, 0.12);
+    border-color: #60a5fa;
+    color: #60a5fa;
+}
+
+.tag-logistics {
+    background: rgba(240, 192, 112, 0.12);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.tag-question {
+    background: rgba(251, 191, 36, 0.12);
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
 
 /* ── Planning Classes (Agent Tool Inventory) ─────────────── */
 .status-action-required {
@@ -268,25 +308,6 @@ footer {
     text-transform: uppercase;
     color: var(--color-action-border);
     margin-bottom: 10px;
-}
-
-.introvert-safe {
-    background: var(--color-safe);
-    border: 1px solid var(--color-safe-border);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-    margin: 16px 0;
-}
-
-.introvert-safe::before {
-    content: "✅ Introvert-Safe";
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-safe-border);
-    margin-bottom: 8px;
 }
 
 .baby-compatible {
@@ -328,7 +349,7 @@ footer {
 }
 
 .open-question {
-    background: rgba(251,191,36,0.08);
+    background: rgba(251, 191, 36, 0.08);
     border-left: 3px solid #fbbf24;
     padding: 14px 18px;
     margin: 12px 0;
@@ -400,7 +421,7 @@ footer {
 }
 
 .venue-card:hover {
-    border-color: rgba(212,163,245,0.3);
+    border-color: rgba(212, 163, 245, 0.3);
 }
 
 .venue-card img {
@@ -441,9 +462,18 @@ main h3 {
     color: var(--color-accent);
 }
 
-main p  { margin-bottom: 16px; }
-main ul, main ol { margin: 0 0 16px 24px; }
-main li { margin-bottom: 6px; }
+main p {
+    margin-bottom: 16px;
+}
+
+main ul,
+main ol {
+    margin: 0 0 16px 24px;
+}
+
+main li {
+    margin-bottom: 6px;
+}
 
 main blockquote {
     border-left: 3px solid var(--color-accent);
@@ -462,7 +492,11 @@ main hr {
 }
 
 /* ── Tables ──────────────────────────────────────────────── */
-.table-scroll { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+.table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
 
 main table {
     width: 100%;
@@ -470,7 +504,8 @@ main table {
     font-size: 0.9rem;
 }
 
-main th, main td {
+main th,
+main td {
     padding: 10px 14px;
     text-align: left;
     border-bottom: 1px solid var(--color-border);
@@ -486,11 +521,32 @@ main th {
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
-    header h1 { font-size: 1.4rem; }
-    .header-icon { font-size: 2rem; }
-    .article-title { font-size: 1.6rem; }
-    .page-heading { font-size: 1.5rem; }
-    .comparison-grid { grid-template-columns: 1fr; }
-    main { padding: 28px 16px 60px; }
-    .header-nav a { padding: 10px 14px; font-size: 0.8rem; }
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .header-icon {
+        font-size: 2rem;
+    }
+
+    .article-title {
+        font-size: 1.6rem;
+    }
+
+    .page-heading {
+        font-size: 1.5rem;
+    }
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 28px 16px 60px;
+    }
+
+    .header-nav a {
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
 }

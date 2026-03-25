@@ -65,13 +65,31 @@ To do so:
 2. Add the new class to the table above in this file (see Self-Modification rules below).
 3. Use the new class in the fragment you are writing.
 
-**Note:** Use `curl` to fetch and store representative images of locations or gift items:
-```bash
-curl -s -L -A "BirthdayBot/1.0" "URL" \
-  -o /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
-file /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
-# Delete the file if output says "HTML" or "text" — the download failed.
-```
+### Image Handling
+When sourcing images from Wikimedia Commons, use this proven, tested pattern to avoid 404s and blocks:
+
+1. **Find the Filename:** Find the exact filename on Wikimedia Commons (e.g., `File:Kenmore_Air_DHC-3_Otter.jpg`).
+2. **Download using Special:FilePath:** Use the `Special:FilePath` redirect which handles the complex hash paths for you.
+3. **Download & Verify:**
+   ```bash
+   FILENAME="Kenmore_Air_DHC-3_Otter.jpg"
+   DEST="/Users/chris/code/gemini/sites/birthday/data/images/kenmore_seaplane.jpg"
+   
+   # Use the verified Special:FilePath pattern
+   curl -s -L -A "BirthdayArchitectBot/1.0 (https://cbmo.net; contact@cbmo.net)" \
+     "https://commons.wikimedia.org/wiki/Special:FilePath/${FILENAME}?width=1000" \
+     -o "$DEST"
+   
+   # CRITICAL VERIFICATION
+   if [ -f "$DEST" ]; then
+     MIME=$(file --mime-type -b "$DEST")
+     if [[ ! $MIME == image/* ]]; then
+       echo "Error: Downloaded $MIME (likely a block or 404). Deleting."
+       rm "$DEST"
+     fi
+   fi
+   ```
+4. **Reference:** Use the local path `/data/images/[name].jpg` in your HTML fragment.
 
 ---
 

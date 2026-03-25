@@ -23,3 +23,17 @@
 - **Next Focus:**
   - Narrow down the path based on Chris response to open questions.
   - Deep dive into specific Georg Jensen items or SAS memorabilia sourcing.
+
+
+--- 
+
+## 2026-03-25 (Update 2)
+- **Status:** V2 Blueprint published. Dual-track strategies finalized.
+- **What I did:**
+  - Vetted Kenmore Air for baby-friendliness (lap infants welcome, need earmuffs).
+  - Found top-tier Swedish dining (The Swedish Club, Skål) with baby amenities.
+  - Identified two distinct gift tracks: Iconic Design (Georg Jensen) vs. Aviation Heritage (Vintage SAS).
+  - Posed two critical questions to Chris (Earmuffs and Gift Preference).
+- **Next Focus:**
+  - Sourcing specific SAS posters or Georg Jensen pieces based on Chris choice.
+  - Checking availability for Kenmore Air bookings for April 12.
