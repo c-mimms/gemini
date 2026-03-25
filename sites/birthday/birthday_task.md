@@ -37,14 +37,17 @@ Conduct deep research into diverse "Day-Trippable" experiences. Do not settle fo
 
 ### Track B: The Gift Hunt
 Identify 5–7 diverse gift concepts ranging across:
-* **Physical Goods:** High-end aviation gear, Swedish design pieces, or local PNW craftsmanship.
-* **Experiences:** Tickets for later in the year, spa memberships, or specialized classes.
-* **Sentimental:** Custom-built projects (leveraging Chris's software/AI skills) or curated memory gifts.
+* **Physical Goods:** E.g. High-end design pieces, meaningful souvenirs, local craftsmanship, etc.
+* **Experiences:** E.g. Tickets for later in the year, spa memberships, or specialized classes, etc
+* **Sentimental:** E.g. Custom-built projects, curated memory gifts, etc.
 
 ---
 
 ## Step 3: Update the Dashboard
-Save a new fragment to `src/YYYY-MM-DD_[slug].html`. Use the established CSS classes:
+Save a new fragment to `src/YYYY-MM-DD_[slug].html`.
+
+### CSS Classes
+The following classes are already defined in `birthday.css`. Use them freely:
 
 | Class | Usage |
 | :--- | :--- |
@@ -52,8 +55,23 @@ Save a new fragment to `src/YYYY-MM-DD_[slug].html`. Use the established CSS cla
 | `.the-overlap` | 💡 Bridges her background/interests with his skills. |
 | `.last-hurrah` | 🏔️ Specific to the PNW/Seattle experience before the move. |
 | `.gift-idea` | 🎁 Specifically for physical or experience-based gifts. |
+| `.status-action-required` | ⚡ Chris needs to make a decision. |
+| `.open-question` | ❓ Unanswered question flagged for Chris. |
+| `.comparison-grid` + `.venue-card` | Side-by-side option cards. |
 
-**Note:** Use `curl` to fetch and store representative images of locations or gift items.
+**You may add new classes** when you need to convey a type of information not covered above.
+To do so:
+1. Add the class definition to `birthday.css` (follow the existing callout block pattern — `background`, `border`, `border-radius`, `padding`, and a `::before` label).
+2. Add the new class to the table above in this file (see Self-Modification rules below).
+3. Use the new class in the fragment you are writing.
+
+**Note:** Use `curl` to fetch and store representative images of locations or gift items:
+```bash
+curl -s -L -A "BirthdayBot/1.0" "URL" \
+  -o /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
+file /Users/chris/code/gemini/sites/birthday/data/images/FILENAME
+# Delete the file if output says "HTML" or "text" — the download failed.
+```
 
 ---
 
@@ -73,6 +91,39 @@ Save a new fragment to `src/YYYY-MM-DD_[slug].html`. Use the established CSS cla
 ## Step 5: Log & Publish
 1.  **Update `journal.md`:** Summarize today's work and the priority for the next agent run.
 2.  **Publish:** Run the `build_birthday.py` script to sync the dashboard to CloudFront.
+
+---
+
+## Self-Modification Rules
+
+You are allowed — and encouraged — to edit this file (`birthday_task.md`) and `birthday.css`
+to improve your own future runs. Follow these rules strictly:
+
+### ✅ Valid changes to `birthday_task.md`
+Architectural and procedural improvements only. Examples:
+- Adding a new data file to the Data Directory table (e.g., "Discovered events stored in `data/events.md`") and instructions on how to use it.
+- Adding a new CSS class to the CSS inventory table after you've added it to `birthday.css`.
+- Refining a step's instructions based on a process that didn't work well.
+- Adding a new Track to Step 2 if the research scope has grown.
+
+### ❌ Invalid changes to `birthday_task.md`
+Never store knowledge or discoveries here. That belongs in `data/`. Examples of what NOT to add:
+- Lists of venues, events, or gifts you've found.
+- Prices, dates, or availability notes.
+- Answers to open questions.
+- Any content that will become stale or needs updating between runs.
+
+### Data Files
+All knowledge lives in `/Users/chris/code/gemini/sites/birthday/data/`. You may create new
+files there freely. If you do, add a row for the new file in the **Data Directory & State**
+table at the top of this file so future runs know it exists.
+
+| File | Purpose |
+| :--- | :--- |
+| `preferences.md` | Core facts — her interests, constraints, Chris's preferences |
+| `journal.md` | Your internal monologue — what you did, what's next |
+| `inbox.md` | Email sync — replies from Chris |
+| *(create as needed)* | e.g. `events.md` for discovered April events, `venues.md` for vetted venues |
 
 ---
 
