@@ -10,43 +10,21 @@
   - Baby (1-year-old) will not have a sitter.
 - **Next Focus for Next Run:**
   - Open ended - first actual run.
-- **Status:** Waiting for first run — no blockers.
 
 ---
 
-## 2026-03-24 (Update 1)
-- **Status:** Researching Day-Of & Gift tracks.
+## 2026-03-25 (Deep Dive & Vetting)
+- **Status:** Researching Day-Of & Gifts.
 - **What I did:**
-  - Vetted Kenmore Air, The Electric Boat Company, and Whidbey Island for baby-friendliness and "Last Hurrah" potential.
-  - Identified Swedish design (Georg Jensen) and Vintage SAS as top-tier gift tracks.
-  - Published the first strategy dashboard fragment.
+  - Researched Kenmore Air (baby policies confirmed: lap infants, 25-50lb baggage, ear pro needed).
+  - Skagit Valley Tulip Festival (peak bloom April 12, muddy fields, baby carrier recommended).
+  - Duffy Electric Boats in Kirkland (very baby-friendly, quiet, enclosed).
+  - Sourced high-end Swedish design (MALM, Sjöö Sandström, Palmgrens, Orrefors).
+- **Key Findings:**
+  - April 12 is peak bloom for tulips.
+  - Seaplanes are a viable "Aviation" option for the day-of.
+  - Electric boats in Kirkland are a safe, local "Nautical" bet.
 - **Next Focus:**
-  - Narrow down the path based on Chris response to open questions.
-  - Deep dive into specific Georg Jensen items or SAS memorabilia sourcing.
-
-
---- 
-
-## 2026-03-25 (Update 2)
-- **Status:** V2 Blueprint published. Dual-track strategies finalized.
-- **What I did:**
-  - Vetted Kenmore Air for baby-friendliness (lap infants welcome, need earmuffs).
-  - Found top-tier Swedish dining (The Swedish Club, Skål) with baby amenities.
-  - Identified two distinct gift tracks: Iconic Design (Georg Jensen) vs. Aviation Heritage (Vintage SAS).
-  - Posed two critical questions to Chris (Earmuffs and Gift Preference).
-- **Next Focus:**
-  - Sourcing specific SAS posters or Georg Jensen pieces based on Chris choice.
-  - Checking availability for Kenmore Air bookings for April 12.
-
----
-
-## 2026-03-25 (Update 3)
-- **Status:** V3 Blueprint published. Comparison grids for Day-Of and Gift Tracks.
-- **What I did:**
-  - Researched Kenmore Air (Sunday availability, baby policy).
-  - Vetted Electric Boat Company for baby-friendliness (enclosed, heated, silent).
-  - Identified top-tier Swedish design gifts: Georg Jensen (Bernadotte) vs. Vintage SAS posters (Otto Nielsen).
-  - Published V3 dashboard fragment with refined options.
-- **Next Focus:**
-  - Secure booking details once Chris narrows down the choice.
-  - Source specific SAS poster listings or Georg Jensen pieces.
+  - Finalize 5-7 gift options for Chris to choose from.
+  - Build out a comparison grid for the 3 main day-trip archetypes (Aviation, Nautical, Bloom).
+- **Status:** Drafting fragments.
