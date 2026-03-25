@@ -123,7 +123,7 @@ table at the top of this file so future runs know it exists.
 | `preferences.md` | Core facts — her interests, constraints, Chris's preferences |
 | `journal.md` | Your internal monologue — what you did, what's next |
 | `inbox.md` | Email sync — replies from Chris |
-| *(create as needed)* | e.g. `events.md` for discovered April events, `venues.md` for vetted venues |
+| *(create as needed)* | e.g. `events.md` for discovered April events |
 
 ---
 
