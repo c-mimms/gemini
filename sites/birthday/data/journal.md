@@ -1,50 +1,16 @@
-# Project Journal: April 12 Mission
+# Architect's Notepad
+
+*This is a fluid, free-form scratchpad. Use it to jot down thoughts, track promising leads, rule out bad ideas, and note what you want to research next. Do not use rigid formatting or useless "Status" fields.*
 
 ---
 
-## 2026-03-25 (Bootstrap)
-- **Status:** Initializing project. Directory and brain files created.
-- **What I did:** Set up the full site scaffold — preferences.md, journal.md, inbox.md,
-  birthday_task.md, build_birthday.py, birthday.css.
-- **Key Constraints:**
-  - Baby (1-year-old) will not have a sitter.
-- **Next Focus for Next Run:**
-  - Brainstorm highly diverse, entirely new day-trips and gifts! Do not draft comparison grids yet.
-- **Status:** Waiting for first run — no blockers.
+**Initial Thoughts - The Pivot (2026-03-25)**
+We had been leaning heavily into the "PNW Farewell" theme. While nice, the primary goal is just a *great birthday*. It doesn't have to be a major excursion. Next time I run, I should look into some hyper-local, ultra-luxe options right in Kirkland or nearby on the Eastside that are totally stress-free with the baby.
 
+Aviation is still a solid angle, but maybe a grounded luxury approach (spa + local fine dining) is the right balance.
 
-## 2026-03-25 (Run 2)
-- **Status:** State synchronized. Research completed for "Farewell PNW" theme.
-- **What I did:** Identified 3 high-quality day-trips (Whidbey Island, Snoqualmie Falls, Tulip Festival) and 2 unique gift directions (Mt. St. Helens ash glass, Swedish Modern from Woodland Mod).
-- **Key Decisions:** Selected Tulip Town for its logistics and The Inn at Langley for its high-end vibe.
-- **Next Focus:** Refine the selected day-trip based on Chris's feedback in the next run.
-- **Status:** Waiting for feedback on the "Island/Coastal" vs "Mountain/Inland" direction.
+For gifts, the Topo map and Filson tote were strong. Need to find more unique, specialized gifts that aren't just "Seattle souvenirs" but genuine luxury items she'd love regardless of location.
 
-
-## 2026-03-25 (Run 3)
-- **Status:** Deep research completed for "Heritage & Horizon" theme.
-- **What I did:** Identified 3 new day-trip vibes (Poulsbo Duffy boat, Bainbridge Bloedel Reserve, Kenmore Air Scenic Tour) and 5 distinct gift ideas (Georg Jensen, Svenskt Tenn, Captain's Log, Photoshoot, Filson).
-- **Key Decisions:** Focused on her pilot background and Swedish heritage to make the "Last Hurrah" feel personal.
-- **Next Focus:** If Chris replies, refine the chosen direction. If not, brainstorm specific lunch venues and deeper logistics (ferry times, etc.) for the top candidate.
-- **Status:** Waiting for feedback on the "Poulsbo" vs "Bainbridge" vs "Aviation" direction.
-
-
-## 2026-03-25 (Run 3)
-- **Status:** Phase 2 Research Completed.
-- **What I did:** Identified 3 new day-trips (Lake Washington Luxury, Bloedel Reserve, Aviation/Mukilteo) and 3 unique gift directions (Custom Aviation Map Art, Filson, Georg Jensen).
-- **Key Decisions:** Added a new  CSS class to the site. Created the Phase 2 HTML fragment.
-- **Next Focus:** Refine the selected day-trip based on Chris's feedback or proceed with reservations for the top-choice.
-- **Status:** Waiting for feedback on the "Aviation Heritage" vs "Private Serenity" direction.
-
-## 2026-03-25 (Run 3)
-- **Status:** Phase 2 Research Completed.
-- **What I did:** Identified 3 new day-trips (Lake Washington Luxury, Bloedel Reserve, Aviation/Mukilteo) and 3 unique gift directions (Custom Aviation Map Art, Filson, Georg Jensen).
-- **Key Decisions:** Added a new .aviation-tribute CSS class to the site. Created the Phase 2 HTML fragment.
-- **Next Focus:** Refine the selected day-trip based on Chris's feedback or proceed with reservations for the top-choice.
-- **Status:** Waiting for feedback on the 'Aviation Heritage' vs 'Private Serenity' direction.
-## 2026-03-25 (Run 3)
-- **Status:** New high-impact leads generated.
-- **What I did:** Identified Kenmore Air seaplane tours (perfect for her pilot background) and The Lodge at St. Edward Park (luxury, local, baby-friendly). Proposed 3D wood nautical charts and Filson heritage goods as physical gifts.
-- **Key Decisions:** Shifted focus to "Aviation + Heritage" as a unique overlap.
-- **Next Focus:** Await feedback on the seaplane tour vs. grounded luxury. Vetting logistics for the chosen path.
-
+*To-Do on next run:*
+- Hunt for 2-3 new high-end local experiences (Kirkland, Bellevue).
+- Find 2 new gift ideas unrelated to the PNW.

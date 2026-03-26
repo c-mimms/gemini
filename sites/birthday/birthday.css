@@ -170,44 +170,103 @@ nav a {
 
 nav a:hover { opacity: 0.6; }
 
-/* ── Portfolio Grid ───────────────────────────────────────── */
-.editorial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.grid-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.grid-item img {
+/* ── Editorial Layout Updates ─────────────────────────────── */
+.editorial-item {
+    padding: var(--spacing-xl) 0;
+    border-bottom: 1px solid var(--color-border);
+    margin: 0;
     width: 100%;
-    aspect-ratio: 4/5;
+}
+
+.editorial-item:last-child {
+    border-bottom: none;
+}
+
+.editorial-item h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+/* ── Tabbed Interface ────────────────────────────────────── */
+.tabs-container {
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    overflow-x: auto;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 12px 24px;
+    margin-right: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: var(--font-sans);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-button:hover {
+    color: var(--color-text);
+}
+
+.tab-button.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Image Collage (Multiple Images) ─────────────────────── */
+.image-collage {
+    display: flex;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    align-items: flex-start;
+}
+
+.image-collage img {
+    flex: 1;
+    min-width: 0; /* allows flex shrinking correctly */
+    height: 400px;
     object-fit: cover;
-    margin-bottom: var(--spacing-sm);
+    border-radius: 2px;
 }
 
-/* ── Transitions & Polishing ─────────────────────────────── */
-img {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+/* Asymmetrical varied heights for multiple images */
+.image-collage img:nth-child(2) {
+    height: 320px;
+    margin-top: 40px;
 }
 
-.grid-item:hover img {
-    transform: scale(1.02);
+.image-collage img:nth-child(3) {
+    height: 360px;
+    margin-top: 10px;
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
-    .feature-block {
-        display: block;
+    .image-collage {
+        flex-direction: column;
     }
-    .feature-image, .feature-text {
-        grid-column: auto;
-        margin-bottom: var(--spacing-md);
-    }
-    .editorial-grid {
-        grid-template-columns: 1fr;
+    .image-collage img {
+        height: auto;
+        margin-top: 0 !important;
+        width: 100%;
     }
 }
