@@ -14,5 +14,5 @@ These tools require an `.env` file in the `agent_tools` directory containing you
 Example usage:
 ```bash
 python3 agent_tools/read_email.py --limit 5 --json
-python3 agent_tools/send_email.py --to user@example.com --subject "Hello" --body "World"
+python3 agent_tools/send_email.py --to christek13@gmail.com --subject "Hello" --body "World"
 ```
