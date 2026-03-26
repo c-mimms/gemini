@@ -47,10 +47,15 @@ Save new components to their respective folders. The build script automatically 
 ### Design Guidelines (Editorial Aesthetic)
 The dashboard uses a clean, light, editorial aesthetic inspired by high-end magazines. Items take up the **full width** of the column, not a grid. Use tasteful whitespace.
 
+**STRICT CATEGORIES (Tabs)**
+Every concept MUST fit into one of these exact categories for the `<meta name="tag">` and `<span class="concept-tag">`:
+- **Activities**: "Aviation & Sightseeing", "Nature & Gardens", "Local Luxury"
+- **Gifts**: "Swedish Heritage", "Custom Art", "Sentimental Experiences", "Physical Keepsakes"
+
 | Class | Usage |
 | :--- | :--- |
 | `.editorial-item` | The main full-width wrapper of an idea. Separated from others by generous margins. |
-| `.concept-tag` | A small uppercase label for the category/tab (e.g., `Aviation`, `Local Luxury`, `Nature`). The build script uses this for the Tabs UI. |
+| `.concept-tag` | A small uppercase label for the category/tab (MUST be one of the strict categories above). |
 | `.image-collage` | Wraps multiple images. Supports 1, 2, or 3 images overlapping elegantly. |
 | `.text-muted` | Use for secondary details or "Baby Factor" logic below the main paragraph. |
 

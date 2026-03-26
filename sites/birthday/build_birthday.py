@@ -132,7 +132,10 @@ def build_tabbed_page(title, items, nav_act, nav_gift, build_date):
             display_style = "block" if i == 0 else "none"
             tabs_content += f'<div id="{tag_id}" class="tab-content {active_class}" style="display:{display_style};">\n'
             tabs_content += '<div class="content-wrapped">\n'
-            for html_str in groups[tag]:
+            cycle_classes = ["style-split", "style-split-reverse", "style-center"]
+            for idx, html_str in enumerate(groups[tag]):
+                cls = cycle_classes[idx % len(cycle_classes)]
+                html_str = html_str.replace('<div class="editorial-item">', f'<div class="editorial-item {cls}">')
                 tabs_content += html_str + "\n"
             tabs_content += '</div></div>\n'
             
@@ -170,14 +173,13 @@ def main():
 
     # 3. Assemble Pages
     index_content = """
-    <div class="content-wrapped" style="text-align: center; margin-top: var(--spacing-xl);">
+    <div class="content-wrapped" style="text-align: center; margin-top: var(--spacing-xxl);">
         <span class="uppercase-label">April 12th</span>
-        <h1 style="margin-top: var(--spacing-lg); font-size: 4rem;">The Collection.</h1>
+        <h1 style="margin-top: var(--spacing-lg); font-size: 4.5rem; line-height: 1;">The Collection.</h1>
         <p class="text-muted" style="font-size: 1.2rem; max-width: 600px; margin: var(--spacing-md) auto var(--spacing-xl);">A curated dashboard of distinct aesthetics, day-trips, and luxury sentiments for her birthday.</p>
-        <div style="display: flex; justify-content: center; gap: var(--spacing-md);">
-            <a href="activities.html" style="font-size: 1.1rem; border-bottom: 1px solid var(--color-accent); padding-bottom: 2px;">View Day-Of Plans</a>
-            <span class="text-muted">·</span>
-            <a href="gifts.html" style="font-size: 1.1rem; border-bottom: 1px solid var(--color-accent); padding-bottom: 2px;">View Gift Concepts</a>
+        <div style="display: flex; justify-content: center; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
+            <a href="activities.html" class="btn-primary">View Day-Of Plans</a>
+            <a href="gifts.html" class="btn-outline">View Gift Concepts</a>
         </div>
     </div>
     """
@@ -201,10 +203,11 @@ def main():
             subprocess.run(["aws", "cloudfront", "create-invalidation", "--distribution-id", args.cloudfront_id, "--paths", "/*"], check=True)
 
     repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    subprocess.run(["git", "add", "agent_tools/fetch_wiki_image.py"], cwd=repo_root, check=False)
     subprocess.run(["git", "add", "sites/birthday/"], cwd=repo_root, check=True)
-    status = subprocess.run(["git", "status", "--porcelain", "sites/birthday/"], cwd=repo_root, capture_output=True, text=True)
+    status = subprocess.run(["git", "status", "--porcelain", "sites/birthday/", "agent_tools/fetch_wiki_image.py"], cwd=repo_root, capture_output=True, text=True)
     if status.stdout.strip():
-        subprocess.run(["git", "commit", "-m", "fix: separate activity/gift pages and robust image fetching"], cwd=repo_root, check=True)
+        subprocess.run(["git", "commit", "-m", "fix: implement magazine layout, strict categories, and buttons"], cwd=repo_root, check=True)
         subprocess.run(["git", "push"], cwd=repo_root, check=True)
 
 if __name__ == "__main__":
