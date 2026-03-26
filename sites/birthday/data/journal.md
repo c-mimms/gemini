@@ -14,3 +14,7 @@ For gifts, the Topo map and Filson tote were strong. Need to find more unique, s
 *To-Do on next run:*
 - Hunt for 2-3 new high-end local experiences (Kirkland, Bellevue).
 - Find 2 new gift ideas unrelated to the PNW.
+
+
+--- (2026-03-26) ---
+Today I pivoted to a more local, historical-luxe angle. I added The Lodge at St. Edward Park as a relaxation activity; it strikes a great balance of being high-end for her and extremely easy for the baby. For the gift, I went with a bespoke Smythson leather journal—it connects to her aviation background while being a genuine luxury item she can keep forever. I ruled out the Woodmark for now because I think the St. Edward Park grounds are better for a stroller walk while one parent is at the spa. I still need to explore one more high-end dining option in Bellevue for a final component.
