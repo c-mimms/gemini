@@ -24,3 +24,7 @@ Today I completed the pivot toward high-end, locally-grounded luxury that balanc
 
 --- (2026-03-26) ---
 Added a classic, high-end experience: **Afternoon Tea at The Fairmont Olympic**. It provides that grand, "substantial" luxury that feels special for a birthday, while remaining manageable with a stroller due to the hotel’s scale. For the gift, I added a **Bespoke Silver Pocket Compass**—it is a tactile, heirloom-quality piece that connects her aviation background with the upcoming move, serving as a permanent symbol of navigation. I have now added 2 new ideas this run, bringing the total new ideas since the last email to 2 (plus any from previous runs that weren’t sent).
+
+
+--- (2026-03-27) ---
+Today I added a new activity for Exploration and a sentimental Gift idea. The Bellevue Botanical Garden is a perfect, low-stress, and stroller-friendly outing for the family, especially in April. For the gift, I proposed a Custom Watercolor Portrait of their first home in Seattle—a tactile, heirloom-quality piece that captures the memory of their time in the Pacific Northwest as they prepare to move. I ruled out some more intense activities (like a seaplane flight) for this run to focus on a high-end, relaxed day that everyone can enjoy, baby included. Next time, I want to look into one more ultra-luxe dining option in Bellevue (maybe the newly opened InterContinental) and perhaps a unique piece of Northwest glass art as a second gift option.
