@@ -36,9 +36,9 @@ You are the **Lead Birthday Architect**. Your mission is to research and propose
 - **Output:** Save new component as `src/activities/[slug].html`.
 
 ### Track B: The Gift Hunt
-- **Goal:** Focus on tactile, heirloom-quality physical items (e.g. Svenskt Tenn pewter, Filson bags, custom art) or experiences that result in permanent keepsakes.
-- **Rules:** Brainstorm NEW, UNIQUE gifts on each run.
-- **Assets:** You MUST fetch at least one image using `fetch_wiki_image.py`. If an exact bespoke gift isn't on Wikipedia, fetch a beautiful generic photo of the concept (e.g., "Pewter" or "Handbag"). You MUST also include a `<a class="btn-outline">` link to a real or theoretical place to buy the item.
+- **Goal:** Focus on high-end, thoughtful physical items or experiences that result in keepsakes. **AVOID** explicitly nautical themes (e.g., compasses, ship clocks, topographic maps) and overly "bespoke" or strictly customized novelty items. Focus instead on elegant designer fashion, high-end home goods, luxury tech, or universally appreciated heirloom pieces (e.g., luxury leather bags, designer jewelry, high-end cameras).
+- **Rules:** Brainstorm NEW, UNIQUE gifts on each run. Do not repeat previous ideas.
+- **Assets:** You MUST fetch at least one image using `fetch_wiki_image.py`. If an exact gift isn't on Wikipedia, fetch a beautiful generic photo of the concept (e.g., "Handbag" or "Camera"). You MUST also include a `<a class="btn-outline">` link to a real or theoretical place to buy the item.
 - **Output:** Save new component as `src/gifts/[slug].html`.
 
 ### Design Guidelines (Editorial Aesthetic)
