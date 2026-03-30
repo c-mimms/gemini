@@ -12,3 +12,9 @@
 ### 👶 Childcare & Logistics
 * **Status:** 1-year-old daughter will be present for the full day.
 * **Requirements:** Stroller accessibility, baby-friendly environments (manageable noise, safety, places to change/feed safely).
+
+
+### 🎁 The Gift Hunt
+* **Goal:** High-end, thoughtful physical items or experiences that result in keepsakes.
+* **Avoid:** Explicitly nautical themes (e.g., compasses, ship clocks, topographic maps).
+* **Focus:** Elegant designer fashion, high-end home goods, luxury tech, or universally appreciated heirloom pieces (e.g., luxury leather bags, designer jewelry, high-end cameras).
