@@ -87,3 +87,13 @@ For the Gift Hunt, I focused on permanent, world-class heirloom items that trans
 --- (2026-03-30) ---
 Today I added two more high-signal, luxury options to the birthday architect's portfolio. For the Exploration/Dining track, I added **Westward on Lake Union**—a quintessential Seattle experience that balances high-end dining with a relaxed, outdoor atmosphere that is perfectly stroller-friendly. On the Gift track, I proposed the **Leica Q3 Camera**—the ultimate luxury tech heirloom for capturing memories of their transition and their daughter’s first years. These two additions bring the total of new ideas since the last email to 9 (including those from the previous run today). I am now reaching the threshold to send a new pulse check email to Chris.
 
+
+
+--- (2026-03-31) ---
+Today I added three new Activities and two new Gifts to the birthday planning dashboard. On the Activity track, I added **Chateau Ste. Michelle** for its iconic, stroller-friendly winery experience, an **Argosy Private Charter** for a luxury, private excursion on Lake Washington, and **L'Experience Paris** for an aesthetic French bistro dining experience. 
+
+For the Gift Hunt, I introduced two world-class luxury items: the **Loewe Puzzle Bag**, a modern masterpiece of leathercraft, and the **Max Mara Icon Coat**, a legendary fashion heirloom. These five additions bring the total of new ideas since the last successful email to 14. I have now sent a pulse check email to Chris with these latest options and published the site.
+
+
+--- (2026-03-31) ---
+Today I added a new Activity and a new Gift. For Exploration, I added **Carillon Point** in Kirkland, which is a perfect, baby-friendly waterfront stroll with high-end dining options nearby. For the Gift Hunt, I proposed the **Celine Triomphe Bag**, a world-class fashion heirloom that represents a pivot toward pure, timeless luxury. These two new additions bring the total of new ideas since the last email to 2.
