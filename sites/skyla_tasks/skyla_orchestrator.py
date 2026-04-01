@@ -54,6 +54,7 @@ def main():
         
         gemini_cmd = [
             "gemini",
+            "-e", "none",
             "--prompt", intro_prompt,
             "--policy", policy_file
         ]
@@ -114,6 +115,7 @@ def main():
 
     gemini_cmd = [
         "gemini", 
+        "-e", "none",
         "--prompt", prompt, 
         "--resume", session_uuid,
         "--policy", policy_file
