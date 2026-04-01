@@ -43,9 +43,9 @@ TEMPLATE = """<!DOCTYPE html>
 def main():
     load_dotenv()
     # It attempts to use ENV vars first, or you can override with args
-    s3_bucket = os.getenv("S3_BUCKET", "s3://skyla.cbmo.net")
-    cf_id = os.getenv("CLOUDFRONT_ID", "")
-    aws_profile = os.getenv("AWS_PROFILE", "default")
+    s3_bucket = os.getenv("S3_BUCKET", "s3://gemini-designs-portfolio-2026-v2/skyla_tasks")
+    cf_id = os.getenv("CLOUDFRONT_ID", "E3QFSJ2LSTHW9C")
+    aws_profile = os.getenv("AWS_PROFILE", "AdministratorAccess-302205098862")
     
     build_date = datetime.now().strftime("%B %d, %Y at %I:%M %p")
     

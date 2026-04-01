@@ -25,12 +25,15 @@ def main():
         cmd.extend(["--file", args.file])
     elif args.body:
         cmd.extend(["--body", args.body])
-    elif not sys.stdin.isatty():
-        body = sys.stdin.read()
-        cmd.extend(["--body", body])
     else:
-        print("Error: No body provided. Provide --body, --file, or pipe via stdin.", file=sys.stderr)
-        sys.exit(1)
+        # Check stdin ONLY if file and body aren't provided and it's not a tty
+        import select
+        if select.select([sys.stdin,],[],[],0.0)[0]:
+            body = sys.stdin.read()
+            cmd.extend(["--body", body])
+        else:
+            print("Error: No body provided. Provide --body, --file, or pipe via stdin.", file=sys.stderr)
+            sys.exit(1)
 
     print(f"Sending HTML email to Skyla...", flush=True)
     res = subprocess.run(cmd)
