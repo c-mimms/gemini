@@ -32,9 +32,6 @@ TEMPLATE = """<!DOCTYPE html>
             {content}
         </main>
         
-        <div style="text-align: center; margin-top: 50px;">
-            <a href="#" class="btn-fun">Send me an email to add tasks!</a>
-        </div>
     </div>
 </body>
 </html>
