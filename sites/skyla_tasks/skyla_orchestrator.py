@@ -6,7 +6,8 @@ import subprocess
 import re
 from datetime import datetime, timezone
 
-STATE_FILE = "state.json"
+agent_dir = os.path.dirname(os.path.abspath(__file__))
+STATE_FILE = os.path.join(agent_dir, "state.json")
 
 def get_state():
     if os.path.exists(STATE_FILE):
@@ -39,7 +40,6 @@ def main():
     last_run = state.get("last_run")
     session_uuid = state.get("session_uuid")
     
-    agent_dir = os.path.dirname(os.path.abspath(__file__))
     policy_file = os.path.join(agent_dir, "agent_prompt.md")
 
     # 1. First run / Intro Loop
