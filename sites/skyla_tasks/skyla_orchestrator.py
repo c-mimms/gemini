@@ -3,55 +3,81 @@ import os
 import sys
 import json
 import subprocess
+import re
 from datetime import datetime, timezone
 
 STATE_FILE = "state.json"
-SESSION_UUID = "skyla-main-session"
 
-def get_last_run():
+def get_state():
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r") as f:
-            data = json.load(f)
-            return data.get("last_run")
+            return json.load(f)
+    return {}
+
+def save_state(state):
+    # Ensure last_run is always updated if omitted, or updated specifically
+    if "last_run" not in state or state.get("_bump_time"):
+        state["last_run"] = datetime.now(timezone.utc).isoformat()
+    # remove temporary flags
+    if "_bump_time" in state:
+        del state["_bump_time"]
+        
+    with open(STATE_FILE, "w") as f:
+        json.dump(state, f)
+
+def get_latest_session_uuid():
+    res = subprocess.run(["gemini", "--list-sessions"], capture_output=True, text=True)
+    if res.returncode != 0:
+        return None
+    matches = re.findall(r'\[([0-9a-fA-F\-]{36})\]', res.stdout)
+    if matches:
+        return matches[-1]
     return None
 
-def set_last_run():
-    now = datetime.now(timezone.utc).isoformat()
-    with open(STATE_FILE, "w") as f:
-        json.dump({"last_run": now}, f)
-
 def main():
-    last_run = get_last_run()
+    state = get_state()
+    last_run = state.get("last_run")
+    session_uuid = state.get("session_uuid")
     
+    agent_dir = os.path.dirname(os.path.abspath(__file__))
+    policy_file = os.path.join(agent_dir, "agent_prompt.md")
+
     # 1. First run / Intro Loop
-    if not last_run:
-        print("First run detected. Triggering intro sequence...")
+    if not last_run or not session_uuid:
+        print("First run or missing session UUID. Triggering intro sequence...")
         intro_prompt = (
             "This is your very first execution! You are being introduced to Skyla. "
             "Please run the build script to create your inaugural site layout. "
             "Then, send a fun, silly, and grand introductory HTML email to Skyla "
             "explaining what you can do for her!"
         )
-        agent_dir = os.path.dirname(os.path.abspath(__file__))
-        policy_file = os.path.join(agent_dir, "agent_prompt.md")
         
         gemini_cmd = [
             "gemini",
             "--prompt", intro_prompt,
-            "--resume", SESSION_UUID,
             "--policy", policy_file
         ]
+        
         res = subprocess.run(gemini_cmd, cwd=agent_dir)
         if res.returncode != 0:
-            print("Failed to run intro sequence.", file=sys.stderr)
-            sys.exit(res.returncode)
+            print("Failed to run intro sequence. Agent crashed or rate limited.", file=sys.stderr)
+            # Even if it crashed, it might have spun up a session.
+            # We will still try to grab the UUID to recover gracefully.
             
-        print("Intro sequence complete.")
-        set_last_run()
-        sys.exit(0)
+        print("Capturing session UUID...")
+        new_uuid = get_latest_session_uuid()
+        if new_uuid:
+            print(f"Captured UUID: {new_uuid}")
+            state["session_uuid"] = new_uuid
+        else:
+            print("Warning: Could not extract session UUID from gemini output.", file=sys.stderr)
+
+        state["_bump_time"] = True
+        save_state(state)
+        # Even if first run failed, we save state to try subsequent runs properly
+        sys.exit(res.returncode)
 
     # 2. Daily Loop
-    agent_dir = os.path.dirname(os.path.abspath(__file__))
     read_cmd = [sys.executable, os.path.join(agent_dir, "skyla_read_email.py"), "--since", last_run]
     
     res = subprocess.run(read_cmd, capture_output=True, text=True, cwd=agent_dir)
@@ -67,10 +93,11 @@ def main():
 
     if not emails:
         print("No new emails from Skyla. Ending early.")
-        set_last_run()
+        state["_bump_time"] = True
+        save_state(state)
         sys.exit(0)
 
-    print(f"Found {len(emails)} new email(s). Invoking agent...")
+    print(f"Found {len(emails)} new email(s). Invoking agent with session {session_uuid}...")
     
     # Combine emails into single prompt
     prompt_lines = ["You have received new emails from Skyla since your last check:"]
@@ -85,12 +112,10 @@ def main():
     
     prompt = "\n".join(prompt_lines)
 
-    policy_file = os.path.join(agent_dir, "agent_prompt.md")
-    
     gemini_cmd = [
         "gemini", 
         "--prompt", prompt, 
-        "--resume", SESSION_UUID,
+        "--resume", session_uuid,
         "--policy", policy_file
     ]
     
@@ -99,12 +124,12 @@ def main():
     
     if gemini_res.returncode != 0:
         print("Agent execution failed.", file=sys.stderr)
-        # Even on failure, advance the last run time so we don't loop forever failing,
-        # but in a resilient system we might log and retry.
-        sys.exit(1)
+    else:
+        print("Agent execution completed.")
         
-    print("Agent execution completed.")
-    set_last_run()
+    state["_bump_time"] = True
+    save_state(state)
+    sys.exit(gemini_res.returncode)
 
 if __name__ == "__main__":
     main()
