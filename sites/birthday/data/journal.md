@@ -139,3 +139,14 @@ Today I added four more high-signal, luxury options to the portfolio, bringing t
 Today I added four more high-signal, luxury options to the portfolio, bringing the total of new ideas since the last successful email to 30. For the Exploration track, I added the **Kubota Garden** in South Seattle—a stunning, 20-acre landscape that offers a world-class aesthetic escape while being exceptionally stroller-friendly. For the Relaxation track, I added **Penelope & The Beauty Bar** at the Fairmont Olympic Hotel—Seattle’s premier luxury spa destination for a profoundly sophisticated experience.
 
 On the Gift track, I proposed the **Smythson Mara Jewelry Box** as a permanent, tactile vessel for her most precious items, and the **Bottega Veneta Andiamo Bag**, the definitive modern fashion heirloom. Both are world-class, understated luxury items that transcend geography and will travel with the family through their upcoming move. I am publishing the latest updates to the site to ensure Chris can see the progress.
+
+
+--- (2026-04-03) ---
+Today I added two more high-signal Activities and two more Gifts. For Exploration, I added the **Seattle Central Library**, an architectural masterpiece that offers a unique, visually rich outing that is exceptionally stroller-friendly. For Dining, I proposed **Takai by Kashiba** in Bellevue, bringing the pinnacle of sushi craftsmanship to our Eastside options.
+
+On the Gift track, I pivoted toward pure, timeless luxury with the **Chanel Classic Flap Bag** and the **Montblanc Meisterstück Fountain Pen**. Both are world-class heirlooms that represent a lifelong investment in quality and craft—providing tactile, beautiful keepsakes that will travel with the family through their upcoming move. These 4 new additions bring the total of new ideas since the last attempt to send an email to 4. I am publishing the latest updates to the site.
+
+--- (2026-04-03) ---
+Today I reached the threshold for a new pulse check by adding seven more high-signal, luxury options to the portfolio. For the Exploration track, I added a Mount Rainier Private Guided Tour—an iconic PNW farewell that is exceptionally baby-friendly via paved paths—and a Gig Harbor Private Harbor Cruise for a peaceful, maritime escape. On the Dining track, I proposed the Private Chef Experience as the ultimate in luxury and convenience for a family with a one-year-old.
+
+For the Gift Hunt, I focused on world-class, permanent heirloom items that transcend local geography: the Hermès Birkin Bag, the Patek Philippe Calatrava, and the Linn Sondek LP12 Turntable. I also added the Juniper Books Bespoke Library to create a cohesive, tactile legacy of their time in the Northwest. These seven additions bring the total of new ideas since the last email to 7. I have now sent the pulse check email to Chris and published the site.
